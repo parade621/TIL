@@ -1,4 +1,10 @@
 # Today I Learned
 
 ### 23.01
-12: 효율적인 학습을 위해 주먹구구식으로 블로그를 뒤져보며 공부하기보다는 구글 Codelab을 활용하려합니다.
+- 구글 Codelab으로 Kotlin android MAD 실습 및 공부 진행.
+- MVVM, LiveData, Navigation 복습 완료.
+
+### 23.02
+- Coroutine 복습 진행(새차원 강좌 + 구글 CodeLab + Kotlin 공식 문서)
+- Retrofit2와 Repository pattern, Room, Kotlin Flow, Paging, Dagger Hilt 복습 예정(냉동코더 강의 + CodeLab + SunflowerApp clone coding)
+
