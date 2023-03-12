@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c9c9723-e395-45cf-8db8-d2ad9bb5d4b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/ThreadToCoroutine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/ThreadToCoroutine.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/coroutine_Dispatcher01.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/coroutine_Dispatcher01.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/generateNewThread.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/generateNewThread.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/runBlockingEx.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/runBlockingEx.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Codelab/getdatafrominternet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/getdatafrominternet/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/BlankFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/BlankFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/CustomDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/CustomDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/MyViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/java/com/example/dialogtest/MyViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/res/layout/custom_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/res/layout/custom_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/res/layout/fragment_blank.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/res/layout/fragment_blank.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialogTest/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DialogTest/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DoItKKang/ch6_view/src/main/java/com/example/ch6_view/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../DoItKKang/ch6_view/src/main/java/com/example/ch6_view/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DoItKKang/ch6_view/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DoItKKang/ch6_view/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/src/main/java/com/example/ch8_usereventhandler/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/src/main/java/com/example/ch8_usereventhandler/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/src/main/res/drawable/round_btn.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/src/main/res/drawable/round_btn.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DoItKKang/ch8_usereventhandler/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/adapter/InputTextListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/adapter/InputTextListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/adapter/itemViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/adapter/itemViewHolder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/model/TextViewModels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/model/TextViewModels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/ui/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../LayoutEx1/app/src/main/java/com/example/layoutex1/ui/MainFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LayoutEx1/app/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LayoutEx1/app/src/main/res/layout/fragment_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LayoutEx1/app/src/main/res/layout/rv_items.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LayoutEx1/app/src/main/res/layout/rv_items.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/data/DataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/data/DataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/data/ItemType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/data/ItemType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/CoffeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/CoffeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/DessertFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/DessertFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/SummaryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/SummaryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/dialog/ConfirmDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/dialog/ConfirmDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/dialog/CustomDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/ui/dialog/CustomDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/viewmodel/MenuItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/viewmodel/MenuItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/viewmodel/MyViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/java/com/example/navnsharedviewmodel/viewmodel/MyViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/custom_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/custom_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/dialog_confirm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/dialog_confirm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/fragment_coffe.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/fragment_coffe.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/fragment_dessert.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/fragment_dessert.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/fragment_summary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/layout/fragment_summary.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NavNSharedViewModel/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test/app/src/main/java/com/example/test/BlankFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Test/app/src/main/java/com/example/test/BlankFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test/app/src/main/java/com/example/test/MyViewModels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Test/app/src/main/java/com/example/test/MyViewModels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test/app/src/main/res/layout/fragment_blank.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test/app/src/main/res/layout/fragment_blank.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thread_Timer/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thread_Timer/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thread_Timer/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thread_Timer/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thread_Timer/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Thread_Timer/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thread_Timer/app/src/main/java/com/example/thread_timer/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Thread_Timer/app/src/main/java/com/example/thread_timer/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thread_Timer/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Thread_Timer/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/ui/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/ui/MainFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/viewmodel/BindingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/viewmodel/BindingAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/viewmodel/MyViewModelFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/viewmodel/MyViewModelFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/viewmodel/MyViewModels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/java/com/example/viewmodelprovider_ex/viewmodel/MyViewModels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewModelProvider_Ex/app/src/main/res/layout/fragment_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/1/2/124c3565aa4e10fa4c890b5e839dfb76857521f5" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/1/2/124c3565aa4e10fa4c890b5e839dfb76857521f5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/3/2/32fdb7c646804f9c1dba71a603990963e8887d9d" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/3/2/32fdb7c646804f9c1dba71a603990963e8887d9d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/6/1/611a6c876732ea3d47ec2038dcd3c3f1742c5078" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/6/1/611a6c876732ea3d47ec2038dcd3c3f1742c5078" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/9/e/9e335d773f7454423c05c499d0bb6f626a074ace" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/a/6/a604da411e5a4106637d8c2aea5bb06c74670e7d" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/a/6/a604da411e5a4106637d8c2aea5bb06c74670e7d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/securityhotspotstore/9/e/9e335d773f7454423c05c499d0bb6f626a074ace" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/arrayEx.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/arrayEx.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/companionObj.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/companionObj.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/elvis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/elvis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/example02.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/example02.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/forEx.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/forEx.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/highOrderFunc.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/highOrderFunc.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/objClassEx.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/ch02/objClassEx.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch01.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch01.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch02.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch02.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch03.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch03.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch04.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch04.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch05.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch05.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch06_structuredConcurrency.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch06_structuredConcurrency.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch07_suspendFun.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch07_suspendFun.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch08_heavyWork.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch08_heavyWork.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch09_GlobalDelay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch09_GlobalDelay.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch10_hohoins.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch1/ch10_hohoins.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex01_cancelling.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex01_cancelling.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex02_cancelAndJoin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex02_cancelAndJoin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex03_explicitlyCheckActive.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex03_explicitlyCheckActive.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex04_CloseResources.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch2/ex04_CloseResources.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex01_SequentialByDefault.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex01_SequentialByDefault.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex02_ConcurentUsingAsync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex02_ConcurentUsingAsync.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex03_LazilyStartedAsync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex03_LazilyStartedAsync.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex04_structuredConcurrencyWithAsync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ch3/ex04_structuredConcurrencyWithAsync.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex03_OwnCoroutineScope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex03_OwnCoroutineScope.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex04_concurrency.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex04_concurrency.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex05_JobObj.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex05_JobObj.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex06_concurrentSuspendRun.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex06_concurrentSuspendRun.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex07_guarantConcurrency.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex07_guarantConcurrency.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex09_LazyAsync2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex09_LazyAsync2.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex10_concurrencyWithoutSuspend.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex10_concurrencyWithoutSuspend.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex11_constructedConcurrency.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex11_constructedConcurrency.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex12_constructedConcurrency2_error.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kotlin/KotlinBasic/app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex12_constructedConcurrency2_error.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../others/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../others/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/androidTest/java/com/example/restest/ExampleInstrumentedTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/java/com/example/restest/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/java/com/example/restest/ViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-anydpi-v33/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/values-ko/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/app/src/test/java/com/example/restest/ExampleUnitTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../resTest/settings.gradle" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2Mw1Vuz9dZXCUWOdG4dfw3iVzue" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/Users/parade621/TIL/TIL/Android/RetrofitEx"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c9c9723-e395-45cf-8db8-d2ad9bb5d4b5" name="Changes" comment="" />
+      <created>1678663857622</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678663857622</updated>
+    </task>
+    <servers />
+  </component>
+</project>
