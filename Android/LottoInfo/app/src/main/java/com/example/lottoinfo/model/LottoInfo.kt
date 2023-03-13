@@ -1,6 +1,6 @@
 package com.example.lottoinfo.model
 
-data class Lotto(
+data class LottoInfo(
     val bnusNo: Int,
     val drwNo: Int,
     val drwNoDate: String,
@@ -10,7 +10,7 @@ data class Lotto(
     val drwtNo4: Int,
     val drwtNo5: Int,
     val drwtNo6: Int,
-    val firstAccumamnt: Int,
+    val firstAccumamnt: Long,
     val firstPrzwnerCo: Int,
     val firstWinamnt: Long,
     val returnValue: String,
