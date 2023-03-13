@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.dialogtest.databinding.CustomDialogBinding
 
@@ -14,8 +15,7 @@ class CustomDialog: DialogFragment(){
 
     private var _binding:CustomDialogBinding? = null
     private val binding get() = _binding!!
-
-    val cnt:MutableLiveData<Int> = MutableLiveData(1)
+    private val myViewModel : MyViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,19 +32,20 @@ class CustomDialog: DialogFragment(){
             WindowManager.LayoutParams.WRAP_CONTENT)
         dialog?.setCancelable(true)
         binding.apply {
+            viewModel = myViewModel
             customDialog = this@CustomDialog
             lifecycleOwner = viewLifecycleOwner
         }
     }
 
     fun addBtn(){
-        cnt.value = cnt.value!!.inc()
+        myViewModel.cnt.value = myViewModel.cnt.value!!.inc()
         Log.d("CustomeDilaog","clicked!")
     }
 
     fun minusBtn(){
-        cnt.value = cnt.value!!.dec()
-        Log.d("CustomeDilaog","clicked!!")
+        myViewModel.cnt.value = myViewModel.cnt.value!!.dec()
+        Log.d("CustomeDilaog","minus function working")
     }
 
     fun cancleBtn(){

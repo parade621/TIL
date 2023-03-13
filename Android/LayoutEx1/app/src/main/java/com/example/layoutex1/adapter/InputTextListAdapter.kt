@@ -1,18 +1,25 @@
 package com.example.layoutex1.adapter
 
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.layoutex1.databinding.RvItemsBinding
 
-class RecyclerViewAdapter:RecyclerView.Adapter<itemViewHolder> {
+class InputTextListAdapter(val items: MutableList<String>)
+    : RecyclerView.Adapter<itemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): itemViewHolder {
-        TODO("Not yet implemented")
+        return itemViewHolder(
+            RvItemsBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: itemViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        Log.d("wow",position.toString())
+        holder.bind(items[position])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return items.size
     }
 }

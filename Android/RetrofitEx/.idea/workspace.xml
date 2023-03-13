@@ -5,6 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c9c9723-e395-45cf-8db8-d2ad9bb5d4b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/androidTest/java/com/example/lottoinfo/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/java/com/example/lottoinfo/model/Lotto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/java/com/example/lottoinfo/ui/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-anydpi-v33/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/app/src/test/java/com/example/lottoinfo/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LottoInfo/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/ThreadToCoroutine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/ThreadToCoroutine.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/coroutine_Dispatcher01.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Codelab/coroutine/src/main/java/com/example/coroutine/coroutine_Dispatcher01.kt" afterDir="false" />
@@ -161,21 +209,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2Mw1Vuz9dZXCUWOdG4dfw3iVzue" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/Users/parade621/TIL/TIL/Android/RetrofitEx"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/parade621/TIL/TIL/Android/RetrofitEx&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

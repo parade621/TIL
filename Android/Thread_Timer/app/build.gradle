@@ -6,6 +6,7 @@ plugins {
 android {
     namespace 'com.example.thread_timer'
     compileSdk 33
+    buildFeatures.dataBinding true
 
     defaultConfig {
         applicationId "com.example.thread_timer"

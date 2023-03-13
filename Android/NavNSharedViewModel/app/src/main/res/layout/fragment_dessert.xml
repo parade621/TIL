@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DessertFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.navnsharedviewmodel.viewmodel.MyViewModel" />
+        <variable
+            name="dessertFragment"
+            type="com.example.navnsharedviewmodel.ui.DessertFragment" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.DessertFragment">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Cl_btn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/tv_coffe"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Coffe"
+                android:onClick="@{()->dessertFragment.moveToCoffe()}"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_dessert"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/tv_dessert"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Desset"
+                android:onClick="@{()->dessertFragment.makeToastMassage()}"
+                android:gravity="center"
+                android:background="@color/lightGray"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintStart_toEndOf="@id/tv_coffe"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/Cl_btn"
+            />
+
+        <RadioGroup
+            android:id="@+id/dessert_options"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/Cl_btn"
+            app:layout_constraintBottom_toTopOf="@id/btn_options"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_macaron"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Macaron"
+                android:checked='@{viewModel.dessert.equals(viewModel.menuItem["macaron"])}'
+                android:onClick='@{()->viewModel.setDessert("macaron")}'/>
+            <RadioButton
+                android:id="@+id/rb_cookies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cookies"
+                android:checked='@{viewModel.dessert.equals(viewModel.menuItem["cookies"])}'
+                android:onClick='@{()->viewModel.setDessert("cookies")}'/>
+            <RadioButton
+                android:id="@+id/rb_cake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cake"
+                android:checked='@{viewModel.dessert.equals(viewModel.menuItem["cake"])}'
+                android:onClick='@{()->viewModel.setDessert("cake")}'/>
+        </RadioGroup>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/btn_options"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dessert_options"
+            >
+
+            <Button
+                android:id="@+id/btn_cancle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="취소"/>
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="다음"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

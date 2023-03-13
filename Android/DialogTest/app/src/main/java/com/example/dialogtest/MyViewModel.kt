@@ -1,4 +1,9 @@
 package com.example.dialogtest
 
-class MyViewModel {
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class MyViewModel: ViewModel() {
+
+    val cnt: MutableLiveData<Int> = MutableLiveData(1)
 }

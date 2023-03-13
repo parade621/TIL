@@ -1,6 +1,5 @@
-package com.example.layoutex1
+package com.example.layoutex1.model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -8,7 +7,8 @@ class TextViewModels: ViewModel(){
 
     private val _textInput = MutableLiveData<String>()
 
-    private val textList = mutableListOf<String>()
+    private val _textList = mutableListOf<String>()
+    val textList:MutableList<String> get() = _textList
 
     fun getText(txt: String){
         _textInput.value = txt
@@ -16,6 +16,5 @@ class TextViewModels: ViewModel(){
     }
     private fun insertText(){
         textList.add(_textInput.value.toString())
-        Log.d("wow", textList.toString())
     }
 }

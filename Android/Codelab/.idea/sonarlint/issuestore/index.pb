@@ -1,0 +1,27 @@
+
+_
+/coroutine/src/main/res/layout/activity_main.xml,0/b/0b82c99cb65603f107adcb608588982daa3cf424
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+F
+coroutine/build.gradle,7/9/79a2199b867619e5d4e9e88b341779cb42836ce9
+p
+@coroutine/src/main/java/com/example/coroutine/multiThreadTest.kt,a/4/a442503f79c9f5389548f74acab77ad1788701f7
+r
+Bcoroutine/src/main/java/com/example/coroutine/generateNewThread.kt,4/b/4b2509eaaf8f5d680321fa1e971b1d144cc4b768
+q
+Acoroutine/src/main/java/com/example/coroutine/singleThreadTest.kt,2/f/2fe7a26f8469a61a8c148cda3a55d65d94b7b9cb
+m
+=coroutine/src/main/java/com/example/coroutine/MainActivity.kt,3/b/3bc6a523d2348a153b78391de6ad5552ca2903e1
+w
+Gcoroutine/src/main/java/com/example/coroutine/coroutine_Dispatcher01.kt,b/d/bdafc109e22737fedf438931b0a26ba0b0dc7300
+n
+>coroutine/src/main/java/com/example/coroutine/runBlockingEx.kt,c/c/cc78f5e0e02b8a84cbba30d3457902a156f92b48
+r
+Bcoroutine/src/main/java/com/example/coroutine/ThreadToCoroutine.kt,c/d/cd9b1a2801b80eb43c4a145eb3940cfd2b33fb3d
+i
+9getdatafrominternet/src/main/res/layout/activity_main.xml,c/6/c6ece2d913d6965b6e82b3ef405837ede1ad3c87
+Å
+Qgetdatafrominternet/src/main/java/com/example/getdatafrominternet/MainActivity.kt,2/a/2a125aac55f1c0b8f6c4eacf5e81757f2c68ffd8
+P
+ getdatafrominternet/build.gradle,1/e/1e53c3bc167117d9f0ff1d45aa54ae22ba044b7f

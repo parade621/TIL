@@ -6,6 +6,7 @@ plugins {
 android {
     namespace 'com.example.getdatafrominternet'
     compileSdk 33
+    buildFeatrues.viewBinding = true
 
     defaultConfig {
         applicationId "com.example.getdatafrominternet"
