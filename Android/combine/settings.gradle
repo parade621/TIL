@@ -1,0 +1,31 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "combine"
+include ':app'
+include ':DialogTest'
+include ':Layout_ex'
+include ':NavNSharedViewModel'
+include ':ViewModelProvider'
+include ':coroutine'
+include ':getdatafrominternet'
+include ':Thread_Timer'
+include ':LottoInfo'
+include ':unscramble'
+include ':Mars_Photos'
+include ':kakaonotification'
+include ':notifications'
+include ':Dialogs'
+include ':RepositoryPatternBasic'
+include ':DataBindingBasic'

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DataBindingBasic" />
+            <option value="$PROJECT_DIR$/DialogTest" />
+            <option value="$PROJECT_DIR$/Dialogs" />
+            <option value="$PROJECT_DIR$/Layout_ex" />
+            <option value="$PROJECT_DIR$/LottoInfo" />
+            <option value="$PROJECT_DIR$/Mars_Photos" />
+            <option value="$PROJECT_DIR$/NavNSharedViewModel" />
+            <option value="$PROJECT_DIR$/RepositoryPatternBasic" />
+            <option value="$PROJECT_DIR$/Thread_Timer" />
+            <option value="$PROJECT_DIR$/ViewModelProvider" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/coroutine" />
+            <option value="$PROJECT_DIR$/getdatafrominternet" />
+            <option value="$PROJECT_DIR$/kakaonotification" />
+            <option value="$PROJECT_DIR$/notifications" />
+            <option value="$PROJECT_DIR$/unscramble" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
