@@ -1,4 +1,4 @@
-package com.example.combine
+package com.example.app.viewpager2
 
 import android.os.Bundle
 import android.view.View

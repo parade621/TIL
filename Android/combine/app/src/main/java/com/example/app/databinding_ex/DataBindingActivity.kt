@@ -1,10 +1,11 @@
-package com.example.app.databinding
+package com.example.app.databinding_ex
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.app.R
+import com.example.app.databinding.ActivityDatabindingBinding
 
 class DataBindingActivity : AppCompatActivity() {
 

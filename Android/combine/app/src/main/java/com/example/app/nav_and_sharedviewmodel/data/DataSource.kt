@@ -1,7 +1,8 @@
-package com.example.navnsharedviewmodel.data
+package com.example.app.nav_and_sharedviewmodel.data
 
 import androidx.lifecycle.MutableLiveData
-import com.example.navnsharedviewmodel.viewmodel.MenuItem
+import com.example.app.nav_and_sharedviewmodel.data.ItemType
+import com.example.app.nav_and_sharedviewmodel.viewmodel.MenuItem
 
 object DataSource {
 

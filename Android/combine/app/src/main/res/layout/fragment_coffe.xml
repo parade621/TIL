@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.navnsharedviewmodel.viewmodel.MyViewModel" />
+            type="com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel" />
         <variable
             name="coffeFragment"
-            type="com.example.navnsharedviewmodel.ui.CoffeFragment" />
+            type="com.example.app.nav_and_sharedviewmodel.ui.CoffeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

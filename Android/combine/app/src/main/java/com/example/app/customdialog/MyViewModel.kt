@@ -1,4 +1,4 @@
-package com.example.dialogtest
+package com.example.app.customdialog
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

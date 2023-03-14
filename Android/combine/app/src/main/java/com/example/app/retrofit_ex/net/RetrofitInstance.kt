@@ -1,14 +1,10 @@
-package com.example.lottoinfo.net
+package com.example.app.retrofit_ex.net
 
-import com.example.lottoinfo.model.LottoInfo
-import com.example.lottoinfo.utils.Constants.BASE_URL
-import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
+
 
 object RetrofitInstance {
 

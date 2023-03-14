@@ -1,4 +1,4 @@
-package com.example.navnsharedviewmodel.ui.dialog
+package com.example.app.nav_and_sharedviewmodel.ui.dialog
 
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.example.navnsharedviewmodel.databinding.DialogConfirmBinding
-import com.example.navnsharedviewmodel.viewmodel.MyViewModel
+import com.example.app.databinding.DialogConfirmBinding
+import com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel
 
 class ConfirmDialog:DialogFragment() {
 

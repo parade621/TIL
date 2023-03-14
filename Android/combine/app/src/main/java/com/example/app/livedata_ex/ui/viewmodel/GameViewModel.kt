@@ -1,11 +1,11 @@
-package com.example.android.unscramble.ui.viewmodel
+package com.example.app.livedata_ex.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.unscramble.ui.game.MAX_NO_OF_WORDS
-import com.example.android.unscramble.ui.game.SCORE_INCREASE
-import com.example.android.unscramble.ui.game.allWordsList
+import com.example.app.livedata_ex.ui.game.MAX_NO_OF_WORDS
+import com.example.app.livedata_ex.ui.game.SCORE_INCREASE
+import com.example.app.livedata_ex.ui.game.allWordsList
 
 class GameViewModel: ViewModel() {
 

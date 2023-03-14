@@ -1,4 +1,4 @@
-package com.example.combine
+package com.example.app.viewpager2
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

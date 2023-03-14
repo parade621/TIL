@@ -6,7 +6,7 @@
     <data>
         <variable
             name="gameViewModel"
-            type="com.example.android.unscramble.ui.viewmodel.GameViewModel" />
+            type="com.example.app.livedata_ex.ui.viewmodel.GameViewModel" />
         <variable
             name="maxNoOfWords"
             type="int" />
@@ -92,7 +92,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textField"
-                style="@style/Widget.Unscramble.TextInputLayout.OutlinedBox"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"

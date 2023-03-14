@@ -7,36 +7,191 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <ScrollView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
             android:padding="10dp">
 
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/btn_databindingBasic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DataBinding Basic"
+                android:textSize="10sp"
+                android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/btn_dialogs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dialogs"
+                android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </ScrollView>
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_customDialogs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Custom Dialogs"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:padding="10dp">
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_fragmentLifeCycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fragment lifecycle"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_Noti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_KN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KaKao Notification"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:padding="10dp">
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_LayoutTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Layout 연습"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_retrofit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retrofit Ex"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_NNS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SharedViewmodel"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:padding="10dp">
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_thread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thread Timer"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_viewPager2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ViewPager2"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_tmp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="liveData ex"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

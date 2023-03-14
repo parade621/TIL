@@ -1,4 +1,4 @@
-package com.example.lottoinfo.ui
+package com.example.app.retrofit_ex.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.lottoinfo.R
-import com.example.lottoinfo.databinding.FragmentLottoBinding
-import com.example.lottoinfo.viewmodel.LottoViewModel
+import com.example.app.databinding.FragmentLottoBinding
+import com.example.app.retrofit_ex.viewmodel.LottoViewModel
 
 class LottoFragment :Fragment(){
     private var _binding : FragmentLottoBinding? = null

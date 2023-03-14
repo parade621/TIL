@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.navnsharedviewmodel.viewmodel.MyViewModel" />
+            type="com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel" />
         <variable
             name="dessertFragment"
-            type="com.example.navnsharedviewmodel.ui.DessertFragment" />
+            type="com.example.app.nav_and_sharedviewmodel.ui.DessertFragment" />
 
     </data>
 

@@ -5,11 +5,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.dialogtest.MyViewModel" />
+            type="com.example.app.customdialog.MyViewModel" />
 
         <variable
             name="customDialog"
-            type="com.example.dialogtest.CustomDialog" />
+            type="com.example.app.customdialog.CustomDialog" />
 
     </data>
 

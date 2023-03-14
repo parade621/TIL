@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.app.databinding.FragmentMainBinding
 import com.example.layoutex1.adapter.InputTextListAdapter
-import com.example.layoutex1.databinding.FragmentMainBinding
 import com.example.layoutex1.model.TextViewModels
 
 class MainFragment: Fragment(){

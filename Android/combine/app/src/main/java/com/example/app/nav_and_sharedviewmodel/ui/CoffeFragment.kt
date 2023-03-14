@@ -1,5 +1,4 @@
-package com.example.navnsharedviewmodel.ui
-
+package com.example.app.nav_and_sharedviewmodel.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +7,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.navnsharedviewmodel.R
-import com.example.navnsharedviewmodel.databinding.FragmentCoffeBinding
-import com.example.navnsharedviewmodel.ui.dialog.ConfirmDialog
-import com.example.navnsharedviewmodel.viewmodel.MyViewModel
+import com.example.app.R
+import com.example.app.databinding.FragmentCoffeBinding
+import com.example.app.nav_and_sharedviewmodel.ui.dialog.ConfirmDialog
+import com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel
 
 class CoffeFragment :Fragment(){
 
-    private var _binding :FragmentCoffeBinding? = null
+    private var _binding : FragmentCoffeBinding? = null
     private val binding get() = _binding!!
     private val myViewModel : MyViewModel by activityViewModels()
     override fun onCreateView(
@@ -50,7 +49,7 @@ class CoffeFragment :Fragment(){
     }
 
     fun moveToSummary(){
-        findNavController().navigate(R.id.action_fragment_coffe_to_fragment_summary)
+        findNavController().navigate(R.id.action_coffeFragment_to_summaryFragment)
     }
 
     fun cancleOrder(){

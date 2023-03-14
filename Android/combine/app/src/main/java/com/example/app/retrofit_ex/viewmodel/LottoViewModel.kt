@@ -1,14 +1,12 @@
-package com.example.lottoinfo.viewmodel
+package com.example.app.retrofit_ex.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lottoinfo.model.LottoInfo
-import com.example.lottoinfo.repository.LottoRepository
-//import com.example.lottoinfo.model.Lotto
-//import com.example.lottoinfo.repository.LottoRepository
+import com.example.app.retrofit_ex.model.LottoInfo
+import com.example.app.retrofit_ex.repository.LottoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

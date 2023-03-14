@@ -1,4 +1,4 @@
-package com.example.navnsharedviewmodel.viewmodel
+package com.example.app.nav_and_sharedviewmodel.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 

@@ -4,10 +4,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.navnsharedviewmodel.viewmodel.MyViewModel" />
+            type="com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel" />
         <variable
             name="confirmDialog"
-            type="com.example.navnsharedviewmodel.ui.dialog.ConfirmDialog" />
+            type="com.example.app.nav_and_sharedviewmodel.ui.dialog.ConfirmDialog" />
     </data>
 
     <LinearLayout

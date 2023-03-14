@@ -1,4 +1,4 @@
-package com.example.dialogtest
+package com.example.app.customdialog
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.dialogtest.databinding.FragmentBlankBinding
+import com.example.app.databinding.FragmentBlankBinding
 
 class BlankFragment :Fragment(){
 

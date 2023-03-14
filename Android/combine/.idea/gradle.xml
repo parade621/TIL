@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -12,13 +13,20 @@
             <option value="$PROJECT_DIR$/DataBindingBasic" />
             <option value="$PROJECT_DIR$/DialogTest" />
             <option value="$PROJECT_DIR$/Dialogs" />
+            <option value="$PROJECT_DIR$/FragmentLifecycleTest" />
+            <option value="$PROJECT_DIR$/KotlinBasic" />
             <option value="$PROJECT_DIR$/Layout_ex" />
+            <option value="$PROJECT_DIR$/LiveData_Ex" />
             <option value="$PROJECT_DIR$/LottoInfo" />
             <option value="$PROJECT_DIR$/Mars_Photos" />
+            <option value="$PROJECT_DIR$/Material_design" />
             <option value="$PROJECT_DIR$/NavNSharedViewModel" />
             <option value="$PROJECT_DIR$/RepositoryPatternBasic" />
             <option value="$PROJECT_DIR$/Thread_Timer" />
+            <option value="$PROJECT_DIR$/ViewBindingBasic" />
             <option value="$PROJECT_DIR$/ViewModelProvider" />
+            <option value="$PROJECT_DIR$/ViewModelTest" />
+            <option value="$PROJECT_DIR$/Viewpager2_Ex" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/coroutine" />
             <option value="$PROJECT_DIR$/getdatafrominternet" />

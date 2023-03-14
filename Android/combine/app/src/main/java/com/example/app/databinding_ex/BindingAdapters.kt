@@ -1,4 +1,4 @@
-package com.example.app.databinding
+package com.example.app.databinding_ex
 
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter

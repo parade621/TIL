@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "combine"
-include ':app'
+include ':Viewpager2_Ex'
 include ':DialogTest'
 include ':Layout_ex'
 include ':NavNSharedViewModel'
@@ -29,3 +29,10 @@ include ':notifications'
 include ':Dialogs'
 include ':RepositoryPatternBasic'
 include ':DataBindingBasic'
+include ':KotlinBasic'
+include ':FragmentLifecycleTest'
+include ':ViewBindingBasic'
+include ':ViewModelTest'
+include ':Material_design'
+include ':app'
+include ':LiveData_Ex'

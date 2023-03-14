@@ -1,6 +1,7 @@
-package com.example.lottoinfo.net
+package com.example.app.retrofit_ex.net
 
-import com.example.lottoinfo.model.LottoInfo
+
+import com.example.app.retrofit_ex.model.LottoInfo
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

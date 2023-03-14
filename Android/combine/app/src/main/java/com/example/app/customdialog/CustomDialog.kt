@@ -1,4 +1,4 @@
-package com.example.dialogtest
+package com.example.app.customdialog
 
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
-import com.example.dialogtest.databinding.CustomDialogBinding
+import com.example.app.databinding.CustomDialogBinding
 
 class CustomDialog: DialogFragment(){
 
-    private var _binding:CustomDialogBinding? = null
+    private var _binding: CustomDialogBinding? = null
     private val binding get() = _binding!!
     private val myViewModel : MyViewModel by activityViewModels()
 

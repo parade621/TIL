@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".livedata_ex.LVEActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView4"
+        android:name="com.example.app.livedata_ex.ui.game.GameFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

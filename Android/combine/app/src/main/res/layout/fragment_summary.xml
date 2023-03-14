@@ -5,10 +5,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.navnsharedviewmodel.viewmodel.MyViewModel" />
+            type="com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel" />
         <variable
             name="summaryFragment"
-            type="com.example.navnsharedviewmodel.ui.SummaryFragment" />
+            type="com.example.app.nav_and_sharedviewmodel.ui.SummaryFragment" />
     </data>
 
     <FrameLayout

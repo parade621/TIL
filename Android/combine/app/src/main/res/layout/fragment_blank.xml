@@ -6,7 +6,7 @@
     <data>
         <variable
             name="blankFragment"
-            type="com.example.dialogtest.BlankFragment" />
+            type="com.example.app.customdialog.BlankFragment" />
 
     </data>
 
@@ -19,7 +19,7 @@
             android:id="@+id/btn_showDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="Show Dialog"
             android:onClick="@{()->blankFragment.onClickBtn()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

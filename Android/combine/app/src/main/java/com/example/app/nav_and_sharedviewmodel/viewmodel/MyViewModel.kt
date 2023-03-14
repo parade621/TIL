@@ -1,9 +1,9 @@
-package com.example.navnsharedviewmodel.viewmodel
+package com.example.app.nav_and_sharedviewmodel.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.navnsharedviewmodel.data.DataSource
+import com.example.app.nav_and_sharedviewmodel.data.DataSource
 
 class MyViewModel:ViewModel() {
 

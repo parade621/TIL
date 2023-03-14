@@ -6,10 +6,10 @@
     <data>
         <variable
         name="viewModel"
-        type="com.example.lottoinfo.viewmodel.LottoViewModel" />
+        type="com.example.app.retrofit_ex.viewmodel.LottoViewModel" />
         <variable
             name="lottoFragment"
-            type="com.example.lottoinfo.ui.LottoFragment" />
+            type="com.example.app.retrofit_ex.ui.LottoFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

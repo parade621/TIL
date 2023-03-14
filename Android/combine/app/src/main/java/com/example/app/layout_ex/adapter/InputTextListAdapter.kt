@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.layoutex1.databinding.RvItemsBinding
+import com.example.app.databinding.RvItemsBinding
 
 class InputTextListAdapter(val items: MutableList<String>)
     : RecyclerView.Adapter<itemViewHolder>() {

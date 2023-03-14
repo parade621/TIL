@@ -1,4 +1,4 @@
-package com.example.navnsharedviewmodel.ui
+package com.example.app.nav_and_sharedviewmodel.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.navnsharedviewmodel.R
-import com.example.navnsharedviewmodel.databinding.FragmentDessertBinding
-import com.example.navnsharedviewmodel.viewmodel.MyViewModel
+import com.example.app.R
+import com.example.app.databinding.FragmentDessertBinding
+import com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel
 
 class DessertFragment :Fragment(){
     private var _binding : FragmentDessertBinding? = null

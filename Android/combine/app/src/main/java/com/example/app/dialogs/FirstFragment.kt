@@ -1,60 +1,128 @@
 package com.example.app.dialogs
 
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.TimePicker
+import android.widget.Toast
 import com.example.app.R
+import com.example.app.databinding.FragmentFirstBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class FirstFragment : Fragment(){
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FirstFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FirstFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentFirstBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            firstFragment=this@FirstFragment
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+    fun showDatePicker(){
+        val dlg = DatePickerDialog(binding.root.context, object : DatePickerDialog.OnDateSetListener{
+            override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+                Log.d("FirstFragment", "year:$p1, month: $p2, dayOfMonth: $p3")
+            }
+        }, 2023, 3,13).show()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FirstFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FirstFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun showTimePicker(){
+        TimePickerDialog(binding.root.context, object : TimePickerDialog.OnTimeSetListener {
+            override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+                Log.d("FirstFragment","time: $p1, minute: $p2")
+            }
+        }, 15, 0, true).show()
+    }
+
+    fun showAlert(){
+        AlertDialog.Builder(binding.root.context).run{
+            setTitle("Test AlertDialog")
+            setIcon(android.R.drawable.ic_dialog_alert)
+            setMessage("알림입니다.")
+            setPositiveButton("OK", null)
+            setNegativeButton("Cancel", null)
+            setNeutralButton("More", null)
+            show()
+        }
+    }
+
+    // 다이얼로그 버튼 클릭시 이벤트 지정.
+    fun showEvent(){
+        val eventHandler = object: DialogInterface.OnClickListener{
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                if(p1 == DialogInterface.BUTTON_POSITIVE){
+                    Toast.makeText(binding.root.context,"긍정", Toast.LENGTH_SHORT).show()
+                }
+                else if(p1 == DialogInterface.BUTTON_NEGATIVE){
+                    Toast.makeText(binding.root.context,"부정", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(binding.root.context,"더보기", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        AlertDialog.Builder(binding.root.context).run{
+            setTitle("Menu EventHandler")
+            setIcon(android.R.drawable.ic_dialog_alert)
+            setMessage("메뉴 이벤트 확인")
+            setPositiveButton("확인", eventHandler)
+            setNegativeButton("취소",eventHandler)
+            setNeutralButton("더보기", eventHandler)
+            show()
+        }
     }
+
+    fun showMenu(){
+        val items = arrayOf<String>("사과","복숭아","수박","딸기")
+        AlertDialog.Builder(binding.root.context).run{
+            setTitle("items test")
+            setIcon(android.R.drawable.ic_dialog_info)
+            setItems(items, object : DialogInterface.OnClickListener{
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    Log.d("FirstFragment","선택한 과일: ${items[p1]}")
+                }
+            })
+            setPositiveButton("닫기",null)
+            show()
+        }
+    }
+    fun showMenu2(){
+        val items = arrayOf<String>("사과","복숭아","수박","딸기")
+        AlertDialog.Builder(binding.root.context).run{
+            setTitle("items test")
+            setIcon(android.R.drawable.ic_dialog_info)
+            setMultiChoiceItems(items, booleanArrayOf(true, false, false, false), object: DialogInterface.OnMultiChoiceClickListener{
+                override fun onClick(p0: DialogInterface?, p1: Int, p2: Boolean) {
+                    Log.d("FirstFragment","${items[p1]}이 ${if(p2) "선택되었습니다" else "선택 해제되었습니다."}")
+                }
+            })
+            setPositiveButton("닫기",null)
+            show()
+        }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
 }

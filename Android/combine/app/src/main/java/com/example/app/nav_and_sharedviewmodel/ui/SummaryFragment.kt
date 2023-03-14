@@ -1,4 +1,4 @@
-package com.example.navnsharedviewmodel.ui
+package com.example.app.nav_and_sharedviewmodel.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.navnsharedviewmodel.databinding.FragmentSummaryBinding
-import com.example.navnsharedviewmodel.viewmodel.MyViewModel
+import com.example.app.databinding.FragmentSummaryBinding
+import com.example.app.nav_and_sharedviewmodel.viewmodel.MyViewModel
 
 class SummaryFragment :Fragment(){
 

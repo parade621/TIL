@@ -1,8 +1,9 @@
-package com.example.lottoinfo.viewmodel
+package com.example.app.retrofit_ex.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.lottoinfo.repository.LottoRepository
+import com.example.app.retrofit_ex.repository.LottoRepository
+
 
 @Suppress("UNCHECKED_CAST")
 class LottoViewModelProviderFactory(

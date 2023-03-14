@@ -1,4 +1,4 @@
-package com.example.app.databinding
+package com.example.app.databinding_ex
 
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory

@@ -1,7 +1,7 @@
 package com.example.layoutex1.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.layoutex1.databinding.RvItemsBinding
+import com.example.app.databinding.RvItemsBinding
 
 class itemViewHolder(
     private val binding: RvItemsBinding

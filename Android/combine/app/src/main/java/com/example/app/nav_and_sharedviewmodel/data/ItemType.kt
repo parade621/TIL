@@ -1,4 +1,4 @@
-package com.example.navnsharedviewmodel.data
+package com.example.app.nav_and_sharedviewmodel.data
 
 object ItemType {
     val BEVERAGE = 1

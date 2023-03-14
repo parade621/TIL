@@ -1,4 +1,4 @@
-package com.example.kakaonotification
+package com.example.app.kakaonotification
 
 import android.app.NotificationManager
 import android.app.RemoteInput

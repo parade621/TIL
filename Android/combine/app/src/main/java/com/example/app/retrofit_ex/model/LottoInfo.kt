@@ -1,4 +1,4 @@
-package com.example.lottoinfo.model
+package com.example.app.retrofit_ex.model
 
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.JsonClass
