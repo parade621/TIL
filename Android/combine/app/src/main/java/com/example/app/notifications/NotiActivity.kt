@@ -19,7 +19,6 @@ class NotiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_noti)
 
-
         // Do it 안드로이드 300페이지 실습 예제 코드: 알림 빌더 작성
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val builder: NotificationCompat.Builder
