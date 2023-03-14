@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
 import androidx.core.content.ContextCompat
@@ -22,6 +23,9 @@ import com.example.app.R
 import com.example.app.databinding.ActivityKnactivityBinding
 
 class KNActivity : AppCompatActivity() {
+
+    // permission request code
+    private val REQUEST_NOTIFICATION_PERMISSION = 1
 
     private val binding : ActivityKnactivityBinding by lazy{
         ActivityKnactivityBinding.inflate(layoutInflater)
@@ -37,7 +41,8 @@ class KNActivity : AppCompatActivity() {
             if (it.all{permission -> permission.value == true}){
                 noti()
             }else{
-                Toast.makeText(this, "permission denied....", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "권한을 허용해주세요.", Toast.LENGTH_SHORT).show()
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), REQUEST_NOTIFICATION_PERMISSION)
             }
         }
 
@@ -128,4 +133,26 @@ class KNActivity : AppCompatActivity() {
         )
         manager.notify(11,builder.build())
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_NOTIFICATION_PERMISSION){
+            if(grantResults.size > 0){
+                for (grant in grantResults){
+                    Toast.makeText(this.applicationContext, "앱이 종료됩니다.", Toast.LENGTH_SHORT).show()
+                    if(grant != PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(this, "권한을 허용해주세요.", Toast.LENGTH_SHORT).show()
+                        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), REQUEST_NOTIFICATION_PERMISSION)
+                    }else{
+                        noti()
+                    }
+                }
+            }
+        }
+    }
+
 }
