@@ -20,11 +20,11 @@ import com.example.layoutex1.ui.LEActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private val binding : ActivityMainBinding by lazy{
+    private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private lateinit var intent:Intent
+    private lateinit var intent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,51 +35,51 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         binding.btnDatabindingBasic.setOnClickListener {
-            intent = Intent(this, DataBindingActivity::class.java)
+            val intent = Intent(this, DataBindingActivity::class.java)
             startActivity(intent)
         }
         binding.btnDialogs.setOnClickListener {
-            intent = Intent(this, DialogsActivity::class.java)
+            val intent = Intent(this, DialogsActivity::class.java)
             startActivity(intent)
         }
         binding.btnCustomDialogs.setOnClickListener {
-            intent = Intent(this, CustomDialogActivity::class.java)
+            val intent = Intent(this, CustomDialogActivity::class.java)
             startActivity(intent)
         }
         binding.btnFragmentLifeCycle.setOnClickListener {
-            intent = Intent(this, FLTActivity::class.java)
+            val intent = Intent(this, FLTActivity::class.java)
             startActivity(intent)
         }
         binding.btnNoti.setOnClickListener {
-            intent = Intent(this, NotiActivity::class.java)
+            val intent = Intent(this, NotiActivity::class.java)
             startActivity(intent)
         }
         binding.btnKN.setOnClickListener {
-            intent = Intent(this, KNActivity::class.java)
+            val intent = Intent(this, KNActivity::class.java)
             startActivity(intent)
         }
         binding.btnLayoutTest.setOnClickListener {
-            intent = Intent(this, LEActivity::class.java)
+            val intent = Intent(this, LEActivity::class.java)
             startActivity(intent)
         }
         binding.btnRetrofit.setOnClickListener {
-            intent = Intent(this, LottoActivity::class.java)
+            val intent = Intent(this, LottoActivity::class.java)
             startActivity(intent)
         }
         binding.btnNNS.setOnClickListener {
-            intent = Intent(this, NSActivity::class.java)
+            val intent = Intent(this, NSActivity::class.java)
             startActivity(intent)
         }
         binding.btnThread.setOnClickListener {
-            intent = Intent(this, TTActivity::class.java)
+            val intent = Intent(this, TTActivity::class.java)
             startActivity(intent)
         }
         binding.btnViewPager2.setOnClickListener {
-            intent = Intent(this, VPActivity::class.java)
+            val intent = Intent(this, VPActivity::class.java)
             startActivity(intent)
         }
         binding.btnTmp2.setOnClickListener {
-            intent = Intent(this, LVEActivity::class.java)
+            val intent = Intent(this, LVEActivity::class.java)
             startActivity(intent)
         }
     }

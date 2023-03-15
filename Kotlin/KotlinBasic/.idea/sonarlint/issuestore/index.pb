@@ -77,3 +77,5 @@ _app/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex11_construct
 bapp/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex10_concurrencyWithoutSuspend.kt,9/1/91eda7f3d523a8976f8454d165b808d6d37af3f2
 –
 fapp/src/main/java/com/example/kotlinbasic/coroutine/ex/coroutine_ex12_constructedConcurrency2_error.kt,a/4/a4b9a5e79bce03b7c00db9be32cb9e428f307111
+w
+Gapp/src/main/java/com/example/kotlinbasic/coroutine/test/NumericTest.kt,7/b/7b0ef46e9f6f6efbc37c1cb0a20b6ebc8bbaebaa

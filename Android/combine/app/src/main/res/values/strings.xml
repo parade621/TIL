@@ -13,4 +13,6 @@
     <string name="exit">Exit</string>
     <string name="play_again">Play Again</string>
     <string name="try_again">Try again!</string>
+    <string name="latest_drwno">최신 회차는 %d입니다.</string>
+    <string name="input_drwno">%s회차 정보입니다.</string>
 </resources>
