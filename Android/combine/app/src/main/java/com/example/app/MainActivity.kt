@@ -8,6 +8,8 @@ import com.example.app.databinding.ActivityMainBinding
 import com.example.app.databinding.CustomDialogBinding
 import com.example.app.databinding_ex.DataBindingActivity
 import com.example.app.dialogs.DialogsActivity
+import com.example.app.doit_ch13.Main13Activity
+import com.example.app.doit_ch14_batteryInfo.Main14Activity
 import com.example.app.fragmentlifecycletest.FLTActivity
 import com.example.app.kakaonotification.KNActivity
 import com.example.app.livedata_ex.LVEActivity
@@ -80,6 +82,14 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnTmp2.setOnClickListener {
             val intent = Intent(this, LVEActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnTodo.setOnClickListener {
+            val intent = Intent(this, Main13Activity::class.java)
+            startActivity(intent)
+        }
+        binding.btnBattertInfo.setOnClickListener {
+            val intent = Intent(this, Main14Activity::class.java)
             startActivity(intent)
         }
     }
