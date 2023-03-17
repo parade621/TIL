@@ -28,6 +28,7 @@ class Camera2Activity : AppCompatActivity() {
 
         val timeStamp : String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val temp = externalMediaDirs
         val file = File.createTempFile(
             "JPEG_${timeStamp}_",
             ".jpg",
