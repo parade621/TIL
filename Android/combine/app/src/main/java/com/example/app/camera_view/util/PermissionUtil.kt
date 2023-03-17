@@ -1,4 +1,4 @@
-package com.example.cameraview
+package com.example.app.camera_view.util
 
 import android.app.Activity
 import android.content.Context
