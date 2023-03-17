@@ -3,6 +3,8 @@ package com.example.cameraview.ui
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +14,17 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.example.cameraview.R
 import com.example.cameraview.databinding.ActivityMainBinding
 import com.example.cameraview.util.PermissionUtil
@@ -26,6 +32,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
+import com.example.cameraview.util.ImageUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,21 +49,50 @@ class MainActivity : AppCompatActivity() {
 
     // test
     private val savedUriList = mutableListOf<Uri?>()
+    private lateinit var ImgViewList:Array<ImageView>
+    private lateinit var requestGalleryLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setImgView()
         permissionCheck()
         setCameraAnumationListener()
         outputDirectory = getOutputDirectory()
+        requestGalleryLauncher = getPhotoFromGallery()
 
         binding.shutter.setOnClickListener {
             takePhoto()
         }
-        binding.recentPhoto.setOnClickListener {
-            showPreview()
+        if (savedUriList.isNullOrEmpty()) {
+            binding.recentPhoto.setOnClickListener {
+                showPreview(savedUriList[0]!!)
+            }
+            binding.recentPhoto2.setOnClickListener {
+                showPreview(savedUriList[1]!!)
+            }
+            binding.recentPhoto3.setOnClickListener {
+                showPreview(savedUriList[2]!!)
+            }
+            binding.recentPhoto4.setOnClickListener {
+                showPreview(savedUriList[3]!!)
+            }
         }
+        binding.gallery.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type="image/*"
+            requestGalleryLauncher.launch(intent)
+        }
+    }
+
+    private fun setImgView(){
+        ImgViewList = arrayOf(
+            binding.recentPhoto,
+            binding.recentPhoto2,
+            binding.recentPhoto3,
+            binding.recentPhoto4,
+        )
     }
 
 
@@ -100,7 +136,8 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     // 촬영한 사진의 uri를 받습니다.
-                    savedUri = outputFileResults.savedUri
+                    savedUriList.add(outputFileResults.savedUri)
+                    // savedUri = outputFileResults.savedUri
 
                     Toast.makeText(binding.root.context,
                         "사진을 촬영하였습니다.", Toast.LENGTH_SHORT).show()
@@ -119,7 +156,18 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setCaptureImage(){
         // 촬영한 이미지를 미리보기 창에 쏴주기
-        binding.recentPhoto.setImageURI(savedUri)
+        //binding.recentPhoto.setImageURI(savedUri)
+        if (savedUriList.size >=4){
+            for (i in 0..3){
+                ImgViewList[i].setImageURI(savedUriList[i])
+            }
+
+        }else{
+            for (i in savedUriList.indices){
+                ImgViewList[i].setImageURI(savedUriList[i])
+            }
+        }
+
     }
 
     /**
@@ -225,10 +273,47 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showPreview(){
+    private fun showPreview(uri:Uri){
         val intent = Intent(this, PreviewActivity::class.java)
-        intent.putExtra("uriInfo",savedUri.toString())
+        intent.putExtra("uriInfo",uri.toString())
         startActivity(intent)
+    }
+
+    private fun getPhotoFromGallery() = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){activityResult->
+        try {
+
+            val option = BitmapFactory.Options()
+
+            var inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
+            val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
+            inputStream!!.close()
+            inputStream = null
+
+            val rotateBitmap = ImageUtil.rotateBitmap(bitmap!!, 90f)
+
+            val imageUri = ImageUtil.getUriFromBitmap(this, rotateBitmap)
+//            val imageUri = contentResolver.insert(
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                ContentValues().apply {
+//                    put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+//                }
+//            )
+//            // Uri에 Bitmap을 저장
+//            imageUri?.let{ uri->
+//                contentResolver.openOutputStream(uri)?.use{outputStream ->
+//                    bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+//                }
+//            }
+
+
+
+            savedUriList.add(imageUri)
+            binding.recentPhoto.setImageURI(imageUri)
+        }catch(e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     companion object {

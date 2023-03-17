@@ -1,5 +1,6 @@
 package com.example.app.camera_view
 
+import android.app.ProgressDialog.show
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -40,7 +41,6 @@ class CameraActivity : AppCompatActivity() {
 
     // Properties
     private var imageCapture: ImageCapture? = null
-    private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraAnimationListener: Animation.AnimationListener
     private var savedUri: Uri? = null
@@ -57,25 +57,11 @@ class CameraActivity : AppCompatActivity() {
         setImgView()
         permissionCheck()
         setCameraAnumationListener()
-        outputDirectory = getOutputDirectory()
+        setClickListener()
         requestGalleryLauncher = getPhotoFromGallery()
 
         binding.shutter.setOnClickListener {
             takePhoto()
-        }
-        if (savedUriList.isNullOrEmpty()) {
-            binding.recentPhoto.setOnClickListener {
-                showPreview(savedUriList[0]!!)
-            }
-            binding.recentPhoto2.setOnClickListener {
-                showPreview(savedUriList[1]!!)
-            }
-            binding.recentPhoto3.setOnClickListener {
-                showPreview(savedUriList[2]!!)
-            }
-            binding.recentPhoto4.setOnClickListener {
-                showPreview(savedUriList[3]!!)
-            }
         }
         binding.gallery.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -171,6 +157,7 @@ class CameraActivity : AppCompatActivity() {
                 ImgViewList[i].setImageURI(savedUriList[i])
             }
         }
+        setClickListener()
 
     }
 
@@ -254,14 +241,11 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-    private fun getOutputDirectory(): File {
-        val mediaDir = externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
-        }
-        return if (mediaDir != null && mediaDir.exists())
-            mediaDir else filesDir
-    }
-
+    /**
+     * 이미지 캡쳐가 진행되었다는 것을 알 수 있는 방법이 마땅하지 않아
+     * 셔터 애니메이션을 추가하였습니다.
+     * 애니메이션이 종료될 때, 이미지를 미리보기 창에 띄우기 위해 setCaptureImage()를 호출합니다.
+     */
     private fun setCameraAnumationListener() {
         cameraAnimationListener = object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {
@@ -278,7 +262,11 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 사진 미리보기를 클릭하면, 큰 화면에서 볼 수 있도록 액티비티를 이동합니다.
+     */
     private fun showPreview(uri: Uri) {
+        Log.d("Show PreView Function", "Invoked!!!!!!!!!!!!")
         val intent = Intent(this, PreviewActivity::class.java)
         intent.putExtra("uriInfo", uri.toString())
         startActivity(intent)
@@ -288,7 +276,6 @@ class CameraActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { activityResult ->
         try {
-
             val option = BitmapFactory.Options()
 
             var inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
@@ -296,37 +283,43 @@ class CameraActivity : AppCompatActivity() {
             inputStream!!.close()
             inputStream = null
 
+            // 갤러리에서 가져온 이미지가 회전되어있어, 90도로 회전해줍니다.
             val rotateBitmap = ImageUtil.rotateBitmap(bitmap!!, 90f)
 
+            // Bitmap에서 Uri로 변환
             val imageUri = ImageUtil.getUriFromBitmap(this, rotateBitmap)
-//            val imageUri = contentResolver.insert(
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                ContentValues().apply {
-//                    put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-//                }
-//            )
-//            // Uri에 Bitmap을 저장
-//            imageUri?.let{ uri->
-//                contentResolver.openOutputStream(uri)?.use{outputStream ->
-//                    bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-//                }
-//            }
-
 
             savedUriList.add(imageUri)
-            binding.recentPhoto.setImageURI(imageUri)
+            setCaptureImage()
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
+    private fun setClickListener(){
+        if (savedUriList.isNotEmpty()) {
+            if (savedUriList.size < 4) {
+                Log.e("join Here", "Confirmed.!!!!!!!")
+                for (i in savedUriList.indices) {
+                    ImgViewList[i].setOnClickListener {
+                        Log.d("Preview touched", "ImgViewList[${i}] is touched")
+                        showPreview(savedUriList[i]!!)
+                    }
+                }
+            }else{
+                for (i in ImgViewList.indices) {
+                    ImgViewList[i].setOnClickListener {
+                        Log.d("Preview touched", "ImgViewList[${i}] is touched")
+                        showPreview(savedUriList[i]!!)
+                    }
+                }
+            }
+        }
+    }
+
     companion object {
-        private const val TAG = "CameraXApp"
+        private const val TAG = "Camera_App"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-//        private const val REQUEST_CODE_PERMISSIONS = 10
-//        private val REQUIRED_PERMISSIONS =
-//            arrayOf(
-//                android.Manifest.permission.CAMERA,
-//            )
     }
 }

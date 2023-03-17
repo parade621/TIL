@@ -4,6 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraView.CameraActivity">
+    android:background="#FFFFFF"
+    tools:context=".camera_view.CameraActivity">
+
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.5"
+        />
+
+    <FrameLayout
+        android:id="@+id/frameLayoutShutter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        android:background="#1E1E1E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.5"
+        />
+
+    <ImageView
+        android:id="@+id/recentPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/baseline_add_circle_outline_24"
+        android:background="@color/lightGray"
+        app:layout_constraintTop_toBottomOf="@id/viewFinder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/recentPhoto2"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.15"/>
+
+    <ImageView
+        android:id="@+id/recentPhoto2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/baseline_add_circle_outline_24"
+        android:background="@color/lightGray"
+        app:layout_constraintTop_toBottomOf="@id/viewFinder"
+        app:layout_constraintStart_toEndOf="@id/recentPhoto"
+        app:layout_constraintEnd_toStartOf="@id/recentPhoto3"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.15"/>
+
+    <ImageView
+        android:id="@+id/recentPhoto3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/baseline_add_circle_outline_24"
+        android:background="@color/lightGray"
+        app:layout_constraintTop_toBottomOf="@id/viewFinder"
+        app:layout_constraintStart_toEndOf="@id/recentPhoto2"
+        app:layout_constraintEnd_toStartOf="@id/recentPhoto4"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.15"/>
+
+    <ImageView
+        android:id="@+id/recentPhoto4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/baseline_add_circle_outline_24"
+        android:background="@color/lightGray"
+        app:layout_constraintTop_toBottomOf="@id/viewFinder"
+        app:layout_constraintStart_toEndOf="@id/recentPhoto3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.15"/>
+
+    <Button
+        android:id="@+id/shutter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:text="Take Photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.08"/>
+
+    <Button
+        android:id="@+id/gallery"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:text="Gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.08"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

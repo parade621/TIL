@@ -3,9 +3,9 @@ package com.example.app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.app.camera_view.CameraActivity
 import com.example.app.customdialog.CustomDialogActivity
 import com.example.app.databinding.ActivityMainBinding
-import com.example.app.databinding.CustomDialogBinding
 import com.example.app.databinding_ex.DataBindingActivity
 import com.example.app.dialogs.DialogsActivity
 import com.example.app.doit_ch13.Main13Activity
@@ -90,6 +90,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnBattertInfo.setOnClickListener {
             val intent = Intent(this, Main14Activity::class.java)
+            startActivity(intent)
+        }
+        binding.btnCamera.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
             startActivity(intent)
         }
     }

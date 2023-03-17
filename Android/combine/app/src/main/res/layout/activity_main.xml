@@ -225,11 +225,10 @@
 
             <Button
                 android:layout_margin="10dp"
-                android:id="@+id/btn_temp2"
-                android:visibility="invisible"
+                android:id="@+id/btn_Camera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="liveData ex"
+                android:text="Camera_view"
                 android:textSize="10sp"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"

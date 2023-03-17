@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- for Notification: kakaoNotification -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- api 28 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,11 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Combine">
         <activity
+            android:name=".camera_view.PreviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".camera_view.CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".doit_ch14_batteryInfo.Main14Activity"
             android:exported="false" />
-        <receiver android:name=".doit_ch14_batteryInfo.MyReceiver"
+
+        <receiver
+            android:name=".doit_ch14_batteryInfo.MyReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
         <activity
             android:name=".doit_ch13.Main13Activity"
             android:exported="false" />

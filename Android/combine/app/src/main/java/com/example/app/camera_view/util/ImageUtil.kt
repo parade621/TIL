@@ -11,51 +11,6 @@ import java.io.File
 
 
 object ImageUtil {
-
-    fun getRotationDegrees(imagePath: String): Float {
-        val exif = ExifInterface(imagePath)
-        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1)
-        var rotationDegrees = 0
-        when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 ->
-                rotationDegrees = 90
-            ExifInterface.ORIENTATION_ROTATE_180 ->
-                rotationDegrees = 180
-            ExifInterface.ORIENTATION_ROTATE_270 ->
-                rotationDegrees = 270
-        }
-        return rotationDegrees.toFloat()
-    }
-
-    fun getRotationDegrees(file: File): Float {
-        return getRotationDegrees(file.getAbsolutePath())
-    }
-
-    fun getRotationDegrees(context: Context?, uri: Uri?): Float {
-        val path = getPathFromUri(context!!, uri!!)
-        var rotationDegrees = 0f
-        if (path != null) rotationDegrees = getRotationDegrees(path)
-
-        return rotationDegrees
-    }
-
-    private fun getPathFromUri(context: Context, uri: Uri): String? {
-        var result: String? = null
-        var proj = arrayOf(MediaStore.Images.Media.DATA)
-        var cursor = context.contentResolver.query(uri, proj, null, null, null);
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                var column_index = cursor.getColumnIndexOrThrow(proj[0]);
-                result = cursor.getString(column_index)
-            }
-            cursor.close()
-        }
-        if (result == null) {
-            result = "Not found"
-        }
-        return result
-    }
-
     fun getBitmapFromUri(context: Context, uri: Uri?): Bitmap? {
         var bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
 
