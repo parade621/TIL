@@ -19,6 +19,20 @@
         app:layout_constraintHeight_percent="0.5"
         />
 
+    <FrameLayout
+        android:id="@+id/frameLayoutShutter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        android:background="#1E1E1E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.5"
+        />
+
     <ImageView
         android:id="@+id/recentPhoto"
         android:layout_width="0dp"
