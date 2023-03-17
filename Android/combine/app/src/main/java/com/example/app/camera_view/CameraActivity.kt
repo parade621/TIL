@@ -41,7 +41,6 @@ class CameraActivity : AppCompatActivity() {
 
     // Properties
     private var imageCapture: ImageCapture? = null
-    private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraAnimationListener: Animation.AnimationListener
     private var savedUri: Uri? = null
 
@@ -203,9 +202,8 @@ class CameraActivity : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown() // 카메라 종료
+    override fun onStop() {
+        super.onStop()
     }
 
     private fun permissionCheck() {
