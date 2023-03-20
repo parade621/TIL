@@ -1,10 +1,13 @@
 package com.example.app.camera_view
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog.show
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +27,7 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import com.example.app.camera_view.util.ImageUtil
@@ -84,44 +88,29 @@ class CameraActivity : AppCompatActivity() {
      * 사진을 촬영(이미지 캡쳐)하는 기능을 수행하는 함수입니다.
      *
      */
+    @SuppressLint("RestrictedApi")
     private fun takePhoto() {
         // 안드로이드 카메라 api2에서 제공하는 캡처 기능을 안정적으로 참조하기 위해 선언
         val imageCapture = imageCapture ?: return
 
-        // 사진명으로 시간 데이터를 저장합니다.
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA)
-            .format(System.currentTimeMillis())
+        val name = "IMG_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA).format(Date())}.jpg"
 
-        // 절대경로 지정을 위한 변수 선언
-        val pictureDir = "Android/data/com.example.app.camera_view/Pictures"
-        val cameraXDir = File(pictureDir, "CameraX-Image")
-        if(!cameraXDir.exists()) cameraXDir.mkdirs()
-        val imagePath = File(cameraXDir, name).absolutePath
-        Log.e("ImagePath is this!!!", imagePath)
+        // 이미지 파일 저장 경로 설정
+        val outputDirectory = File(this.getExternalFilesDir(null), "captured_images")
+        if (!outputDirectory.exists()) outputDirectory.mkdirs()
+        val photoFile = File(outputDirectory, name)
 
-        // 사진의 메타데이터를 저장합니다.
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                //put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
-                put(MediaStore.Images.Media.DATA, imagePath)
-            }
-        }
+        // 이미지 캡처 옵션 설정
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(
+            photoFile
+        ).build()
 
-        // 파일과 메타데이터가 담긴 출력 객체 생성
-        val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(
-                contentResolver,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues
-            )
-            .build()
+
 
         // 촬영 진행
         imageCapture.takePicture(
             outputOptions,
-            ContextCompat.getMainExecutor(binding.root.context),
+            ContextCompat.getMainExecutor(this@CameraActivity),
             object : ImageCapture.OnImageSavedCallback {
 
                 override fun onError(e: ImageCaptureException) {
@@ -133,10 +122,29 @@ class CameraActivity : AppCompatActivity() {
                     savedUriList.add(outputFileResults.savedUri)
                     // savedUri = outputFileResults.savedUri
 
+                    val fileUri = Uri.fromFile(photoFile)
+
+                    // 미디어 캐시 삭제
+                    sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, fileUri))
+
+                    MediaScannerConnection.scanFile(
+                        applicationContext,
+                        arrayOf(photoFile.absolutePath),
+                        null,
+                        object: MediaScannerConnection.OnScanCompletedListener{
+                            override fun onScanCompleted(p0: String?, p1: Uri?) {
+                                Log.d("Scanned", " 이거 확인하싶시오: $p0 , $p1")
+                                Log.d("Scanned", "절대경로 맞음? ${photoFile.absolutePath}")
+                            }
+                        }
+                    )
+
                     Toast.makeText(
                         binding.root.context,
                         "사진을 촬영하였습니다.", Toast.LENGTH_SHORT
                     ).show()
+
+                    // 촬영 후, 셔터 애니메이션 실행
                     val shutterAnimation = AnimationUtils.loadAnimation(
                         binding.root.context,
                         R.anim.shutter_anim
