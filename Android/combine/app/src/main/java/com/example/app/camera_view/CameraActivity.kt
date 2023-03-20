@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -24,6 +25,7 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.PermissionUtil
 import com.example.app.R
@@ -46,7 +48,7 @@ class CameraActivity : AppCompatActivity() {
 
     // test
     private val savedUriList = mutableListOf<Uri?>()
-    private lateinit var ImgViewList: Array<ImageView>
+    private lateinit var imgViewList: Array<ImageView>
     private lateinit var requestGalleryLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +58,6 @@ class CameraActivity : AppCompatActivity() {
         setImgView()
         permissionCheck()
         setCameraAnumationListener()
-        setClickListener()
         requestGalleryLauncher = getPhotoFromGallery()
 
         binding.shutter.setOnClickListener {
@@ -70,7 +71,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun setImgView() {
-        ImgViewList = arrayOf(
+        imgViewList = arrayOf(
             binding.recentPhoto,
             binding.recentPhoto2,
             binding.recentPhoto3,
@@ -91,12 +92,20 @@ class CameraActivity : AppCompatActivity() {
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA)
             .format(System.currentTimeMillis())
 
+        // 절대경로 지정을 위한 변수 선언
+        val pictureDir = "Android/data/com.example.app.camera_view/Pictures"
+        val cameraXDir = File(pictureDir, "CameraX-Image")
+        if(!cameraXDir.exists()) cameraXDir.mkdirs()
+        val imagePath = File(cameraXDir, name).absolutePath
+        Log.e("ImagePath is this!!!", imagePath)
+
         // 사진의 메타데이터를 저장합니다.
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+                //put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+                put(MediaStore.Images.Media.DATA, imagePath)
             }
         }
 
@@ -138,26 +147,25 @@ class CameraActivity : AppCompatActivity() {
                         visibility = View.VISIBLE
                         startAnimation(shutterAnimation)
                     }
+                    setCaptureImage()
                 }
             }
         )
     }
 
-    private fun setCaptureImage() {
-        // 촬영한 이미지를 미리보기 창에 쏴주기
-        //binding.recentPhoto.setImageURI(savedUri)
-        if (savedUriList.size >= 4) {
-            for (i in 0..3) {
-                ImgViewList[i].setImageURI(savedUriList[i])
-            }
-
-        } else {
-            for (i in savedUriList.indices) {
-                ImgViewList[i].setImageURI(savedUriList[i])
+    /**
+     * [setCaptureImage] 함수
+     * imgViewList의 크기만큼 for문을 돌면서 savedUriList에 저장된 uri를 각각의 이미지뷰에 설정합니다.
+     * savedUriList에 저장된 이미지 uri가 ImgViewList의 크기보다 작은 경우, 아무런 동작도 수행하지 않도록 하여, 이미지 뷰를 빈칸으로 유지합니다.
+     * 마지막으로, setImageClickListener() 메서드를 호출하여, 클릭 이벤트를 활성화합니다.
+     */
+    private fun setCaptureImage(){
+        for (i in imgViewList.indices){
+            if (i < savedUriList.size){
+                imgViewList[i].setImageURI(savedUriList[i])
             }
         }
-        setClickListener()
-
+    setImageClickListener()
     }
 
     /**
@@ -251,7 +259,6 @@ class CameraActivity : AppCompatActivity() {
 
             override fun onAnimationEnd(p0: Animation?) {
                 binding.frameLayoutShutter.visibility = View.GONE
-                setCaptureImage()
             }
 
             override fun onAnimationRepeat(p0: Animation?) {
@@ -279,7 +286,6 @@ class CameraActivity : AppCompatActivity() {
             var inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
             val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
             inputStream!!.close()
-            inputStream = null
 
             // 갤러리에서 가져온 이미지가 회전되어있어, 90도로 회전해줍니다.
             val rotateBitmap = ImageUtil.rotateBitmap(bitmap!!, 90f)
@@ -295,23 +301,24 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-    private fun setClickListener(){
-        if (savedUriList.isNotEmpty()) {
-            if (savedUriList.size < 4) {
-                Log.e("join Here", "Confirmed.!!!!!!!")
-                for (i in savedUriList.indices) {
-                    ImgViewList[i].setOnClickListener {
-                        Log.d("Preview touched", "ImgViewList[${i}] is touched")
-                        showPreview(savedUriList[i]!!)
-                    }
-                }
+    /**
+     * savedUirList가 비어있지 않고, 그 크기가 imgViewList의 전체 크기보다 작다면, for문을 돌면서 imgViewList에 대응하는 이미지뷰를 클릭하면,
+     * showPreview()함수를 호출하는 클릭 리스너를 등록합니다.
+     * savedUriList의 크기가 4이상인 경우에는 for 문을 imgViewList의 크기만큼 돌면서 위와 같은 기능을 수행합니다.
+     * 만약 imgViewList에 대응하는 이미지뷰가 savedUriList에 없는 경우, 클릭 리스너를 등록하지 않습니다.(null)
+     */
+    private fun setImageClickListener(){
+        val previewClickListener = View.OnClickListener { view->
+            val position = view.tag as Int
+            showPreview(savedUriList[position]!!)
+        }
+        for (i in imgViewList.indices){
+            val view = imgViewList[i]
+            if(savedUriList.isNotEmpty() && i < savedUriList.size){
+                view.tag = i // 뷰 태그를 설정하여 Uir에 대한 정보를 저장해 둡니다.
+                view.setOnClickListener(previewClickListener)
             }else{
-                for (i in ImgViewList.indices) {
-                    ImgViewList[i].setOnClickListener {
-                        Log.d("Preview touched", "ImgViewList[${i}] is touched")
-                        showPreview(savedUriList[i]!!)
-                    }
-                }
+                view.setOnClickListener(null)
             }
         }
     }

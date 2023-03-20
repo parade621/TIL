@@ -43,15 +43,3 @@ u
 Enotifications/src/main/java/com/example/notifications/MainActivity.kt,7\d\7d408360f4913761b95b116827e272d3df1f1204
 }
 Mkakaonotification/src/main/java/com/example/kakaonotification/MainActivity.kt,0\f\0f173a1f29db4b08956ff8f9464bdb954a93bb54
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-Q
-!ch16_contentprovider/build.gradle,d/e/de4d391b77066b57e278de313dd9664683a1af3b
-…
-Uch16_contentprovider/src/main/java/com/example/ch16_contentprovider/CameraActivity.kt,9/b/9bb5d9520d3377ca4deaf9d082f3471c3e87c626
-†
-Vch16_contentprovider/src/main/java/com/example/ch16_contentprovider/Camera2Activity.kt,d/e/de8349616dddf72a749acf12c0476f57dbaa8bdd
-a
-1ch16_contentprovider/src/main/AndroidManifest.xml,1/6/16fc357c41938941493f86ed6cef41e557b9a345
-ƒ
-Sch16_contentprovider/src/main/java/com/example/ch16_contentprovider/MainActivity.kt,7/7/77e349bc39cdbf6ab4188ab1417af44df3defb15
