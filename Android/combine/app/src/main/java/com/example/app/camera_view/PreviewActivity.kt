@@ -1,11 +1,14 @@
 package com.example.app.camera_view
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
+import com.example.app.camera_view.util.BitmapConverter
 import com.example.app.databinding.ActivityPreviewBinding
 
 class PreviewActivity : AppCompatActivity() {
@@ -14,7 +17,7 @@ class PreviewActivity : AppCompatActivity() {
         ActivityPreviewBinding.inflate(layoutInflater)
     }
 
-    private var receivedUri : Uri? = null
+    private var receivedBitmap : Bitmap? = null
     private var mScaleGestureDetector: ScaleGestureDetector?=null
     private var scaleFactor = 1.0f
 
@@ -22,13 +25,15 @@ class PreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val uriString = intent.getStringExtra("uriInfo")
-        Log.d("PreviewActivity", uriString.toString())
+        val bitmapString = intent.getStringExtra("bitmapInfo")
 
         mScaleGestureDetector = ScaleGestureDetector(this, ScaleListener())
-        receivedUri = Uri.parse(uriString)
+        receivedBitmap = BitmapConverter.stringToBitmap(bitmapString!!)
 
-        binding.PhotoPreview.setImageURI(receivedUri)
+        binding.PhotoPreview.setImageBitmap(receivedBitmap)
+    }
+    init {
+        Log.d("Preview Activity Join", " HERE CHECK THE LOG!!!!!!!!!!!!!!!!!!")
     }
 
     // 제스처 이벤트가 발생하면 실행되는 메소드

@@ -2,12 +2,13 @@ package com.example.app.camera_view.util
 
 import android.content.ContentValues
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Matrix
+import android.graphics.*
+import android.location.Geocoder
 import android.media.ExifInterface
 import android.net.Uri
 import android.provider.MediaStore
 import java.io.File
+import java.util.*
 
 
 object ImageUtil {
@@ -41,4 +42,5 @@ object ImageUtil {
 
         return rotatedBitmap
     }
+
 }

@@ -1,9 +1,16 @@
 package com.example.app.camera_view
 
+import android.Manifest
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +18,11 @@ import android.view.animation.Animation
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.ImageCapture
+import androidx.core.app.ActivityCompat
+import androidx.core.location.LocationManagerCompat.requestLocationUpdates
 import androidx.lifecycle.lifecycleScope
+import com.example.app.camera_view.util.BitmapConverter
+import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.PermissionUtil
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
@@ -22,6 +33,9 @@ class CameraActivity : AppCompatActivity() {
     private val binding: ActivityCameraBinding by lazy {
         ActivityCameraBinding.inflate(layoutInflater)
     }
+
+    // 위치 정보를 가져오기 위한 locationManager
+    private val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     private val savedBitmapList = mutableListOf<Bitmap>()
     private lateinit var requestGalleryLauncher: ActivityResultLauncher<Intent>
@@ -50,7 +64,17 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.cameraView.binding(this)
+
+        val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        if (location != null) {
+            val provider = location.provider
+            val longitude = location.longitude
+            val latitude = location.latitude
+            val altitude = location.altitude
+        }
+        Log.d("위치정보 로그 확인", location.toString())
     }
+
 
     private fun isFullPhoto():Boolean{
         return if(savedBitmapList.size == 4){
@@ -58,6 +82,20 @@ class CameraActivity : AppCompatActivity() {
         }else{
             false
         }
+    }
+
+    private suspend fun isValueExist(e: Int):Boolean{
+        return if (savedBitmapList[e]!=null){
+            true
+        }else{
+            false
+        }
+    }
+
+    private fun showPreview(bitmap: Bitmap) {
+        val intent = Intent(this, PreviewActivity::class.java)
+        intent.putExtra("bitmapInfo", BitmapConverter.bitmapToString(bitmap))
+        startActivity(intent)
     }
 
     private suspend fun uploadImage(srcBitmap: Bitmap){
@@ -84,7 +122,9 @@ class CameraActivity : AppCompatActivity() {
         var permissionList =
             arrayOf(
                 android.Manifest.permission.CAMERA,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
             )
         if (!PermissionUtil.checkPermission(binding.root.context, permissionList)) {
             PermissionUtil.requestPermission(this, permissionList)
@@ -120,6 +160,9 @@ class CameraActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
             inputStream!!.close()
 
+            // 갤러리에서 가져온 이미지가 회전되어있어, 90도로 회전해줍니다.
+            val rotateBitmap = ImageUtil.rotateBitmap(bitmap!!, 90f)
+
             lifecycleScope.launch{
                 uploadImage(bitmap!!)
             }
@@ -127,6 +170,28 @@ class CameraActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private val locationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            // 위치가 변경될 때 호출되는 콜백 메소드
+            // 위치 리스너는 위치정보를 전달할 때 호출되므로 onLocationChanged()메소드 안에 위지청보를 처리를 작업을 구현.
+            val provider = location.provider // 위치정보
+            val longitude = location.longitude // 위도
+            val latitude = location.latitude // 경도
+        }
+
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+            // 위치 공급자 상태가 변경될 때 호출되는 콜백 메소드
+        }
+
+        override fun onProviderEnabled(provider: String) {
+            // 위치 공급자가 사용 가능해질 때 호출되는 콜백 메소드
+        }
+
+        override fun onProviderDisabled(provider: String) {
+            // 위치 공급자가 사용 불가능해질 때 호출되는 콜백 메소드
         }
     }
 
