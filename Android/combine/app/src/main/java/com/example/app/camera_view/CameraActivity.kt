@@ -1,25 +1,19 @@
 package com.example.app.camera_view
 
-import android.Manifest
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.Animation
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.ImageCapture
 import androidx.core.app.ActivityCompat
-import androidx.core.location.LocationManagerCompat.requestLocationUpdates
 import androidx.lifecycle.lifecycleScope
 import com.example.app.camera_view.util.BitmapConverter
 import com.example.app.camera_view.util.ImageUtil
@@ -33,25 +27,51 @@ class CameraActivity : AppCompatActivity() {
     private val binding: ActivityCameraBinding by lazy {
         ActivityCameraBinding.inflate(layoutInflater)
     }
-
-    // 위치 정보를 가져오기 위한 locationManager
-    private val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
+    private var locationManager: LocationManager? = null
+    private var locationListener: LocationListener? = null
     private val savedBitmapList = mutableListOf<Bitmap>()
-    private lateinit var requestGalleryLauncher: ActivityResultLauncher<Intent>
+    private val requestGalleryLauncher = registerForActivityResult(
+        // 이거 지금 문제있습니다. 사진이 한칸씩 뛰어 넘어서 저장됨.
+        ActivityResultContracts.StartActivityForResult()
+    ) { activityResult ->
+        try {
+            val option = android.graphics.BitmapFactory.Options()
+
+            var inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
+            val bitmap = android.graphics.BitmapFactory.decodeStream(inputStream, null, option)
+            inputStream!!.close()
+
+            // 갤러리에서 가져온 이미지가 회전되어있어, 90도로 회전해줍니다.
+            // exif에서 정보 받아서 이미지 회전여부 판단할것.(구현해야할 거 리스트)
+            val rotateBitmap =
+                com.example.app.camera_view.util.ImageUtil.rotateBitmap(bitmap!!, 90f)
+            uploadImage(bitmap)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         permissionCheck()
-        requestGalleryLauncher = getPhotoFromGallery()
+        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        locationListener = LocationListener { location ->
+            val latitude = location.latitude
+            val longitude = location.longitude
+            Log.d("이글봐글", "${latitude} ${longitude}")
+        }
 
         binding.shutter.setOnSingleClickListener {
-            if(!isFullPhoto()){
-                lifecycleScope.launch{
+            if (!isFullPhoto()) {
+                lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
-                    if(srcBitmap != null) uploadImage(srcBitmap)
+
+                    if (srcBitmap != null) {
+                        uploadImage(srcBitmap)
+                    }
                 }
             }
         }
@@ -64,30 +84,46 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.cameraView.binding(this)
-
-        val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-        if (location != null) {
-            val provider = location.provider
-            val longitude = location.longitude
-            val latitude = location.latitude
-            val altitude = location.altitude
-        }
-        Log.d("위치정보 로그 확인", location.toString())
     }
 
+    @SuppressLint("MissingPermission")
+    private fun requestLocationUpdates(){
+        locationManager!!.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            0,
+            0f,
+            locationListener!!
+        )
+    }
 
-    private fun isFullPhoto():Boolean{
-        return if(savedBitmapList.size == 4){
+    private fun getLatestGpsLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            val lastKnownLocation =
+                locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+            if (lastKnownLocation != null) {
+                val latitude = lastKnownLocation.getLatitude()
+                val longitude = lastKnownLocation.getLatitude()
+                Log.d(TAG, "${latitude} ${longitude}")
+            }
+        }
+    }
+
+    private fun isFullPhoto(): Boolean {
+        return if (savedBitmapList.size == 4) {
             true
-        }else{
+        } else {
             false
         }
     }
 
-    private suspend fun isValueExist(e: Int):Boolean{
-        return if (savedBitmapList[e]!=null){
+    private fun isValueExist(e: Int): Boolean {
+        return if (savedBitmapList[e] != null) {
             true
-        }else{
+        } else {
             false
         }
     }
@@ -98,20 +134,20 @@ class CameraActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private suspend fun uploadImage(srcBitmap: Bitmap){
-    // 아래 사진에 텍스트를 넣는 기능은 서비스 스터디 후, 완성할 것.
-    // textInsertImage()
-        when(savedBitmapList.size){
-            0->{
+    private fun uploadImage(srcBitmap: Bitmap) {
+        // 아래 사진에 텍스트를 넣는 기능은 서비스 스터디 후, 완성할 것.
+        // textInsertImage()
+        when (savedBitmapList.size) {
+            0 -> {
                 binding.recentPhoto.setImageBitmap(srcBitmap)
             }
-            1->{
+            1 -> {
                 binding.recentPhoto2.setImageBitmap(srcBitmap)
             }
-            2->{
+            2 -> {
                 binding.recentPhoto3.setImageBitmap(srcBitmap)
             }
-            3->{
+            3 -> {
                 binding.recentPhoto4.setImageBitmap(srcBitmap)
             }
         }
@@ -147,51 +183,6 @@ class CameraActivity : AppCompatActivity() {
             //
             Log.e(TAG, "권한 거절")
             onBackPressed()
-        }
-    }
-
-    private fun getPhotoFromGallery() = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { activityResult ->
-        try {
-            val option = BitmapFactory.Options()
-
-            var inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
-            val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
-            inputStream!!.close()
-
-            // 갤러리에서 가져온 이미지가 회전되어있어, 90도로 회전해줍니다.
-            val rotateBitmap = ImageUtil.rotateBitmap(bitmap!!, 90f)
-
-            lifecycleScope.launch{
-                uploadImage(bitmap!!)
-            }
-            savedBitmapList.add(bitmap!!)
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    private val locationListener = object : LocationListener {
-        override fun onLocationChanged(location: Location) {
-            // 위치가 변경될 때 호출되는 콜백 메소드
-            // 위치 리스너는 위치정보를 전달할 때 호출되므로 onLocationChanged()메소드 안에 위지청보를 처리를 작업을 구현.
-            val provider = location.provider // 위치정보
-            val longitude = location.longitude // 위도
-            val latitude = location.latitude // 경도
-        }
-
-        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-            // 위치 공급자 상태가 변경될 때 호출되는 콜백 메소드
-        }
-
-        override fun onProviderEnabled(provider: String) {
-            // 위치 공급자가 사용 가능해질 때 호출되는 콜백 메소드
-        }
-
-        override fun onProviderDisabled(provider: String) {
-            // 위치 공급자가 사용 불가능해질 때 호출되는 콜백 메소드
         }
     }
 
