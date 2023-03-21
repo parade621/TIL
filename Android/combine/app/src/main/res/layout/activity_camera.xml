@@ -7,8 +7,7 @@
     android:background="#FFFFFF"
     tools:context=".camera_view.CameraActivity">
 
-
-    <androidx.camera.view.PreviewView
+    <RelativeLayout
         android:id="@+id/viewFinder"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -17,8 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.5"
-        />
+        app:layout_constraintHeight_percent="0.5">
+
+        <com.example.app.camera_view.CameraView
+            android:id="@+id/camera_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/frameLayoutShutter"
