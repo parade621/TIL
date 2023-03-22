@@ -1,6 +1,7 @@
 package com.example.app.camera_view
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -19,10 +20,13 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.app.camera_view.service.GpsTracker
 import com.example.app.camera_view.util.ImageUtil
+import com.example.app.camera_view.util.ImageUtil.getOrientationFromBitmap
+import com.example.app.camera_view.util.ImageUtil.rotateBitmap
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,22 +39,33 @@ class CameraActivity : AppCompatActivity() {
     private val savedBitmapList = mutableListOf<Bitmap>()
     private var gpsTracker: GpsTracker? = null
 
+    // 갤러리에서 사진을 가져옵니다.
     private val requestGalleryLauncher = registerForActivityResult(
-        // 이거 지금 문제있습니다. 사진이 한칸씩 뛰어 넘어서 저장됨.
         ActivityResultContracts.StartActivityForResult()
     ) { activityResult ->
         try {
             val option = android.graphics.BitmapFactory.Options()
 
-            var inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
-            val bitmap = android.graphics.BitmapFactory.decodeStream(inputStream, null, option)
+            val inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
+            var bitmap = android.graphics.BitmapFactory.decodeStream(inputStream, null, option)
             inputStream!!.close()
 
-            // 갤러리에서 가져온 이미지가 회전되어있어, 90도로 회전해줍니다.
-            // exif에서 정보 받아서 이미지 회전여부 판단할것.(구현해야할 거 리스트)
-            val rotateBitmap =
-                com.example.app.camera_view.util.ImageUtil.rotateBitmap(bitmap!!, 90f)
-            uploadImage(bitmap, null)
+            // 선택한 파일 경로 저장
+            val editor = getSharedPreferences("my_prefs", Context.MODE_PRIVATE).edit()
+            editor.putString("file_path", activityResult!!.data!!.data!!.path)
+            editor.apply()
+
+            // 선택한 파일 경로 읽기
+            val prefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+            val filePath = prefs.getString("file_path", null)
+            Log.d(TAG, filePath!!)
+            if(ImageUtil.rotate_check_EXIF(filePath!!)){
+                Log.d(TAG, "이미지가 회전되어있음.")
+                val orientation = getOrientationFromBitmap(filePath)
+                bitmap = rotateBitmap(bitmap!!, orientation)
+
+            }
+            uploadImage(bitmap!!,getLatestGpsInfo())
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -82,7 +97,7 @@ class CameraActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
                     if (srcBitmap != null) {
-                        saveBitmapAsFile(srcBitmap)
+                        saveBitmapToFile(srcBitmap)
                         uploadImage(srcBitmap, getLatestGpsInfo())
                     }
                 }
@@ -112,7 +127,9 @@ class CameraActivity : AppCompatActivity() {
         return address
     }
 
-    fun saveBitmapAsFile(bitmap: Bitmap){
+    // 비트맵을 파일로 저장합니다.
+    // Qdrive에는 기능이 구현이 되어있으므로, 해당 함수는 CameraView가 아닌, CameraActivity에 저장합니다.
+    fun saveBitmapToFile(bitmap: Bitmap){
         // 시간도 함께 명칭에 포함
         val name = "IMG_${SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA).format(System.currentTimeMillis())}.jpg"
         // 년-월-일만 파일명으로 저장
