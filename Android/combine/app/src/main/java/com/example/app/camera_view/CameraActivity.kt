@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.location.Address
 import android.location.Geocoder
-import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +18,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.app.camera_view.service.GpsTracker
+import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CameraActivity : AppCompatActivity() {
@@ -49,7 +50,7 @@ class CameraActivity : AppCompatActivity() {
             // exif에서 정보 받아서 이미지 회전여부 판단할것.(구현해야할 거 리스트)
             val rotateBitmap =
                 com.example.app.camera_view.util.ImageUtil.rotateBitmap(bitmap!!, 90f)
-            uploadImage(bitmap)
+            uploadImage(bitmap, null)
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -75,20 +76,15 @@ class CameraActivity : AppCompatActivity() {
 
         // GPS 활성화 여부 검사
         checkLocationServicesStatus()
-        gpsTracker = GpsTracker(binding.root.context)
 
         binding.shutter.setOnSingleClickListener {
             if (!isFullPhoto()) {
                 lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
-
                     if (srcBitmap != null) {
-                        uploadImage(srcBitmap)
+                        saveBitmapAsFile(srcBitmap)
+                        uploadImage(srcBitmap, getLatestGpsInfo())
                     }
-                    var latitude = gpsTracker!!.getLatitude()
-                    var longitude = gpsTracker!!.getLongtitude()
-                    var address = getCurrentAddress(latitude, longitude)
-                    Toast.makeText(binding.root.context, address,Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -107,8 +103,27 @@ class CameraActivity : AppCompatActivity() {
         return savedBitmapList.size == 4
     }
 
-    private fun uploadImage(srcBitmap: Bitmap) {
-        // 아래 사진에 텍스트를 넣는 기능은 서비스 스터디 후, 완성할 것.
+    private fun getLatestGpsInfo(): String{
+        gpsTracker = GpsTracker(binding.root.context)
+        var latitude = gpsTracker!!.getLatitude()
+        var longitude = gpsTracker!!.getLongtitude()
+        var address = getCurrentAddress(latitude, longitude)
+
+        return address
+    }
+
+    fun saveBitmapAsFile(bitmap: Bitmap){
+        // 시간도 함께 명칭에 포함
+        val name = "IMG_${SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA).format(System.currentTimeMillis())}.jpg"
+        // 년-월-일만 파일명으로 저장
+        //val name = "IMG_${SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA).format(Date())}.jpg"
+
+        ImageUtil.saveBitmapToJpeg(this, bitmap,name)
+    }
+
+    private fun uploadImage(srcBitmap: Bitmap, address: String?) {
+        // 주소 정보 갱신하는 것 완료.
+        Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
         // textInsertImage()
         when (savedBitmapList.size) {
             0 -> {
@@ -177,7 +192,7 @@ class CameraActivity : AppCompatActivity() {
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
             hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
-                    hasCamreaPermission == PackageManager.PERMISSION_GRANTED
+            hasCamreaPermission == PackageManager.PERMISSION_GRANTED
         ) {
             // 이미 권한이 허용됨
             Log.d(TAG, "checkRunTimePermission : 권한 이미 허용됨")
@@ -233,18 +248,18 @@ class CameraActivity : AppCompatActivity() {
 
     // gps 권한 허용여부 체크
     // LocationManager 초기화
-    private fun checkLocationServicesStatus():Boolean{
-        val locationManager : LocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+    private fun checkLocationServicesStatus(): Boolean {
+        val locationManager: LocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                ||locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
     companion object {
         private const val TAG = "Camera_App"
         private const val PERMISSIONS_REQUEST_CODE = 100
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private val REQUIRED_PERMISSIONS= arrayOf(
+        private val REQUIRED_PERMISSIONS = arrayOf(
             android.Manifest.permission.CAMERA,
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.ACCESS_FINE_LOCATION

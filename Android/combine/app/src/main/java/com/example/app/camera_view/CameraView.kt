@@ -175,7 +175,6 @@ class CameraView(context: Context, attrs: AttributeSet?, defStyle: Int) :
 
                         image.close()
 
-
                         it.resume(resizeBitmapImage(rotationBitmap, 1500))
                     }
                 })
@@ -186,7 +185,6 @@ class CameraView(context: Context, attrs: AttributeSet?, defStyle: Int) :
             }
         }
     }
-
 
     fun onDestroyView() {
         cameraExecutor.shutdown()

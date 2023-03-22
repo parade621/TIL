@@ -45,6 +45,7 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
             if (!isGPSEnabled && !isNetworkEnabled) {
                 // 어떤 작업을 수행해야할지 고민 중
             } else {
+
                 if (isNetworkEnabled) {
                     locationManager!!.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER,
@@ -104,8 +105,8 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
         return null
     }
 
-    fun stopUsingGps(){
-        if(locationManager!=null){
+    fun stopUsingGps() {
+        if (locationManager != null) {
             locationManager!!.removeUpdates(this@GpsTracker)
         }
     }
