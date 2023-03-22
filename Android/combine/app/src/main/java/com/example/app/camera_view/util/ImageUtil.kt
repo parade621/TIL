@@ -241,4 +241,13 @@ object ImageUtil {
         return dateFormat1.format(Date()) + " " + strWeek
     }
 
+    fun rotateBitmapSimple(bitmap: Bitmap, degree: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(degree)
+        val rotatedBitmap =
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true)
+
+        return rotatedBitmap
+    }
+
 }

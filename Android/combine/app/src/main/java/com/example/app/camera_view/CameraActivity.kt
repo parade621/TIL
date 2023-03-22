@@ -31,6 +31,7 @@ import com.example.app.camera_view.service.GpsTracker
 import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.ImageUtil.getOrientationFromBitmap
 import com.example.app.camera_view.util.ImageUtil.rotateBitmap
+import com.example.app.camera_view.util.ImageUtil.rotateBitmapSimple
 import com.example.app.camera_view.util.ImageUtil.textInsertImage
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
@@ -46,7 +47,7 @@ class CameraActivity : AppCompatActivity() {
     private val binding: ActivityCameraBinding by lazy {
         ActivityCameraBinding.inflate(layoutInflater)
     }
-    private val savedBitmapList = mutableListOf<String>()
+    private val savedBitmapList = mutableListOf<Bitmap>()
     private var gpsTracker: GpsTracker? = null
 
     // 갤러리에서 사진을 가져옵니다.
@@ -83,13 +84,12 @@ class CameraActivity : AppCompatActivity() {
                 var bitmap = BitmapFactory.decodeStream(inputStream, null, option)
                 inputStream?.close()
 
-//            if(ImageUtil.rotate_check_EXIF(filePath!!)){
-//                Log.d(TAG, "이미지가 회전되어있음.")
-//                val orientation = getOrientationFromBitmap(filePath!!)
-//                bitmap = rotateBitmap(bitmap!!, orientation)
-//            }
+            if(ImageUtil.rotate_check_EXIF(filePath!!)){
+                Log.d(TAG, "이미지가 회전되어있음.")
+                bitmap = rotateBitmapSimple(bitmap!!, 90f)
+            }
 
-                uploadImage(filePath!!, getLatestGpsInfo())
+                uploadImage(bitmap!!, getLatestGpsInfo())
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -122,7 +122,7 @@ class CameraActivity : AppCompatActivity() {
                     val srcBitmap = binding.cameraView.capture()
                     if (srcBitmap != null) {
                         val forLog = saveBitmapToFile(srcBitmap)
-                        uploadImage(forLog, getLatestGpsInfo())
+                        uploadImage(srcBitmap, getLatestGpsInfo())
                         Log.d(TAG, forLog)
                     }
                 }
@@ -141,10 +141,6 @@ class CameraActivity : AppCompatActivity() {
 
     private fun isFullPhoto(): Boolean {
         return savedBitmapList.size == 4
-    }
-
-    private suspend fun galleryLauncher() {
-
     }
 
     private fun getLatestGpsInfo(): String {
@@ -172,33 +168,37 @@ class CameraActivity : AppCompatActivity() {
         return ImageUtil.saveBitmapToJpeg(this, bitmap, name)
     }
 
-    private fun uploadImage(photoFilePath: String, address: String?) {
+    private fun uploadImage(srcBitmap: Bitmap, address: String?) {
         // 주소 정보 갱신하는 것 완료.
         Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
         // textInsertImage()
         when (savedBitmapList.size) {
             0 -> {
-                Glide.with(this@CameraActivity)
-                    .load(photoFilePath)
-                    .into(binding.recentPhoto)
+//                Glide.with(this@CameraActivity)
+//                    .load(photoFilePath)
+//                    .into(binding.recentPhoto)
+                binding.recentPhoto.setImageBitmap(srcBitmap)
             }
             1 -> {
-                Glide.with(this@CameraActivity)
-                    .load(photoFilePath)
-                    .into(binding.recentPhoto2)
+//                Glide.with(this@CameraActivity)
+//                    .load(photoFilePath)
+//                    .into(binding.recentPhoto2)
+                binding.recentPhoto2.setImageBitmap(srcBitmap)
             }
             2 -> {
-                Glide.with(this@CameraActivity)
-                    .load(photoFilePath)
-                    .into(binding.recentPhoto3)
+//                Glide.with(this@CameraActivity)
+//                    .load(photoFilePath)
+//                    .into(binding.recentPhoto3)
+                binding.recentPhoto3.setImageBitmap(srcBitmap)
             }
             3 -> {
-                Glide.with(this@CameraActivity)
-                    .load(photoFilePath)
-                    .into(binding.recentPhoto4)
+//                Glide.with(this@CameraActivity)
+//                    .load(photoFilePath)
+//                    .into(binding.recentPhoto4)
+                binding.recentPhoto4.setImageBitmap(srcBitmap)
             }
         }
-        savedBitmapList.add(photoFilePath)
+        savedBitmapList.add(srcBitmap)
     }
 
     // 현재 위치 정보 얻어오기
@@ -252,21 +252,16 @@ class CameraActivity : AppCompatActivity() {
             this,
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
-        val hasWriteExternalStoragePermission = ContextCompat.checkSelfPermission(
+        val hasReadMediaImagePermission = ContextCompat.checkSelfPermission(
             this,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
-        val hasManageExternalStoragePermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+            Manifest.permission.READ_MEDIA_IMAGES
         )
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
             hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
             hasCamreaPermission == PackageManager.PERMISSION_GRANTED &&
             hasReadExternalStoragePermission == PackageManager.PERMISSION_GRANTED &&
-            hasWriteExternalStoragePermission == PackageManager.PERMISSION_GRANTED &&
-            hasManageExternalStoragePermission == PackageManager.PERMISSION_GRANTED
+            hasReadMediaImagePermission == PackageManager.PERMISSION_GRANTED
         ) {
             // 이미 권한이 허용됨
             Log.d(TAG, "checkRunTimePermission : 권한 이미 허용됨")
@@ -338,8 +333,7 @@ class CameraActivity : AppCompatActivity() {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+            Manifest.permission.READ_MEDIA_IMAGES
         )
     }
 }
