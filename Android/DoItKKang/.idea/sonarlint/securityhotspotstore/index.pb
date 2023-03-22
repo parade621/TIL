@@ -43,3 +43,5 @@ g
 7kakaonotification/src/main/res/layout/activity_main.xml,0\5\05af451d52713946339e78dee58e55a3655639c6
 }
 Mkakaonotification/src/main/java/com/example/kakaonotification/MainActivity.kt,0\f\0f173a1f29db4b08956ff8f9464bdb954a93bb54
+a
+1servicetest/src/main/res/layout/activity_main.xml,0/9/092c19a1b957273155f39960a55177a881667a34

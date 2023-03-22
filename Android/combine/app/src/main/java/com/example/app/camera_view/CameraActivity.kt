@@ -1,22 +1,17 @@
 package com.example.app.camera_view
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.app.camera_view.util.BitmapConverter
-import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.PermissionUtil
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
@@ -105,34 +100,22 @@ class CameraActivity : AppCompatActivity() {
             val lastKnownLocation =
                 locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
             if (lastKnownLocation != null) {
-                val latitude = lastKnownLocation.getLatitude()
-                val longitude = lastKnownLocation.getLatitude()
+                val latitude = lastKnownLocation.latitude
+                val longitude = lastKnownLocation.latitude
                 Log.d(TAG, "${latitude} ${longitude}")
             }
         }
     }
 
     private fun isFullPhoto(): Boolean {
-        return if (savedBitmapList.size == 4) {
-            true
-        } else {
-            false
-        }
+        return savedBitmapList.size == 4
     }
 
-    private fun isValueExist(e: Int): Boolean {
-        return if (savedBitmapList[e] != null) {
-            true
-        } else {
-            false
-        }
-    }
-
-    private fun showPreview(bitmap: Bitmap) {
-        val intent = Intent(this, PreviewActivity::class.java)
-        intent.putExtra("bitmapInfo", BitmapConverter.bitmapToString(bitmap))
-        startActivity(intent)
-    }
+//    private fun showPreview(bitmap: Bitmap) {
+//        val intent = Intent(this, PreviewActivity::class.java)
+//        intent.putExtra("bitmapInfo", BitmapConverter.bitmapToString(bitmap))
+//        startActivity(intent)
+//    }
 
     private fun uploadImage(srcBitmap: Bitmap) {
         // 아래 사진에 텍스트를 넣는 기능은 서비스 스터디 후, 완성할 것.
@@ -159,8 +142,9 @@ class CameraActivity : AppCompatActivity() {
             arrayOf(
                 android.Manifest.permission.CAMERA,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
                 android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
+                android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
             )
         if (!PermissionUtil.checkPermission(binding.root.context, permissionList)) {
             PermissionUtil.requestPermission(this, permissionList)

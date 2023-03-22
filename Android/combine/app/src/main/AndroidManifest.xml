@@ -8,8 +8,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- Location Permission -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Precise -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Combine">
 
+        <service
+            android:name="MyGpsService"
+            android:foregroundServiceType="location">
+        </service>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.app.camera_view.fileprovider"

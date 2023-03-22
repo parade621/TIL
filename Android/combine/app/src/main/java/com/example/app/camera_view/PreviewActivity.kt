@@ -1,14 +1,11 @@
 package com.example.app.camera_view
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
-import com.example.app.camera_view.util.BitmapConverter
 import com.example.app.databinding.ActivityPreviewBinding
 
 class PreviewActivity : AppCompatActivity() {

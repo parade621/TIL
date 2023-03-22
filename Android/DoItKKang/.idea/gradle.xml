@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/ch8_usereventhandler" />
             <option value="$PROJECT_DIR$/kakaonotification" />
             <option value="$PROJECT_DIR$/notifications" />
+            <option value="$PROJECT_DIR$/servicetest" />
           </set>
         </option>
       </GradleProjectSettings>
