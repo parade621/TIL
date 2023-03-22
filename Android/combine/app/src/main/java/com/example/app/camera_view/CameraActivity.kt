@@ -1,31 +1,41 @@
 package com.example.app.camera_view
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.startActivity
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.app.camera_view.service.GpsTracker
 import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.ImageUtil.getOrientationFromBitmap
 import com.example.app.camera_view.util.ImageUtil.rotateBitmap
+import com.example.app.camera_view.util.ImageUtil.textInsertImage
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -36,45 +46,59 @@ class CameraActivity : AppCompatActivity() {
     private val binding: ActivityCameraBinding by lazy {
         ActivityCameraBinding.inflate(layoutInflater)
     }
-    private val savedBitmapList = mutableListOf<Bitmap>()
+    private val savedBitmapList = mutableListOf<String>()
     private var gpsTracker: GpsTracker? = null
 
     // 갤러리에서 사진을 가져옵니다.
-    private val requestGalleryLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { activityResult ->
-        try {
-            val option = android.graphics.BitmapFactory.Options()
+    private val requestGalleryLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { activityResult ->
+            try {
+                val option = BitmapFactory.Options()
+                var filePath: String? = null
 
-            val inputStream = contentResolver.openInputStream(activityResult!!.data!!.data!!)
-            var bitmap = android.graphics.BitmapFactory.decodeStream(inputStream, null, option)
-            inputStream!!.close()
+                // 선택한 이미지의 경로 가져오기
+                val selectedImageUri = activityResult.data?.data
+                val selectedImagePath = selectedImageUri?.path
+                //val selectedImageName = activityResult.data?.data?.lastPathSegment
+                val cursor = selectedImageUri?.let {
+                    contentResolver.query(
+                        it,
+                        arrayOf(MediaStore.Images.Media.DATA),
+                        null,
+                        null,
+                        null
+                    )
+                }
+                cursor?.use {
+                    it.moveToFirst()
+                    val pathIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                    filePath = it.getString(pathIndex)
+                    Log.d(TAG, "Selected file path: $filePath")
+                }
 
-            // 선택한 파일 경로 저장
-            val editor = getSharedPreferences("my_prefs", Context.MODE_PRIVATE).edit()
-            editor.putString("file_path", activityResult!!.data!!.data!!.path)
-            editor.apply()
+                // 이미지 로드
+                val inputStream = contentResolver.openInputStream(selectedImageUri!!)
+                var bitmap = BitmapFactory.decodeStream(inputStream, null, option)
+                inputStream?.close()
 
-            // 선택한 파일 경로 읽기
-            val prefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-            val filePath = prefs.getString("file_path", null)
-            Log.d(TAG, filePath!!)
-            if(ImageUtil.rotate_check_EXIF(filePath!!)){
-                Log.d(TAG, "이미지가 회전되어있음.")
-                val orientation = getOrientationFromBitmap(filePath)
-                bitmap = rotateBitmap(bitmap!!, orientation)
+//            if(ImageUtil.rotate_check_EXIF(filePath!!)){
+//                Log.d(TAG, "이미지가 회전되어있음.")
+//                val orientation = getOrientationFromBitmap(filePath!!)
+//                bitmap = rotateBitmap(bitmap!!, orientation)
+//            }
 
+                uploadImage(filePath!!, getLatestGpsInfo())
+
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-            uploadImage(bitmap!!,getLatestGpsInfo())
-
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
-    }
 
     private val gpsResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == RESULT_OK) {
                 if (checkLocationServicesStatus()) {
                     Log.d(TAG, "onActivityResult : GPS 활성화 되있음")
                     checkRunTimePermission()
@@ -97,8 +121,9 @@ class CameraActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
                     if (srcBitmap != null) {
-                        saveBitmapToFile(srcBitmap)
-                        uploadImage(srcBitmap, getLatestGpsInfo())
+                        val forLog = saveBitmapToFile(srcBitmap)
+                        uploadImage(forLog, getLatestGpsInfo())
+                        Log.d(TAG, forLog)
                     }
                 }
             }
@@ -118,7 +143,11 @@ class CameraActivity : AppCompatActivity() {
         return savedBitmapList.size == 4
     }
 
-    private fun getLatestGpsInfo(): String{
+    private suspend fun galleryLauncher() {
+
+    }
+
+    private fun getLatestGpsInfo(): String {
         gpsTracker = GpsTracker(binding.root.context)
         var latitude = gpsTracker!!.getLatitude()
         var longitude = gpsTracker!!.getLongtitude()
@@ -129,34 +158,47 @@ class CameraActivity : AppCompatActivity() {
 
     // 비트맵을 파일로 저장합니다.
     // Qdrive에는 기능이 구현이 되어있으므로, 해당 함수는 CameraView가 아닌, CameraActivity에 저장합니다.
-    fun saveBitmapToFile(bitmap: Bitmap){
+    fun saveBitmapToFile(bitmap: Bitmap): String {
         // 시간도 함께 명칭에 포함
-        val name = "IMG_${SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA).format(System.currentTimeMillis())}.jpg"
+        val name = "IMG_${
+            SimpleDateFormat(
+                FILENAME_FORMAT,
+                Locale.KOREA
+            ).format(System.currentTimeMillis())
+        }.jpg"
         // 년-월-일만 파일명으로 저장
         //val name = "IMG_${SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA).format(Date())}.jpg"
 
-        ImageUtil.saveBitmapToJpeg(this, bitmap,name)
+        return ImageUtil.saveBitmapToJpeg(this, bitmap, name)
     }
 
-    private fun uploadImage(srcBitmap: Bitmap, address: String?) {
+    private fun uploadImage(photoFilePath: String, address: String?) {
         // 주소 정보 갱신하는 것 완료.
         Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
         // textInsertImage()
         when (savedBitmapList.size) {
             0 -> {
-                binding.recentPhoto.setImageBitmap(srcBitmap)
+                Glide.with(this@CameraActivity)
+                    .load(photoFilePath)
+                    .into(binding.recentPhoto)
             }
             1 -> {
-                binding.recentPhoto2.setImageBitmap(srcBitmap)
+                Glide.with(this@CameraActivity)
+                    .load(photoFilePath)
+                    .into(binding.recentPhoto2)
             }
             2 -> {
-                binding.recentPhoto3.setImageBitmap(srcBitmap)
+                Glide.with(this@CameraActivity)
+                    .load(photoFilePath)
+                    .into(binding.recentPhoto3)
             }
             3 -> {
-                binding.recentPhoto4.setImageBitmap(srcBitmap)
+                Glide.with(this@CameraActivity)
+                    .load(photoFilePath)
+                    .into(binding.recentPhoto4)
             }
         }
-        savedBitmapList.add(srcBitmap)
+        savedBitmapList.add(photoFilePath)
     }
 
     // 현재 위치 정보 얻어오기
@@ -196,20 +238,35 @@ class CameraActivity : AppCompatActivity() {
     private fun checkRunTimePermission() {
         val hasFineLocationPermission = ContextCompat.checkSelfPermission(
             this,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION
         )
         val hasCoarseLocationPermission = ContextCompat.checkSelfPermission(
             this,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION
         )
         val hasCamreaPermission = ContextCompat.checkSelfPermission(
             this,
-            android.Manifest.permission.CAMERA
+            Manifest.permission.CAMERA
+        )
+        val hasReadExternalStoragePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        val hasWriteExternalStoragePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        val hasManageExternalStoragePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
         )
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
             hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
-            hasCamreaPermission == PackageManager.PERMISSION_GRANTED
+            hasCamreaPermission == PackageManager.PERMISSION_GRANTED &&
+            hasReadExternalStoragePermission == PackageManager.PERMISSION_GRANTED &&
+            hasWriteExternalStoragePermission == PackageManager.PERMISSION_GRANTED &&
+            hasManageExternalStoragePermission == PackageManager.PERMISSION_GRANTED
         ) {
             // 이미 권한이 허용됨
             Log.d(TAG, "checkRunTimePermission : 권한 이미 허용됨")
@@ -277,9 +334,12 @@ class CameraActivity : AppCompatActivity() {
         private const val PERMISSIONS_REQUEST_CODE = 100
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private val REQUIRED_PERMISSIONS = arrayOf(
-            android.Manifest.permission.CAMERA,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
         )
     }
 }

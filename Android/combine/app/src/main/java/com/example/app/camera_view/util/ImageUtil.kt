@@ -7,12 +7,14 @@ import android.location.Geocoder
 import android.media.ExifInterface
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.impl.utils.Exif
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -20,18 +22,21 @@ object ImageUtil {
 
     // 이미지 파일의 EXIF 메타 정보를 분석 한 후, 이미지 회전 여부를 판단하는 함수
     fun rotate_check_EXIF(imagePath: String):Boolean{
+        Log.d("Camera_App", imagePath)
         var rotate = false
         try {
             val exif = ExifInterface(imagePath)
             val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+            Log.d("Camera_App", "탐 ${orientation}")
             when (orientation) {
                 ExifInterface.ORIENTATION_ROTATE_90 -> rotate = true
                 ExifInterface.ORIENTATION_ROTATE_180 -> rotate = true
                 ExifInterface.ORIENTATION_ROTATE_270 -> rotate = true
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("Camera_App", e.toString())
         }
+        Log.d("Camera_App", "결과는 이겁니다. ${rotate}")
         return rotate
     }
     fun getOrientationFromBitmap(imagePath:String):Int{
@@ -102,7 +107,7 @@ object ImageUtil {
     }
 
     // 비트맵을 jpg이미지 파일로 저장
-    fun saveBitmapToJpeg(context: Context, bitmap: Bitmap, name: String){
+    fun saveBitmapToJpeg(context: Context, bitmap: Bitmap, name: String):String{
         val outputDirectory = File(context.getExternalFilesDir(null), "captured_images")
         if (!outputDirectory.exists()) outputDirectory.mkdirs()
         val photoFile = File(outputDirectory, name)
@@ -127,7 +132,113 @@ object ImageUtil {
         catch (e:IOException){
             e.printStackTrace()
         }
+        return photoFile.absolutePath
+    }
 
+    fun textInsertImage(receiverName: String, bitmap: Bitmap, context: Context,latitude:Double, longitude:Double) {
+        try {
+            val canvas = Canvas(bitmap)
+
+            val paint = Paint()
+            paint.color = Color.WHITE
+            paint.textSize = 40f
+            paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+
+            canvas.drawText(nowTimeHour(), 10f, 50f, paint)
+
+            paint.textSize = 25f
+            canvas.drawText(yearAndWeek(), 10f, 100f, paint)
+
+            val geocoder = Geocoder(context, Locale.getDefault())
+            val location = geocoder.getFromLocation(latitude, longitude, 1)
+            val rectAddress = Rect()
+            val rectName = Rect()
+
+            if (location!!.size > 0) {
+                val address = location[0].getAddressLine(0)
+                paint.getTextBounds(
+                    location[0].getAddressLine(0),
+                    0,
+                    location[0].getAddressLine(0).length,
+                    rectAddress
+                )
+
+                if (rectAddress.width() > canvas.width) {
+                    if (receiverName.isNotEmpty()) {
+                        paint.getTextBounds(receiverName, 0, receiverName.length, rectName)
+
+                        canvas.drawText(
+                            receiverName,
+                            canvas.width - rectName.width() - 10f,
+                            canvas.height - 150f,
+                            paint
+                        )
+                    }
+
+                    val addressList = address.split(location[0].countryName).toTypedArray()
+                    canvas.drawText(addressList[0], 10f, canvas.height - 100f, paint)
+                    canvas.drawText(
+                        location[0].countryName + addressList[1],
+                        10f,
+                        canvas.height - 50f,
+                        paint
+                    )
+                } else {
+                    if (receiverName.isNotEmpty()) {
+                        paint.getTextBounds(receiverName, 0, receiverName.length, rectName)
+
+                        canvas.drawText(
+                            receiverName,
+                            canvas.width - rectName.width() - 10f,
+                            canvas.height - 100f,
+                            paint
+                        )
+                    }
+
+                    canvas.drawText(address, 10f, canvas.height - 50f, paint)
+                }
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun nowTimeHour(): String {
+        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        return dateFormat.format(Date())
+    }
+
+    private fun yearAndWeek(): String {
+        val dateFormat1 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        val cal: Calendar = Calendar.getInstance()
+        var strWeek: String? = null
+
+        when (cal.get(Calendar.DAY_OF_WEEK)) {
+            1 -> {
+                strWeek = "Sunday"
+            }
+            2 -> {
+                strWeek = "Monday"
+            }
+            3 -> {
+                strWeek = "Tuesday"
+            }
+            4 -> {
+                strWeek = "Wednesday"
+            }
+            5 -> {
+                strWeek = "Thursday"
+            }
+            6 -> {
+                strWeek = "Friday"
+            }
+            7 -> {
+                strWeek = "Saturday"
+            }
+        }
+        return dateFormat1.format(Date()) + " " + strWeek
     }
 
 }
