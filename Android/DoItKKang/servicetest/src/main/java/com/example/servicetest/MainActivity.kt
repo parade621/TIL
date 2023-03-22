@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity() {
 
     private var gpsTracker: GpsTracker? = null
 
-    private val gpsActivityResultLauncher =
+    private val onActivityResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 if (checkLocationServicesStatus()) {
-                    Log.d(TAG, "onActivityResult : GPS 활성화 되있음")
+                    Log.d(TAG, "onActivityResult : 활성화 되있음")
                     checkRunTimePermission()
                 }
             }
@@ -110,11 +110,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkGpsEnabled() {
-        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-        gpsActivityResultLauncher.launch(intent)
-    }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -173,7 +168,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object{
         private const val TAG = "GPS_TEST"
-        private const val GPS_ENABLE_REQUEST_CODE = 2001
         private const val PERMISSIONS_REQUEST_CODE = 100
         private val REQUIRED_PERMISSIONS= arrayOf(
             android.Manifest.permission.ACCESS_FINE_LOCATION,

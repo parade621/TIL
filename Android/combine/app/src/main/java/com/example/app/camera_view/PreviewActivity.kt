@@ -25,7 +25,6 @@ class PreviewActivity : AppCompatActivity() {
         val bitmapString = intent.getStringExtra("bitmapInfo")
 
         mScaleGestureDetector = ScaleGestureDetector(this, ScaleListener())
-        receivedBitmap = BitmapConverter.stringToBitmap(bitmapString!!)
 
         binding.PhotoPreview.setImageBitmap(receivedBitmap)
     }
