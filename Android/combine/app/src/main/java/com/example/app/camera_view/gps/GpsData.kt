@@ -35,7 +35,6 @@ object GpsData {
     }
 
     fun startGpsService(context: Context) {
-        Log.d("Log Check", "Join!!!!!!!!!")
         isGoogleService = useGoogleService(context)
 
         if (isGoogleService) {

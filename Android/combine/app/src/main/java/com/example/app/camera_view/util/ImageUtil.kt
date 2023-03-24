@@ -11,6 +11,7 @@ import android.text.TextUtils
 import android.util.Log
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.impl.utils.Exif
+import com.example.app.camera_view.CameraView.Companion.resizeBitmapImage
 import com.example.app.camera_view.gps.GpsData
 import com.example.app.camera_view.gps.GpsData.latitude
 import com.example.app.camera_view.gps.GpsData.longitude
@@ -141,8 +142,15 @@ object ImageUtil {
     }
 
     fun textInsertImage(receiverName: String, bitmap: Bitmap, context: Context) {
+        var resizedBitmap : Bitmap? = bitmap
+        if(bitmap.width > 1500
+            && bitmap.height > 1500){
+            resizedBitmap = resizeBitmapImage(resizedBitmap!!)
+        }
         try {
-            val canvas = Canvas(bitmap)
+            val canvas = Canvas(resizedBitmap!!)
+            Log.d("Camera_APP","Canvas_Width: ${canvas.width}")
+            Log.d("Camera_APP","Canvas_height: ${canvas.height}")
 
             val paint = Paint()
             paint.color = Color.WHITE
@@ -206,6 +214,7 @@ object ImageUtil {
 
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.e("Camera_App", "This photo is unable to perform the function in question")
         }
     }
 

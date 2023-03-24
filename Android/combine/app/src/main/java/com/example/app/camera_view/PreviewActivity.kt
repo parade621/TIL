@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
+import com.bumptech.glide.Glide
 import com.example.app.databinding.ActivityPreviewBinding
 
 class PreviewActivity : AppCompatActivity() {
@@ -22,11 +23,13 @@ class PreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val bitmapString = intent.getStringExtra("bitmapInfo")
+        val filePath = intent.getStringExtra("filePath")
 
         mScaleGestureDetector = ScaleGestureDetector(this, ScaleListener())
 
-        binding.PhotoPreview.setImageBitmap(receivedBitmap)
+        Glide.with(this@PreviewActivity)
+            .load(filePath)
+            .into(binding.PhotoPreview)
     }
     init {
         Log.d("Preview Activity Join", " HERE CHECK THE LOG!!!!!!!!!!!!!!!!!!")

@@ -48,7 +48,7 @@ class CameraActivity : AppCompatActivity() {
     private val binding: ActivityCameraBinding by lazy {
         ActivityCameraBinding.inflate(layoutInflater)
     }
-    private val savedBitmapList = mutableListOf<Bitmap>()
+    private val filePathList = mutableListOf<String>()
     //private var gpsTracker: GpsTracker? = null
 
     // 갤러리에서 사진을 가져옵니다.
@@ -62,8 +62,6 @@ class CameraActivity : AppCompatActivity() {
 
                 // 선택한 이미지의 경로 가져오기
                 val selectedImageUri = activityResult.data?.data
-                val selectedImagePath = selectedImageUri?.path
-                //val selectedImageName = activityResult.data?.data?.lastPathSegment
                 val cursor = selectedImageUri?.let {
                     contentResolver.query(
                         it,
@@ -85,11 +83,11 @@ class CameraActivity : AppCompatActivity() {
                 var bitmap = BitmapFactory.decodeStream(inputStream, null, option)
                 inputStream?.close()
 
-                if (ImageUtil.rotate_check_EXIF(filePath!!)) {
+                if (!ImageUtil.rotate_check_EXIF(filePath!!)) {
                     Log.d(TAG, "이미지가 회전되어있음.")
                     bitmap = rotateBitmapSimple(bitmap!!, 90f)
                 }
-                //uploadImage(bitmap!!, getLatestGpsInfo())
+                uploadImage(bitmap!!)
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -124,35 +122,58 @@ class CameraActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
                     if (srcBitmap != null) {
-                        //uploadImage(srcBitmap, getLatestGpsInfo())
                         uploadImage(srcBitmap)
                     }
                 }
             }
         }
-
+        // 갤러리로 이동
         binding.gallery.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
+            //intent.action = Intent.ACTION_GET_CONTENT
             requestGalleryLauncher.launch(intent)
+        }
+
+        binding.recentPhoto.setOnClickListener {
+            Log.d(TAG, "터치됨")
+            if (filePathList.size > 0) {
+                val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
+                intent.putExtra("filePath", filePathList[0])
+                startActivity(intent)
+            }
+        }
+        binding.recentPhoto2.setOnClickListener {
+            Log.d(TAG, "터치됨")
+            if (filePathList.size > 1) {
+                val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
+                intent.putExtra("filePath", filePathList[1])
+                startActivity(intent)
+            }
+        }
+        binding.recentPhoto3.setOnClickListener {
+            Log.d(TAG, "터치됨")
+            if (filePathList.size > 2) {
+                val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
+                intent.putExtra("filePath", filePathList[2])
+                startActivity(intent)
+            }
+        }
+        binding.recentPhoto4.setOnClickListener {
+            Log.d(TAG, "터치됨")
+            if (filePathList.size > 3) {
+                val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
+                intent.putExtra("filePath", filePathList[3])
+                startActivity(intent)
+            }
         }
 
         binding.cameraView.binding(this)
     }
 
     private fun isFullPhoto(): Boolean {
-        return savedBitmapList.size == 4
+        return filePathList.size == 4
     }
-
-//    private fun getLatestGpsInfo(): String {
-//        gpsTracker = GpsTracker(binding.root.context)
-//        var latitude = gpsTracker!!.getLatitude()
-//        var longitude = gpsTracker!!.getLongtitude()
-//        var address = getCurrentAddress(latitude, longitude)
-//
-//        return address
-//    }
 
     // 비트맵을 파일로 저장합니다.
     // Qdrive에는 기능이 구현이 되어있으므로, 해당 함수는 CameraView가 아닌, CameraActivity에 저장합니다.
@@ -164,18 +185,14 @@ class CameraActivity : AppCompatActivity() {
                 Locale.KOREA
             ).format(System.currentTimeMillis())
         }.jpg"
-        // 년-월-일만 파일명으로 저장
-        //val name = "IMG_${SimpleDateFormat(FILENAME_FORMAT, Locale.KOREA).format(Date())}.jpg"
 
         return ImageUtil.saveBitmapToJpeg(this, bitmap, name)
     }
 
     private fun uploadImage(srcBitmap: Bitmap) {
-        // 주소 정보 갱신하는 것 완료.
-        //Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
         textInsertImage("Test", srcBitmap, this@CameraActivity)
-        saveBitmapToFile(srcBitmap)
-        when (savedBitmapList.size) {
+        val filePath = saveBitmapToFile(srcBitmap)
+        when (filePathList.size) {
             0 -> {
                 binding.recentPhoto.setImageBitmap(srcBitmap)
             }
@@ -189,37 +206,8 @@ class CameraActivity : AppCompatActivity() {
                 binding.recentPhoto4.setImageBitmap(srcBitmap)
             }
         }
-        savedBitmapList.add(srcBitmap)
+        filePathList.add(filePath)
     }
-
-    // 현재 위치 정보 얻어오기
-    fun getCurrentAddress(latitude: Double, longitude: Double): String {
-        val geocoder = Geocoder(this@CameraActivity, Locale.getDefault())
-        var addresses: List<Address>?
-
-        try {
-            addresses = geocoder.getFromLocation(
-                latitude,
-                longitude,
-                7
-            )
-        } catch (ioException: IOException) {
-            // 네트워크 문제
-            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
-            return "지오코더 서비스 사용불가"
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
-            return "잘못된 GPS 좌표"
-        }
-
-        if (addresses == null || addresses.isEmpty()) {
-            return "주소 미발견"
-        }
-
-        val address: Address = addresses[0]
-        return address.getAddressLine(0).toString() + "\n"
-    }
-
 
     private fun requestLocationPermission() {
         ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE)

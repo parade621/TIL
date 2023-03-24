@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        GpsData.startGpsService(this)
-
     }
 
     override fun onResume() {
