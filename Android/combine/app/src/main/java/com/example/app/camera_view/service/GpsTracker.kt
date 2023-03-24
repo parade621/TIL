@@ -1,24 +1,83 @@
 package com.example.app.camera_view.service
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import androidx.core.app.NotificationCompat
+import com.example.app.MainActivity
+import com.example.app.R
+import com.example.app.camera_view.CameraActivity
+import kotlinx.coroutines.*
 
 class GpsTracker(private val mContext: Context) : Service(), LocationListener {
+
+    private var job: Job? = null
+
     private var location: Location? = null
     private var latitude = 0.0
     private var longitude = 0.0
 
     private var locationManager: LocationManager? = null
 
-    init {
-        getLocation()
+//    init {
+//        getLocation()
+//    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        job = CoroutineScope(Dispatchers.Default).launch {
+            while (isActive) { // 반복 작업
+                delay(1000L)
+                getLocation()
+            }
+        }
+        initializeNotification()
+        return START_NOT_STICKY
+    }
+
+    override fun onBind(p0: Intent?): IBinder? {
+        return null
+    }
+
+    private fun initializeNotification() {
+        val builder = NotificationCompat.Builder(this, "1")
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setStyle(
+                NotificationCompat.BigTextStyle().bigText("GPS Service")
+                .setBigContentTitle(null)
+                .setSummaryText("위치 서비스 동작중")
+            )
+            .setContentText(null)
+            .setContentTitle(null)
+            .setOngoing(true)
+            .setWhen(0)
+            .setShowWhen(false)
+
+        val notificationIntent = Intent(this, CameraActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
+        builder.setContentIntent(pendingIntent)
+
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            manager.createNotificationChannel(
+                NotificationChannel(
+                    "1",
+                    "Foreground Service",
+                    NotificationManager.IMPORTANCE_NONE
+                )
+            )
+        }
+        val notification = builder.build()
+        startForeground(1, notification)
     }
 
     override fun onLocationChanged(p0: Location) {
@@ -98,11 +157,6 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
             latitude = location!!.longitude
         }
         return longitude
-    }
-
-
-    override fun onBind(p0: Intent?): IBinder? {
-        return null
     }
 
     fun stopUsingGps() {

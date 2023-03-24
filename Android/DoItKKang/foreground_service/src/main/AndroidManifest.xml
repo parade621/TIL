@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/> <!-- 서비스 권한등록-->
 
     <application
         android:allowBackup="true"
@@ -12,14 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoItKKang">
         <service
-            android:name=".MyGPSService"
+            android:name=".MyService"
             android:enabled="true"
             android:exported="true"></service>
-        <service
-            android:name=".MyJobService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BINT_JOB_SERVICE"></service>
 
         <activity
             android:name=".MainActivity"

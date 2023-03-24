@@ -84,17 +84,17 @@ class CameraActivity : AppCompatActivity() {
                 var bitmap = BitmapFactory.decodeStream(inputStream, null, option)
                 inputStream?.close()
 
-            if(ImageUtil.rotate_check_EXIF(filePath!!)){
-                Log.d(TAG, "이미지가 회전되어있음.")
-                bitmap = rotateBitmapSimple(bitmap!!, 90f)
-            }
-
-                uploadImage(bitmap!!, getLatestGpsInfo())
+                if (ImageUtil.rotate_check_EXIF(filePath!!)) {
+                    Log.d(TAG, "이미지가 회전되어있음.")
+                    bitmap = rotateBitmapSimple(bitmap!!, 90f)
+                }
+                //uploadImage(bitmap!!, getLatestGpsInfo())
 
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+
 
     private val gpsResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -105,6 +105,7 @@ class CameraActivity : AppCompatActivity() {
                 }
             }
         }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,9 +122,7 @@ class CameraActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
                     if (srcBitmap != null) {
-                        val forLog = saveBitmapToFile(srcBitmap)
                         uploadImage(srcBitmap, getLatestGpsInfo())
-                        Log.d(TAG, forLog)
                     }
                 }
             }
@@ -171,30 +170,19 @@ class CameraActivity : AppCompatActivity() {
     private fun uploadImage(srcBitmap: Bitmap, address: String?) {
         // 주소 정보 갱신하는 것 완료.
         Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
-        // textInsertImage()
+        textInsertImage("Test", srcBitmap, this@CameraActivity)
+        saveBitmapToFile(srcBitmap)
         when (savedBitmapList.size) {
             0 -> {
-//                Glide.with(this@CameraActivity)
-//                    .load(photoFilePath)
-//                    .into(binding.recentPhoto)
                 binding.recentPhoto.setImageBitmap(srcBitmap)
             }
             1 -> {
-//                Glide.with(this@CameraActivity)
-//                    .load(photoFilePath)
-//                    .into(binding.recentPhoto2)
                 binding.recentPhoto2.setImageBitmap(srcBitmap)
             }
             2 -> {
-//                Glide.with(this@CameraActivity)
-//                    .load(photoFilePath)
-//                    .into(binding.recentPhoto3)
                 binding.recentPhoto3.setImageBitmap(srcBitmap)
             }
             3 -> {
-//                Glide.with(this@CameraActivity)
-//                    .load(photoFilePath)
-//                    .into(binding.recentPhoto4)
                 binding.recentPhoto4.setImageBitmap(srcBitmap)
             }
         }

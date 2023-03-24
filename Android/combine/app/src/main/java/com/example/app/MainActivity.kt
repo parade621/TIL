@@ -1,9 +1,12 @@
 package com.example.app
 
+import android.app.ActivityManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.example.app.camera_view.CameraActivity
+import com.example.app.camera_view.gps.GpsData
 import com.example.app.customdialog.CustomDialogActivity
 import com.example.app.databinding.ActivityMainBinding
 import com.example.app.databinding_ex.DataBindingActivity
@@ -19,6 +22,8 @@ import com.example.app.retrofit_ex.ui.LottoActivity
 import com.example.app.thread_timer.TTActivity
 import com.example.app.viewpager2.VPActivity
 import com.example.layoutex1.ui.LEActivity
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        lifecycleScope.launch {
+            GpsData.startGpsService(this@MainActivity)
+        }
     }
 
     override fun onResume() {

@@ -7,13 +7,17 @@ import android.location.Geocoder
 import android.media.ExifInterface
 import android.net.Uri
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.util.Log
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.impl.utils.Exif
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
+import com.example.app.camera_view.gps.GpsData
+import com.example.app.camera_view.gps.GpsData.latitude
+import com.example.app.camera_view.gps.GpsData.longitude
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -106,6 +110,7 @@ object ImageUtil {
         }
     }
 
+
     // 비트맵을 jpg이미지 파일로 저장
     fun saveBitmapToJpeg(context: Context, bitmap: Bitmap, name: String):String{
         val outputDirectory = File(context.getExternalFilesDir(null), "captured_images")
@@ -135,7 +140,7 @@ object ImageUtil {
         return photoFile.absolutePath
     }
 
-    fun textInsertImage(receiverName: String, bitmap: Bitmap, context: Context,latitude:Double, longitude:Double) {
+    fun textInsertImage(receiverName: String, bitmap: Bitmap, context: Context) {
         try {
             val canvas = Canvas(bitmap)
 
@@ -150,7 +155,7 @@ object ImageUtil {
             canvas.drawText(yearAndWeek(), 10f, 100f, paint)
 
             val geocoder = Geocoder(context, Locale.getDefault())
-            val location = geocoder.getFromLocation(latitude, longitude, 1)
+            val location = geocoder.getFromLocation(GpsData.latitude, GpsData.longitude, 1)
             val rectAddress = Rect()
             val rectName = Rect()
 
