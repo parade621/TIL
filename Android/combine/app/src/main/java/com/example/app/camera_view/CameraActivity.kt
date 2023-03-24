@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.example.app.camera_view.gps.GpsData
 import com.example.app.camera_view.service.GpsTracker
 import com.example.app.camera_view.util.ImageUtil
 import com.example.app.camera_view.util.ImageUtil.getOrientationFromBitmap
@@ -48,7 +49,7 @@ class CameraActivity : AppCompatActivity() {
         ActivityCameraBinding.inflate(layoutInflater)
     }
     private val savedBitmapList = mutableListOf<Bitmap>()
-    private var gpsTracker: GpsTracker? = null
+    //private var gpsTracker: GpsTracker? = null
 
     // 갤러리에서 사진을 가져옵니다.
     private val requestGalleryLauncher =
@@ -116,13 +117,15 @@ class CameraActivity : AppCompatActivity() {
 
         // GPS 활성화 여부 검사
         checkLocationServicesStatus()
+        GpsData.startGpsService(this@CameraActivity)
 
         binding.shutter.setOnSingleClickListener {
             if (!isFullPhoto()) {
                 lifecycleScope.launch {
                     val srcBitmap = binding.cameraView.capture()
                     if (srcBitmap != null) {
-                        uploadImage(srcBitmap, getLatestGpsInfo())
+                        //uploadImage(srcBitmap, getLatestGpsInfo())
+                        uploadImage(srcBitmap)
                     }
                 }
             }
@@ -142,14 +145,14 @@ class CameraActivity : AppCompatActivity() {
         return savedBitmapList.size == 4
     }
 
-    private fun getLatestGpsInfo(): String {
-        gpsTracker = GpsTracker(binding.root.context)
-        var latitude = gpsTracker!!.getLatitude()
-        var longitude = gpsTracker!!.getLongtitude()
-        var address = getCurrentAddress(latitude, longitude)
-
-        return address
-    }
+//    private fun getLatestGpsInfo(): String {
+//        gpsTracker = GpsTracker(binding.root.context)
+//        var latitude = gpsTracker!!.getLatitude()
+//        var longitude = gpsTracker!!.getLongtitude()
+//        var address = getCurrentAddress(latitude, longitude)
+//
+//        return address
+//    }
 
     // 비트맵을 파일로 저장합니다.
     // Qdrive에는 기능이 구현이 되어있으므로, 해당 함수는 CameraView가 아닌, CameraActivity에 저장합니다.
@@ -167,9 +170,9 @@ class CameraActivity : AppCompatActivity() {
         return ImageUtil.saveBitmapToJpeg(this, bitmap, name)
     }
 
-    private fun uploadImage(srcBitmap: Bitmap, address: String?) {
+    private fun uploadImage(srcBitmap: Bitmap) {
         // 주소 정보 갱신하는 것 완료.
-        Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(binding.root.context, address, Toast.LENGTH_SHORT).show()
         textInsertImage("Test", srcBitmap, this@CameraActivity)
         saveBitmapToFile(srcBitmap)
         when (savedBitmapList.size) {

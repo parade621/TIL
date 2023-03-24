@@ -1,9 +1,11 @@
 package com.example.app.camera_view.gps
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
@@ -31,47 +33,43 @@ class GoogleService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.e(TAG, "onStartCommand")
-        super.onStartCommand(intent, flags, startId)
 
-        try {
-            startForeground(NOTIFICATION_ID, createChannel().build())
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        initializeNotification()
+
         createFusedProvider()
-
-        return START_STICKY
+        return START_NOT_STICKY
     }
 
-
-    private fun createChannel(): NotificationCompat.Builder {
-
-        if (Build.VERSION_CODES.O <= Build.VERSION.SDK_INT) {
-            val channel = NotificationChannel(
-                channelId,
-                "Service Channel",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-
-            val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            manager.createNotificationChannel(channel)
-        }
-
-//        val intent = Intent(this, NotiClickEmptyActivity::class.java).apply {
-//            action = NotiClickEmptyActivity.ACTION_OPEN
-//        }
-        val notificationIntent = Intent(this, CameraActivity::class.java)
-
-//        val pendingIntent =
-//            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
-
-        return NotificationCompat.Builder(this, channelId)
+    private fun initializeNotification() {
+        val builder = NotificationCompat.Builder(this, "1")
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(resources.getString(R.string.text_gps_service))
-            .setContentText("Location is Running in the Background")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
+            .setStyle(
+                NotificationCompat.BigTextStyle().bigText("GPS Service")
+                    .setBigContentTitle(null)
+                    .setSummaryText("위치 서비스 동작중")
+            )
+            .setContentText(null)
+            .setContentTitle(null)
+            .setOngoing(true)
+            .setWhen(0)
+            .setShowWhen(false)
+
+        val notificationIntent = Intent(this, CameraActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
+        builder.setContentIntent(pendingIntent)
+
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            manager.createNotificationChannel(
+                NotificationChannel(
+                    "1",
+                    "Foreground Service",
+                    NotificationManager.IMPORTANCE_NONE
+                )
+            )
+        }
+        val notification = builder.build()
+        startForeground(1, notification)
     }
 
     private fun createFusedProvider() {

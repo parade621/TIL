@@ -22,6 +22,7 @@ import kotlinx.coroutines.*
 class GpsTracker(private val mContext: Context) : Service(), LocationListener {
 
     private var job: Job? = null
+    private var value = 0
 
     private var location: Location? = null
     private var latitude = 0.0
@@ -36,8 +37,9 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         job = CoroutineScope(Dispatchers.Default).launch {
             while (isActive) { // 반복 작업
-                delay(1000L)
-                getLocation()
+                delay(1000)
+                value++
+                println("$value 번째 실행 중")
             }
         }
         initializeNotification()

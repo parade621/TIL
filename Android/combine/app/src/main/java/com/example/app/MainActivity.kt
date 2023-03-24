@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.example.app.camera_view.CameraActivity
 import com.example.app.camera_view.gps.GpsData
+import com.example.app.camera_view.service.GpsTracker
 import com.example.app.customdialog.CustomDialogActivity
 import com.example.app.databinding.ActivityMainBinding
 import com.example.app.databinding_ex.DataBindingActivity
@@ -31,15 +32,12 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private lateinit var intent: Intent
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        lifecycleScope.launch {
-            GpsData.startGpsService(this@MainActivity)
-        }
+        GpsData.startGpsService(this)
+
     }
 
     override fun onResume() {

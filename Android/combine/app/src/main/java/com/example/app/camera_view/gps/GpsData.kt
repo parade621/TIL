@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -34,6 +35,7 @@ object GpsData {
     }
 
     fun startGpsService(context: Context) {
+        Log.d("Log Check", "Join!!!!!!!!!")
         isGoogleService = useGoogleService(context)
 
         if (isGoogleService) {
