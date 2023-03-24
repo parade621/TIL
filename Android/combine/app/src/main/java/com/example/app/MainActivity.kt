@@ -14,6 +14,7 @@ import com.example.app.databinding_ex.DataBindingActivity
 import com.example.app.dialogs.DialogsActivity
 import com.example.app.doit_ch13.Main13Activity
 import com.example.app.doit_ch14_batteryInfo.Main14Activity
+import com.example.app.flow_practice.FlowPracticeActivity
 import com.example.app.fragmentlifecycletest.FLTActivity
 import com.example.app.kakaonotification.KNActivity
 import com.example.app.livedata_ex.LVEActivity
@@ -97,6 +98,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnCamera.setOnClickListener {
             val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnFlowPractice.setOnClickListener {
+            val intent = Intent(this, FlowPracticeActivity::class.java)
             startActivity(intent)
         }
     }

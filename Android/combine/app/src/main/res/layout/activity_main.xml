@@ -238,5 +238,52 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:padding="10dp">
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_flow_practice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flow GPS"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_workManager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="battery info"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_temp3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camera_view"
+                android:visibility="invisible"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
