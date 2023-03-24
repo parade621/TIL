@@ -27,6 +27,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.app.camera_view.gps.GpsData
 import com.example.app.camera_view.service.GpsTracker
 import com.example.app.camera_view.util.ImageUtil
@@ -56,42 +60,49 @@ class CameraActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { activityResult ->
-            try {
-                val option = BitmapFactory.Options()
-                var filePath: String? = null
-
-                // 선택한 이미지의 경로 가져오기
-                val selectedImageUri = activityResult.data?.data
-                val cursor = selectedImageUri?.let {
-                    contentResolver.query(
-                        it,
-                        arrayOf(MediaStore.Images.Media.DATA),
-                        null,
-                        null,
-                        null
-                    )
-                }
-                cursor?.use {
-                    it.moveToFirst()
-                    val pathIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                    filePath = it.getString(pathIndex)
-                    Log.d(TAG, "Selected file path: $filePath")
-                }
-
-                // 이미지 로드
-                val inputStream = contentResolver.openInputStream(selectedImageUri!!)
-                var bitmap = BitmapFactory.decodeStream(inputStream, null, option)
-                inputStream?.close()
-
-                if (!ImageUtil.rotate_check_EXIF(filePath!!)) {
-                    Log.d(TAG, "이미지가 회전되어있음.")
-                    bitmap = rotateBitmapSimple(bitmap!!, 90f)
-                }
-                uploadImage(bitmap!!)
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+           if(activityResult.resultCode == RESULT_OK){
+               val data : Intent? = activityResult.data
+               if(data!=null){
+                   val selectedImageUri = data.data
+                   if(selectedImageUri != null){
+                       try{
+                           Glide.with(this@CameraActivity)
+                               .asBitmap()
+                               .load(selectedImageUri)
+                               .listener(object: RequestListener<Bitmap>{
+                                   override fun onLoadFailed(
+                                       e: GlideException?,
+                                       model: Any?,
+                                       target: Target<Bitmap>?,
+                                       isFirstResource: Boolean
+                                   ): Boolean {
+                                       return false
+                                   }
+                                   override fun onResourceReady(
+                                       resource: Bitmap?,
+                                       model: Any?,
+                                       target: Target<Bitmap>?,
+                                       dataSource: DataSource?,
+                                       isFirstResource: Boolean
+                                   ): Boolean {
+                                       if (resource != null) {
+                                           lifecycleScope.launch {
+                                               val resizeBitmap =
+                                                   CameraView.resizeBitmapImage(resource)
+                                               if (resizeBitmap != null) {
+                                                   uploadImage(resizeBitmap)
+                                               }
+                                           }
+                                       }
+                                       return false
+                                   }
+                               }).submit()
+                       }catch(e:java.lang.Exception){
+                           e.printStackTrace()
+                       }
+                   }
+               }
+           }
         }
 
 
@@ -136,7 +147,6 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.recentPhoto.setOnClickListener {
-            Log.d(TAG, "터치됨")
             if (filePathList.size > 0) {
                 val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
                 intent.putExtra("filePath", filePathList[0])
@@ -144,7 +154,6 @@ class CameraActivity : AppCompatActivity() {
             }
         }
         binding.recentPhoto2.setOnClickListener {
-            Log.d(TAG, "터치됨")
             if (filePathList.size > 1) {
                 val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
                 intent.putExtra("filePath", filePathList[1])
@@ -152,7 +161,6 @@ class CameraActivity : AppCompatActivity() {
             }
         }
         binding.recentPhoto3.setOnClickListener {
-            Log.d(TAG, "터치됨")
             if (filePathList.size > 2) {
                 val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
                 intent.putExtra("filePath", filePathList[2])
@@ -160,14 +168,12 @@ class CameraActivity : AppCompatActivity() {
             }
         }
         binding.recentPhoto4.setOnClickListener {
-            Log.d(TAG, "터치됨")
             if (filePathList.size > 3) {
                 val intent = Intent(this@CameraActivity, PreviewActivity::class.java)
                 intent.putExtra("filePath", filePathList[3])
                 startActivity(intent)
             }
         }
-
         binding.cameraView.binding(this)
     }
 
