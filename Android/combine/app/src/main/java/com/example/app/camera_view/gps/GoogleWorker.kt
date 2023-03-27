@@ -67,12 +67,6 @@ class GoogleWorker(private val context: Context, private val reference: String) 
             }
         }
 
-//        val locationRequest = com.google.android.gms.location.LocationRequest.create().apply {
-//            interval = MIN_TIME_BW_UPDATES
-//            fastestInterval = MIN_FAST_INTERVAL_UPDATES
-//            priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
-//            smallestDisplacement = MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat()
-//        }
         // deprecated
         val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY,
