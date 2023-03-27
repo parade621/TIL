@@ -14,10 +14,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.app.R
 import com.google.android.gms.common.internal.service.Common
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.prefs.Preferences
@@ -70,13 +67,17 @@ class GoogleWorker(private val context: Context, private val reference: String) 
             }
         }
 
-        val locationRequest = com.google.android.gms.location.LocationRequest.create().apply {
-            interval = MIN_TIME_BW_UPDATES
-            fastestInterval = MIN_FAST_INTERVAL_UPDATES
-            priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
-            smallestDisplacement = MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat()
-        }
+//        val locationRequest = com.google.android.gms.location.LocationRequest.create().apply {
+//            interval = MIN_TIME_BW_UPDATES
+//            fastestInterval = MIN_FAST_INTERVAL_UPDATES
+//            priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
+//            smallestDisplacement = MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat()
+//        }
         // deprecated
+        val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY,
+            MIN_TIME_BW_UPDATES
+        ).build()
 
 
         googleLocationProviderClient.requestLocationUpdates(
@@ -100,7 +101,6 @@ class GoogleWorker(private val context: Context, private val reference: String) 
             }
         }
     }
-
 
     fun removeLocationUpdates() {
         googleLocationProviderClient.removeLocationUpdates(locationCallback)

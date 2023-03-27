@@ -19,13 +19,10 @@ class GoogleService : Service() {
 
     companion object {
         const val TAG = "GoogleService"
-        const val NOTIFICATION_ID = 1
-        const val channelId = "GPS_Fused_Provider"
     }
 
     private var googleAccessWorker: GoogleWorker? = null
     private var googleAccessDistanceWorker: GoogleWorker? = null
-
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -75,7 +72,6 @@ class GoogleService : Service() {
     private fun createFusedProvider() {
         googleAccessWorker = GoogleWorker(this, "time_fused")
         googleAccessDistanceWorker = GoogleWorker(this, "distance_fused")
-
         googleAccessWorker?.startLocationUpdates()
         googleAccessDistanceWorker?.startLocationUpdates()
     }

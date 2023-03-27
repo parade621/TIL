@@ -38,6 +38,7 @@ import com.example.app.camera_view.util.ImageUtil.getOrientationFromBitmap
 import com.example.app.camera_view.util.ImageUtil.rotateBitmap
 import com.example.app.camera_view.util.ImageUtil.rotateBitmapSimple
 import com.example.app.camera_view.util.ImageUtil.textInsertImage
+import com.example.app.camera_view.util.hasPermissions
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
 import com.google.android.material.snackbar.Snackbar
@@ -105,28 +106,12 @@ class CameraActivity : AppCompatActivity() {
            }
         }
 
-
-    private val gpsResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                if (checkLocationServicesStatus()) {
-                    Log.d(TAG, "onActivityResult : GPS 활성화 되있음")
-                    checkRunTimePermission()
-                }
-            }
-        }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         // 기능을 수행하기 위해 사용자에게 위치, 카메라 권한 요청
-        requestLocationPermission()
-
-        // GPS 활성화 여부 검사
-        checkLocationServicesStatus()
-        GpsData.startGpsService(this@CameraActivity)
+        checkRunTimePermission()
 
         binding.shutter.setOnSingleClickListener {
             if (!isFullPhoto()) {
@@ -215,39 +200,9 @@ class CameraActivity : AppCompatActivity() {
         filePathList.add(filePath)
     }
 
-    private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE)
-    }
-
     // 퍼미션 체크 함수 수정
     private fun checkRunTimePermission() {
-        val hasFineLocationPermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )
-        val hasCoarseLocationPermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        )
-        val hasCamreaPermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.CAMERA
-        )
-        val hasReadExternalStoragePermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-        val hasReadMediaImagePermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.READ_MEDIA_IMAGES
-        )
-
-        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
-            hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
-            hasCamreaPermission == PackageManager.PERMISSION_GRANTED &&
-            hasReadExternalStoragePermission == PackageManager.PERMISSION_GRANTED &&
-            hasReadMediaImagePermission == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (binding.root.context.hasPermissions()) {
             // 이미 권한이 허용됨
             Log.d(TAG, "checkRunTimePermission : 권한 이미 허용됨")
         } else {
@@ -291,22 +246,15 @@ class CameraActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // 권한 허용됨
                     Log.d(TAG, "onRequestPermissionsResult : 권한 허용됨")
+                    GpsData.startGpsService(this@CameraActivity)
                 } else {
                     // 권한 거부됨
                     Log.d(TAG, "onRequestPermissionsResult : 권한 거부됨")
+                    checkRunTimePermission()
                 }
                 return
             }
         }
-    }
-
-    // gps 권한 허용여부 체크
-    // LocationManager 초기화
-    private fun checkLocationServicesStatus(): Boolean {
-        val locationManager: LocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
     companion object {
