@@ -73,7 +73,6 @@ class GoogleWorker(private val context: Context, private val reference: String) 
             MIN_TIME_BW_UPDATES
         ).build()
 
-
         googleLocationProviderClient.requestLocationUpdates(
             locationRequest,
             locationCallback,
