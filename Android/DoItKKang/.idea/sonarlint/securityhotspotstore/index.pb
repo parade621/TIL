@@ -83,3 +83,17 @@ Lforeground_service/src/main/java/com/example/foreground_service/MyService.kt,e
 Oforeground_service/src/main/java/com/example/foreground_service/MainActivity.kt,d/7/d70613cde1f61e75796786974e5e7ba84afe2283
 c
 3ch17_database/src/main/res/layout/activity_main.xml,1/e/1e61fd6bf6cf23c4b4cc445cb0f0859f6cbcfc71
+s
+Cch17_database/src/main/java/com/example/ch17_database/SPActivity.kt,5/d/5d62399c9f8965381b35db02292e144e81ebe03b
+q
+Aservicetest/src/main/java/com/example/servicetest/MyJobService.kt,6/6/66a645f6044a4b6d68fba34d95754b0f84ba8e64
+X
+(servicetest/src/main/AndroidManifest.xml,f/2/f236ecd27638687155d0c8f89f6aba7c798cf129
+u
+Ech17_database/src/main/java/com/example/ch17_database/MainActivity.kt,8/1/817e9d787872108f4139b5401be3ab35f023ede8
+Z
+*ch17_database/src/main/AndroidManifest.xml,a/c/ac70c29a96a20236523081f6c378c4f81313f201
+J
+ch17_database/build.gradle,4/5/457e91b07710abe063b2ca603a0efdb640d4aee5
+_
+/foreground_service/src/main/AndroidManifest.xml,9/e/9eb478dcdae7c4f755e038382caadbc70bf4cac4

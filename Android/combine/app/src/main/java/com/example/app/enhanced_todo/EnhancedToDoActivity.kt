@@ -13,7 +13,7 @@ import com.example.app.databinding.ActivityEnhancedToDoBinding
 
 class EnhancedToDoActivity : AppCompatActivity() {
 
-    private val binding : ActivityEnhancedToDoBinding by lazy{
+    private val binding: ActivityEnhancedToDoBinding by lazy {
         ActivityEnhancedToDoBinding.inflate(layoutInflater)
     }
     var datas: MutableList<String>? = null
@@ -24,7 +24,8 @@ class EnhancedToDoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val requestLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult())
+            ActivityResultContracts.StartActivityForResult()
+        )
         {
             it.data!!.getStringExtra("result")?.let {
                 datas?.add(it)
@@ -36,21 +37,21 @@ class EnhancedToDoActivity : AppCompatActivity() {
             requestLauncher.launch(intent)
         }
 
-        datas= mutableListOf<String>()
+        datas = mutableListOf<String>()
 
         val db = DBHelper(this@EnhancedToDoActivity).readableDatabase
         val cursor = db.rawQuery("select * from TODO_TB", null)
-        cursor.run{
-            while(moveToNext()){
+        cursor.run {
+            while (moveToNext()) {
                 datas?.add(cursor.getString(1))
             }
         }
         db.close()
 
         val layoutManager = LinearLayoutManager(this)
-        binding.mainRecyclerView.layoutManager=layoutManager
-        adapter=MyAdapter(datas)
-        binding.mainRecyclerView.adapter=adapter
+        binding.mainRecyclerView.layoutManager = layoutManager
+        adapter = MyAdapter(datas)
+        binding.mainRecyclerView.adapter = adapter
         binding.mainRecyclerView.addItemDecoration(
             DividerItemDecoration(this@EnhancedToDoActivity, LinearLayoutManager.VERTICAL)
         )
@@ -62,7 +63,7 @@ class EnhancedToDoActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId===R.id.menu_main_setting){
+        if (item.itemId === R.id.menu_main_setting) {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
