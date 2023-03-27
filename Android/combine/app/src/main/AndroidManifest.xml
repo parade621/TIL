@@ -17,11 +17,24 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Combine">
+
+        <activity
+            android:name=".enhanced_todo.EnhancedToDoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".enhanced_todo.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".sharedpref_ex.SharedPrefActivity"
+            android:exported="false" />
+        <activity android:name=".enhanced_todo.AddActivity"
+            android:exported="false" />
+
         <service
             android:name=".flow_practice.LocationService"
-            android:foregroundServiceType="location"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:foregroundServiceType="location" />
 
         <activity
             android:name=".flow_practice.FlowPracticeActivity"
@@ -63,13 +76,13 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".doit_ch13.Main13Activity"
-            android:exported="false" />
-        <activity
-            android:name=".doit_ch13.AddActivity"
-            android:exported="false"
-            android:windowSoftInputMode="stateVisible" />
+<!--        <activity-->
+<!--            android:name=".doit_ch13.Main13Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".doit_ch13.AddActivity"-->
+<!--            android:exported="false"-->
+<!--            android:windowSoftInputMode="stateVisible" />-->
 
         <receiver
             android:name=".kakaonotification.ReplyReceiver"

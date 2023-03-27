@@ -67,7 +67,6 @@ class GoogleWorker(private val context: Context, private val reference: String) 
             }
         }
 
-        // deprecated
         val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY,
             MIN_TIME_BW_UPDATES

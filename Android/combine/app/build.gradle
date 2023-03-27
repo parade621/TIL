@@ -108,4 +108,11 @@ dependencies {
     implementation "com.google.android.material:compose-theme-adapter:1.1.16"
     // When using a AppCompat theme
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.28.0"
+
+    // Preference
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation('androidx.preference:preference:1.2.0'){
+        exclude group: 'androidx.lifecycle', module:'lifecycle-viewModel'
+        exclude group: 'androidx.lifecycle', module:'lifecycle-viewmodel-ktx'
+    }
 }

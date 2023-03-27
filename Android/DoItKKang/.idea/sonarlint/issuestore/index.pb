@@ -69,21 +69,17 @@ F
 Sservicetest/src/androidTest/java/com/example/servicetest/ExampleInstrumentedTest.kt,3/9/39debf66587de8a01629424bdf0f0443db9b2a36
 t
 Dservicetest/src/test/java/com/example/servicetest/ExampleUnitTest.kt,a/9/a950ee006926893451e6225cbbead0a98ee12818
-q
-Aservicetest/src/main/java/com/example/servicetest/MyJobService.kt,6/6/66a645f6044a4b6d68fba34d95754b0f84ba8e64
-q
-Aservicetest/src/main/java/com/example/servicetest/MainActivity.kt,b/5/b516ebcfe165af86232de8b4b950814388d1f090
-X
-(servicetest/src/main/AndroidManifest.xml,f/2/f236ecd27638687155d0c8f89f6aba7c798cf129
-O
-foreground_service/build.gradle,f/2/f22ed5907066599a7111a7ee4068a4817d581dba
-o
-?servicetest/src/main/java/com/example/servicetest/GpsTracker.kt,8/7/87a9a90ec5dd423fb2ca34ff80fc83ada12d6fda
-
-Oforeground_service/src/main/java/com/example/foreground_service/MainActivity.kt,d/7/d70613cde1f61e75796786974e5e7ba84afe2283
-|
-Lforeground_service/src/main/java/com/example/foreground_service/MyService.kt,e/e/ee3b381da998372b37efb6858a5e58d3d1ca1e83
 h
 8foreground_service/src/main/res/layout/activity_main.xml,3/b/3b6773d927d3d7b2c0a35f04015d9a6f2f41bb14
-_
-/foreground_service/src/main/AndroidManifest.xml,9/e/9eb478dcdae7c4f755e038382caadbc70bf4cac4
+o
+?servicetest/src/main/java/com/example/servicetest/GpsTracker.kt,8/7/87a9a90ec5dd423fb2ca34ff80fc83ada12d6fda
+q
+Aservicetest/src/main/java/com/example/servicetest/MainActivity.kt,b/5/b516ebcfe165af86232de8b4b950814388d1f090
+O
+foreground_service/build.gradle,f/2/f22ed5907066599a7111a7ee4068a4817d581dba
+|
+Lforeground_service/src/main/java/com/example/foreground_service/MyService.kt,e/e/ee3b381da998372b37efb6858a5e58d3d1ca1e83
+
+Oforeground_service/src/main/java/com/example/foreground_service/MainActivity.kt,d/7/d70613cde1f61e75796786974e5e7ba84afe2283
+c
+3ch17_database/src/main/res/layout/activity_main.xml,1/e/1e61fd6bf6cf23c4b4cc445cb0f0859f6cbcfc71

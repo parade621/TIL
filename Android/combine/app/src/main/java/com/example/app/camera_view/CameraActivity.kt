@@ -1,30 +1,17 @@
 package com.example.app.camera_view
 
 import android.Manifest
-import android.app.Activity
-import android.content.Context
-import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.location.Address
-import android.location.Geocoder
-import android.location.LocationManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.OpenableColumns
 import android.provider.Settings
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -32,19 +19,13 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.app.camera_view.gps.GpsData
-import com.example.app.camera_view.service.GpsTracker
 import com.example.app.camera_view.util.ImageUtil
-import com.example.app.camera_view.util.ImageUtil.getOrientationFromBitmap
-import com.example.app.camera_view.util.ImageUtil.rotateBitmap
-import com.example.app.camera_view.util.ImageUtil.rotateBitmapSimple
 import com.example.app.camera_view.util.ImageUtil.textInsertImage
 import com.example.app.camera_view.util.hasPermissions
 import com.example.app.camera_view.util.setOnSingleClickListener
 import com.example.app.databinding.ActivityCameraBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.*
-import java.io.File
-import java.io.IOException
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -61,49 +42,50 @@ class CameraActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { activityResult ->
-           if(activityResult.resultCode == RESULT_OK){
-               val data : Intent? = activityResult.data
-               if(data!=null){
-                   val selectedImageUri = data.data
-                   if(selectedImageUri != null){
-                       try{
-                           Glide.with(this@CameraActivity)
-                               .asBitmap()
-                               .load(selectedImageUri)
-                               .listener(object: RequestListener<Bitmap>{
-                                   override fun onLoadFailed(
-                                       e: GlideException?,
-                                       model: Any?,
-                                       target: Target<Bitmap>?,
-                                       isFirstResource: Boolean
-                                   ): Boolean {
-                                       return false
-                                   }
-                                   override fun onResourceReady(
-                                       resource: Bitmap?,
-                                       model: Any?,
-                                       target: Target<Bitmap>?,
-                                       dataSource: DataSource?,
-                                       isFirstResource: Boolean
-                                   ): Boolean {
-                                       if (resource != null) {
-                                           lifecycleScope.launch {
-                                               val resizeBitmap =
-                                                   CameraView.resizeBitmapImage(resource)
-                                               if (resizeBitmap != null) {
-                                                   uploadImage(resizeBitmap)
-                                               }
-                                           }
-                                       }
-                                       return false
-                                   }
-                               }).submit()
-                       }catch(e:java.lang.Exception){
-                           e.printStackTrace()
-                       }
-                   }
-               }
-           }
+            if (activityResult.resultCode == RESULT_OK) {
+                val data: Intent? = activityResult.data
+                if (data != null) {
+                    val selectedImageUri = data.data
+                    if (selectedImageUri != null) {
+                        try {
+                            Glide.with(this@CameraActivity)
+                                .asBitmap()
+                                .load(selectedImageUri)
+                                .listener(object : RequestListener<Bitmap> {
+                                    override fun onLoadFailed(
+                                        e: GlideException?,
+                                        model: Any?,
+                                        target: Target<Bitmap>?,
+                                        isFirstResource: Boolean
+                                    ): Boolean {
+                                        return false
+                                    }
+
+                                    override fun onResourceReady(
+                                        resource: Bitmap?,
+                                        model: Any?,
+                                        target: Target<Bitmap>?,
+                                        dataSource: DataSource?,
+                                        isFirstResource: Boolean
+                                    ): Boolean {
+                                        if (resource != null) {
+                                            lifecycleScope.launch {
+                                                val resizeBitmap =
+                                                    CameraView.resizeBitmapImage(resource)
+                                                if (resizeBitmap != null) {
+                                                    uploadImage(resizeBitmap)
+                                                }
+                                            }
+                                        }
+                                        return false
+                                    }
+                                }).submit()
+                        } catch (e: java.lang.Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+            }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {

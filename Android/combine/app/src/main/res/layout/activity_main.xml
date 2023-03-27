@@ -258,11 +258,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <Button
                 android:layout_margin="10dp"
-                android:id="@+id/btn_workManager"
+                android:id="@+id/btn_sharedPref"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="battery info"
-                android:visibility="invisible"
+                android:text="sharedPrefernce"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -271,11 +270,10 @@
 
             <Button
                 android:layout_margin="10dp"
-                android:id="@+id/btn_temp3"
+                android:id="@+id/enhanced_todo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Camera_view"
-                android:visibility="invisible"
+                android:text="enhanced todo"
                 android:textSize="10sp"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
