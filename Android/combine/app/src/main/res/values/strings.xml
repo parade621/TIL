@@ -16,4 +16,7 @@
     <string name="latest_drwno">최신 회차는 %d입니다.</string>
     <string name="input_drwno">%s회차 정보입니다.</string>
     <string name="text_gps_service">GPS Service</string>
+    <string name="signup_text">Don\'t have an account? <b>REGISTER</b></string>
+    <string name="signin_text">Existing Member? <b>LOG IN</b></string>
+    <string name="user_id">User ID: %s</string>
 </resources>

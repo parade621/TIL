@@ -17,6 +17,8 @@ import com.example.app.livedata_ex.LVEActivity
 import com.example.app.nav_and_sharedviewmodel.ui.NSActivity
 import com.example.app.notifications.NotiActivity
 import com.example.app.retrofit_ex.ui.LottoActivity
+import com.example.app.shared_prefs_singleton.ui.LogInActivity
+import com.example.app.shared_prefs_singleton.ui.SharedPrefsActivity
 import com.example.app.sharedpref_ex.SharedPrefActivity
 import com.example.app.thread_timer.TTActivity
 import com.example.app.viewpager2.VPActivity
@@ -103,9 +105,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SharedPrefActivity::class.java)
             startActivity(intent)
         }
-
         binding.enhancedTodo.setOnClickListener {
             val intent = Intent(this, EnhancedToDoActivity::class.java)
+            startActivity(intent)
+        }
+        binding.sharedPrefsSingleton.setOnClickListener {
+            val intent = Intent(this, SharedPrefsActivity::class.java)
             startActivity(intent)
         }
     }

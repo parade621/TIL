@@ -17,7 +17,21 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Combine">
-
+        <activity
+            android:name=".shared_prefs_singleton.ui.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".shared_prefs_singleton.ui.UserDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".shared_prefs_singleton.ui.LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".shared_prefs_singleton.ui.SharedPrefsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".proto_datastore.ProtoDatastoreActivity"
+            android:exported="false" />
         <activity
             android:name=".enhanced_todo.EnhancedToDoActivity"
             android:exported="false" />
@@ -27,7 +41,8 @@
         <activity
             android:name=".sharedpref_ex.SharedPrefActivity"
             android:exported="false" />
-        <activity android:name=".enhanced_todo.AddActivity"
+        <activity
+            android:name=".enhanced_todo.AddActivity"
             android:exported="false" />
 
         <service
@@ -74,16 +89,13 @@
         <receiver
             android:name=".doit_ch14_batteryInfo.MyReceiver"
             android:enabled="true"
-            android:exported="true" />
-
-<!--        <activity-->
-<!--            android:name=".doit_ch13.Main13Activity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".doit_ch13.AddActivity"-->
-<!--            android:exported="false"-->
-<!--            android:windowSoftInputMode="stateVisible" />-->
-
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".doit_ch13.Main13Activity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".doit_ch13.AddActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:windowSoftInputMode="stateVisible" /> -->
         <receiver
             android:name=".kakaonotification.ReplyReceiver"
             android:enabled="true"

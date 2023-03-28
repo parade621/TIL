@@ -52,7 +52,7 @@ class GoogleService : Service() {
             .setShowWhen(false)
 
         val notificationIntent = Intent(this, CameraActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
         builder.setContentIntent(pendingIntent)
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
