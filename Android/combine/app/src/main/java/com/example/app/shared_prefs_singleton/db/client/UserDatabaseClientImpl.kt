@@ -2,14 +2,14 @@ package com.example.app.shared_prefs_singleton.db.client
 
 import com.example.app.shared_prefs_singleton.db.UserDatabase
 import com.example.app.shared_prefs_singleton.db.UserInfo
-import com.example.app.shared_prefs_singleton.db.UserInfoDao
 
 class UserDatabaseClientImpl(
     private val db: UserDatabase,
-):UserDatabaseClient {
+) : UserDatabaseClient {
     override suspend fun insertUserData(query: UserInfo) {
         db.userInfoDao().insertUserData(query)
     }
+
     override suspend fun getAll(): List<UserInfo> {
         return db.userInfoDao().getAll()
     }
@@ -24,7 +24,7 @@ class UserDatabaseClientImpl(
 
     override suspend fun updateProfile(id: String, newProfile: Int) {
         val user = db.userInfoDao().getUserById(id)
-        if(user!=null){
+        if (user != null) {
             user.userProfile = newProfile
             db.userInfoDao().updateUser(user)
         }

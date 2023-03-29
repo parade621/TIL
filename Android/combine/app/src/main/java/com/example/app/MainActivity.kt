@@ -10,14 +10,12 @@ import com.example.app.databinding_ex.DataBindingActivity
 import com.example.app.dialogs.DialogsActivity
 import com.example.app.doit_ch14_batteryInfo.Main14Activity
 import com.example.app.enhanced_todo.EnhancedToDoActivity
-import com.example.app.flow_practice.FlowPracticeActivity
 import com.example.app.fragmentlifecycletest.FLTActivity
 import com.example.app.kakaonotification.KNActivity
 import com.example.app.livedata_ex.LVEActivity
 import com.example.app.nav_and_sharedviewmodel.ui.NSActivity
 import com.example.app.notifications.NotiActivity
 import com.example.app.retrofit_ex.ui.LottoActivity
-import com.example.app.shared_prefs_singleton.ui.LogInActivity
 import com.example.app.shared_prefs_singleton.ui.SharedPrefsActivity
 import com.example.app.sharedpref_ex.SharedPrefActivity
 import com.example.app.thread_timer.TTActivity
@@ -98,8 +96,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnFlowPractice.setOnClickListener {
-            val intent = Intent(this, FlowPracticeActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, FlowPracticeActivity::class.java)
+//            startActivity(intent)
         }
         binding.btnSharedPref.setOnClickListener {
             val intent = Intent(this, SharedPrefActivity::class.java)

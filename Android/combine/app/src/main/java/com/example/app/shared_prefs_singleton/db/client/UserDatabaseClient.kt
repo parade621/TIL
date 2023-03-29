@@ -8,9 +8,9 @@ interface UserDatabaseClient {
 
     suspend fun getAll(): List<UserInfo>
 
-    suspend fun exists(id: String) : Boolean
+    suspend fun exists(id: String): Boolean
 
-    suspend fun getUserById(id: String) : UserInfo?
+    suspend fun getUserById(id: String): UserInfo?
 
-    suspend fun updateProfile(id: String, newProfile : Int)
+    suspend fun updateProfile(id: String, newProfile: Int)
 }

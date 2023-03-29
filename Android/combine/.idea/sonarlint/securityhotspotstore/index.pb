@@ -15,17 +15,5 @@ l
 <app/src/main/java/com/example/app/camera_view/gps/GpsData.kt,c/8/c8c04790c73c4d43f1728945b581d4f85a7e2216
 ?
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
-r
-Bapp/src/main/java/com/example/app/flow_practice/LocationService.kt,d/5/d5c41d081c487e44c99fc88eda975321bf6faafb
-n
->app/src/main/java/com/example/app/flow_practice/LocationApp.kt,0/9/098119b1a8307c5c8ce95461b1929b6a14c8aad8
-x
-Happ/src/main/java/com/example/app/flow_practice/DefaultLocationClient.kt,a/f/af3c5b8da2a2c29f913414130a43c46433e1788f
-m
-=app/src/main/java/com/example/app/flow_practice/ContextExt.kt,c/f/cf23365bbbefa27b3a154bb445ab1988ed04c37c
-w
-Gapp/src/main/java/com/example/app/flow_practice/FlowPracticeActivity.kt,7/d/7d9768181200ac5088eb865e977f458b2112262a
-q
-Aapp/src/main/java/com/example/app/flow_practice/LocationClient.kt,0/2/028f4f6f8e6c370e31a36e520e96474e4b839bf2
 s
 Capp/src/main/java/com/example/app/camera_view/service/GpsTracker.kt,6/b/6bb6ee702aba14f4bc99f31fe4f9b940b848250a

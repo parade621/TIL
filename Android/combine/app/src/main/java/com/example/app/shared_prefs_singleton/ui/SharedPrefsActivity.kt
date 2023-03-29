@@ -1,13 +1,10 @@
 package com.example.app.shared_prefs_singleton.ui
 
-import android.annotation.SuppressLint
-import android.app.LocaleManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.app.R
 import com.example.app.databinding.ActivitySharedPrefsBinding
 import com.example.app.shared_prefs_singleton.utils.Preferences
 import kotlinx.coroutines.Dispatchers
@@ -23,21 +20,13 @@ class SharedPrefsActivity : AppCompatActivity() {
         ActivitySharedPrefsBinding.inflate(layoutInflater)
     }
 
-    companion object{
-        @SuppressLint("StaticFieldLeak")
-        lateinit var context: Context
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        Preferences.init(this)
-        context = applicationContext
-
         lifecycleScope.launch {
             delay(1000L)
-            if (Preferences.rememberMe == true) {
+            if (Preferences.rememberMe) {
                 startUserDataActivity(this@SharedPrefsActivity)
             } else {
                 toLogInActivity(this@SharedPrefsActivity)
@@ -55,10 +44,5 @@ class SharedPrefsActivity : AppCompatActivity() {
         val intent = Intent(context, LogInActivity::class.java)
         context.startActivity(intent)
         finish()
-    }
-
-    override fun attachBaseContext(base: Context) {
-        Preferences.init(base)
-        super.attachBaseContext(base)
     }
 }
