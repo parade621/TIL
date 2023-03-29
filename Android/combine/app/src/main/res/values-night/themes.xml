@@ -15,8 +15,9 @@
     </style>
 
     <!-- 투명한 다이얼로그 테마 -->
-    <style name="TransparentDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
-        <item name="android:windowIsTranslucent">true</item>
+    <style name="CustomActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.5</item>
     </style>
 </resources>

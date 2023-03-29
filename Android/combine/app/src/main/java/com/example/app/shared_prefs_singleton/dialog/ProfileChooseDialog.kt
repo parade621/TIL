@@ -3,11 +3,16 @@ package com.example.app.shared_prefs_singleton.dialog
 import android.app.Activity
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
 import com.example.app.shared_prefs_singleton.utils.Preferences
+import com.example.app.shared_prefs_singleton.utils.UserDB
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ProfileChooseDialog() : Activity() {
+class ProfileChooseDialog() : AppCompatActivity() {
 
     private val binding: FragmentProfileChooseDialogBinding by lazy {
         FragmentProfileChooseDialogBinding.inflate(layoutInflater)
@@ -23,16 +28,20 @@ class ProfileChooseDialog() : Activity() {
         window.attributes = params
 
         binding.blueProfile.setOnClickListener {
-            Preferences.userProfile = R.drawable.blue_profile
-            finish()
+            onclick(R.drawable.blue_profile)
         }
         binding.redProfile.setOnClickListener {
-            Preferences.userProfile = R.drawable.red_profile
-            finish()
+            onclick(R.drawable.red_profile)
         }
         binding.orangeProfile.setOnClickListener {
-            Preferences.userProfile = R.drawable.orange_profile
-            finish()
+            onclick(R.drawable.orange_profile)
         }
+    }
+    fun onclick(res: Int){
+        Preferences.userProfile = res
+        lifecycleScope.launch(Dispatchers.Default){
+            UserDB.db.updateProfile(Preferences.userId, Preferences.userProfile)
+        }
+        finish()
     }
 }

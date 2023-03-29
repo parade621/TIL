@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Combine">
         <activity
+            android:name=".shared_prefs_singleton.ui.PreferenceListActivity"
+            android:exported="false" />
+        <activity
             android:name=".shared_prefs_singleton.dialog.ProfileChooseDialog"
             android:exported="false" />
         <activity
@@ -46,18 +49,14 @@
             android:exported="false" />
         <activity
             android:name=".enhanced_todo.AddActivity"
-            android:exported="false" />
-
-<!--        <service-->
-<!--            android:name=".flow_practice.LocationService"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"-->
-<!--            android:foregroundServiceType="location" />-->
-
-<!--        <activity-->
-<!--            android:name=".flow_practice.FlowPracticeActivity"-->
-<!--            android:exported="false" />-->
-
+            android:exported="false" /> <!-- <service -->
+        <!-- android:name=".flow_practice.LocationService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true" -->
+        <!-- android:foregroundServiceType="location" /> -->
+        <!-- <activity -->
+        <!-- android:name=".flow_practice.FlowPracticeActivity" -->
+        <!-- android:exported="false" /> -->
         <service
             android:name=".camera_view.service.GpsTracker"
             android:enabled="true"

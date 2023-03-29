@@ -28,7 +28,6 @@ class UserDataActivity : AppCompatActivity() {
         if (Preferences.rememberMe) {
             binding.rememberMe.isChecked = true
         }
-        //binding.userProfileImage.setImageResource(Preferences.userProfile)
 
         binding.rememberMe.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -54,6 +53,11 @@ class UserDataActivity : AppCompatActivity() {
             showDialog()
         }
 
+        binding.prefList.setOnClickListener {
+            val intent = Intent(this@UserDataActivity, PreferenceListActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.logOutBtn.setOnClickListener {
             Preferences.userPw = ""
             val intent = Intent(this@UserDataActivity, LogInActivity::class.java)
@@ -65,10 +69,6 @@ class UserDataActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         binding.userProfileImage.setImageResource(Preferences.userProfile)
-        lifecycleScope.launch(Dispatchers.Main) {
-            // repository work
-            updateDBProfile()
-        }
     }
 
     private fun showDialog() {
@@ -81,8 +81,4 @@ class UserDataActivity : AppCompatActivity() {
         Log.d("바꾸기 누름", "true")
     }
 
-
-    private suspend fun updateDBProfile() = withContext(Dispatchers.Default) {
-        UserDB.db.updateProfile(Preferences.userId, Preferences.userProfile)
-    }
 }

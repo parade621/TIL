@@ -6,10 +6,11 @@ import android.content.SharedPreferences
 
 object Preferences {
     private const val FILENAME = "com.example.app.shared_prefs_singleton.utils.my_preference"
-    private lateinit var preferences: SharedPreferences
+    private lateinit var _preferences: SharedPreferences
+    val preferences get() = _preferences
 
     fun init(context: Context) {
-        preferences = context.getSharedPreferences(FILENAME, Activity.MODE_PRIVATE)
+        _preferences = context.getSharedPreferences(FILENAME, Activity.MODE_PRIVATE)
     }
 
     private val USER_PROFILE = "userProfile"
@@ -19,19 +20,19 @@ object Preferences {
 
 
     var userId: String
-        get() = preferences.getString(PREFS_USER_ID, "").toString()
-        set(value) = preferences.edit().putString(PREFS_USER_ID, value).apply()
+        get() = _preferences.getString(PREFS_USER_ID, "").toString()
+        set(value) = _preferences.edit().putString(PREFS_USER_ID, value).apply()
 
     var userPw: String
-        get() = preferences.getString(PREFS_USER_PW, "").toString()
-        set(value) = preferences.edit().putString(PREFS_USER_PW, value).apply()
+        get() = _preferences.getString(PREFS_USER_PW, "").toString()
+        set(value) = _preferences.edit().putString(PREFS_USER_PW, value).apply()
 
     var rememberMe: Boolean
-        get() = preferences.getBoolean(REMEMBER_USER, false)
-        set(value) = preferences.edit().putBoolean(REMEMBER_USER, value).apply()
+        get() = _preferences.getBoolean(REMEMBER_USER, false)
+        set(value) = _preferences.edit().putBoolean(REMEMBER_USER, value).apply()
 
     var userProfile: Int
-        get() = preferences.getInt(USER_PROFILE, 0)
-        set(value) = preferences.edit().putInt(USER_PROFILE, value).apply()
+        get() = _preferences.getInt(USER_PROFILE, 0)
+        set(value) = _preferences.edit().putInt(USER_PROFILE, value).apply()
 
 }

@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.R
 import com.example.app.databinding.ActivitySignUpBinding
 import com.example.app.shared_prefs_singleton.db.UserInfo
+import com.example.app.shared_prefs_singleton.utils.Preferences
 import com.example.app.shared_prefs_singleton.utils.UserDB
 import kotlinx.coroutines.launch
 
@@ -50,6 +51,9 @@ class SignUpActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     UserDB.db.insertUserData(UserInfo(userId, userPw, R.drawable.blue_profile))
                 }
+                Preferences.userId = ""
+                Preferences.userPw = ""
+                Preferences.userProfile = 0
                 val intent = Intent(this, LogInActivity::class.java)
                 startActivity(intent)
                 finish()
