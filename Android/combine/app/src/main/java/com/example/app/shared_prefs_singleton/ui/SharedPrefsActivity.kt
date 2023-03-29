@@ -48,11 +48,13 @@ class SharedPrefsActivity : AppCompatActivity() {
     private suspend fun startUserDataActivity(context: Context) = withContext(Dispatchers.Main) {
         val intent = Intent(context, UserDataActivity::class.java)
         context.startActivity(intent)
+        finish()
     }
 
     private suspend fun toLogInActivity(context: Context) = withContext(Dispatchers.Main) {
         val intent = Intent(context, LogInActivity::class.java)
         context.startActivity(intent)
+        finish()
     }
 
     override fun attachBaseContext(base: Context) {

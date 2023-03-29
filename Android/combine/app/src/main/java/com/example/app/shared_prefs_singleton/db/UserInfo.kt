@@ -9,5 +9,6 @@ data class UserInfo (
     @PrimaryKey
     @ColumnInfo(name = "userId")
     val userId : String,
-    val userPw: String
+    val userPw: String,
+    var userProfile: Int
 )

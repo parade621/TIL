@@ -54,7 +54,7 @@ class SignUpActivity : AppCompatActivity() {
                 val userId =binding.inputId.text.toString()
                 val userPw = binding.inputPwCheck.text.toString()
                 lifecycleScope.launch {
-                    userDatabaseClient.insertUserData(UserInfo(userId, userPw))
+                    userDatabaseClient.insertUserData(UserInfo(userId, userPw,R.drawable.blue_profile))
                 }
                 val intent = Intent(this, LogInActivity::class.java)
                 startActivity(intent)

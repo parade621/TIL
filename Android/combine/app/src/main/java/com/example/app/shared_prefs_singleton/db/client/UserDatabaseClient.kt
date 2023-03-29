@@ -11,4 +11,6 @@ interface UserDatabaseClient {
     suspend fun exists(id: String) : Boolean
 
     suspend fun getUserById(id: String) : UserInfo?
+
+    suspend fun updateProfile(id: String, newProfile : Int)
 }

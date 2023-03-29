@@ -1,5 +1,7 @@
 package com.example.app.shared_prefs_singleton.dialog
 
+import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,44 +13,32 @@ import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
 import com.example.app.shared_prefs_singleton.utils.Preferences
 
-class ProfileChooseDialog : DialogFragment() {
+class ProfileChooseDialog(context: Context) : Dialog(context) {
 
-    private var _binding: FragmentProfileChooseDialogBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentProfileChooseDialogBinding.inflate(inflater,container,false)
-        return binding.root
+    private val binding: FragmentProfileChooseDialogBinding by lazy{
+        FragmentProfileChooseDialogBinding.inflate(layoutInflater)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dialog?.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT)
-        dialog?.setCancelable(true)
+    var onValueChangedListener: ((Int) -> Unit)? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
         binding.blueProfile.setOnClickListener{
-            Preferences.userProfile = R.drawable.blue_profile
-            dialog?.dismiss()
+            val value = R.drawable.blue_profile
+            onValueChangedListener?.invoke(value)
+            dismiss()
         }
         binding.redProfile.setOnClickListener{
-            Preferences.userProfile = R.drawable.red_profile
-            dialog?.dismiss()
+            val value = R.drawable.red_profile
+            onValueChangedListener?.invoke(value)
+            dismiss()
         }
         binding.orangeProfile.setOnClickListener{
-            Preferences.userProfile = R.drawable.orange_profile
-            dialog?.dismiss()
+            val value = R.drawable.orange_profile
+            onValueChangedListener?.invoke(value)
+            dismiss()
         }
     }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
-
 }

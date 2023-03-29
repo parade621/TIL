@@ -75,8 +75,9 @@ class LogInActivity : AppCompatActivity() {
             val userPw = binding.inputPw.text.toString()
             lifecycleScope.launch(Dispatchers.Default) {
                 if (isValidId(userId) && isValidPw(userPw)) {
-                    Preferences.userId = userId
-                    Preferences.userPw = userPw
+                    Preferences.userId = userInfo!!.userId
+                    Preferences.userPw = userInfo!!.userPw
+                    Preferences.userProfile = userInfo!!.userProfile
                     startUserDataActivity(this@LogInActivity)
                 }
             }

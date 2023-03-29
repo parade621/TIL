@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface UserInfoDao {
@@ -20,4 +21,7 @@ interface UserInfoDao {
 
     @Query("SELECT * FROM user_info WHERE userId = :id")
     fun getUserById(id: String): UserInfo?
+
+    @Update
+    suspend fun updateUser(userinfo: UserInfo)
 }
