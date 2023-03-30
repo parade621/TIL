@@ -49,7 +49,13 @@ class SignUpActivity : AppCompatActivity() {
                 val userId = binding.inputId.text.toString()
                 val userPw = binding.inputPwCheck.text.toString()
                 lifecycleScope.launch {
-                    (application as MyApplication).database.insertUserData(UserInfo(userId, userPw, R.drawable.blue_profile))
+                    (application as MyApplication).database.insertUserData(
+                        UserInfo(
+                            userId,
+                            userPw,
+                            R.drawable.blue_profile
+                        )
+                    )
                 }
                 Preferences.userId = ""
                 Preferences.userPw = ""

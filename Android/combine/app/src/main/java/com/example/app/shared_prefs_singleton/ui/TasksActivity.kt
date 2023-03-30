@@ -1,23 +1,21 @@
 package com.example.app.shared_prefs_singleton.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.app.R
 import com.example.app.databinding.ActivityTasksBinding
 import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.shared_prefs_singleton.ui.adapter.TaskViewHolder
 import com.example.app.shared_prefs_singleton.ui.adapter.TasksAdapter
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModelFactory
-import com.example.app.shared_prefs_singleton.utils.Preferences
 
 class TasksActivity : AppCompatActivity() {
 
-    private val binding: ActivityTasksBinding by lazy{
+    private val binding: ActivityTasksBinding by lazy {
         ActivityTasksBinding.inflate(layoutInflater)
     }
     private val myAdapter = TasksAdapter()
@@ -34,9 +32,9 @@ class TasksActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
-        myViewModel.taskUiModel.observe(this){
+        myViewModel.taskUiModel.observe(this) {
             myAdapter.submitList(it.tasks)
-            Log.d("myTasksViewModel","isVisible? : ${it.showCompleted}")
+            Log.d("myTasksViewModel", "isVisible? : ${it.showCompleted}")
         }
 
         binding.settingsBtn.setOnClickListener {
@@ -45,9 +43,14 @@ class TasksActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
+
+        binding.addFab.setOnClickListener {
+            val intent = Intent(this, AddTaskActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         binding.list.addItemDecoration(decoration)
 

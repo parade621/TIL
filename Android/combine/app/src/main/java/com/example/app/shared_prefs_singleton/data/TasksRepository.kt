@@ -6,15 +6,13 @@ import java.util.*
 
 
 /**
- * 테스트를 위한 하드 코딩
+ * 기능 테스트를 위한 하드 코딩
  * 추후에 Room에서 불러오는 형식으로 변경 예정
  */
 
 object TasksRepository {
 
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
-
-    // In a real app, this would be coming from a data source like a database
     val tasks = flowOf(
         listOf(
             Task(

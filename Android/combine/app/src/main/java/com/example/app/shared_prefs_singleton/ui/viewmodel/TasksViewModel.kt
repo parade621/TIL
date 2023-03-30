@@ -8,7 +8,6 @@ import com.example.app.shared_prefs_singleton.data.Task
 import com.example.app.shared_prefs_singleton.data.TasksRepository
 import com.example.app.shared_prefs_singleton.utils.Preferences
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 
 class TasksViewModel(
@@ -27,7 +26,7 @@ class TasksViewModel(
         _showCompletedFlow,
         sortOrderFlow
     ) { tasks: List<Task>, showCompleted: Boolean, sortOrder: SortOrder ->
-        Log.d("myTasksViewModel","이거 왜안됨? ${showCompleted} and ${sortOrder}")
+        Log.d("myTasksViewModel", "이거 왜안됨? ${showCompleted} and ${sortOrder}")
         return@combine TaskUiModel(
             tasks = filterSortTasks(tasks, showCompleted, sortOrder),
             showCompleted = showCompleted,
@@ -57,15 +56,16 @@ class TasksViewModel(
         }
     }
 
-    fun showCompletedTasks(show:Boolean){
+    fun showCompletedTasks(show: Boolean) {
         Log.d("myTasksViewModel", show.toString())
         Preferences.showCompletedTasks(show)
     }
 
-    fun enableSortByDeadline(enable: Boolean){
+    fun enableSortByDeadline(enable: Boolean) {
         Preferences.enableSortByDeadLine(enable)
     }
-    fun enableSortByPriority(enable: Boolean){
+
+    fun enableSortByPriority(enable: Boolean) {
         Preferences.enableSortByPriority(enable)
     }
 }

@@ -1,7 +1,6 @@
 package com.example.app.shared_prefs_singleton.ui
 
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +21,7 @@ class UserDataActivity : AppCompatActivity() {
         ActivityUserDataBinding.inflate(layoutInflater)
     }
 
-    private lateinit var myViewModel : TasksViewModel
+    private lateinit var myViewModel: TasksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +59,7 @@ class UserDataActivity : AppCompatActivity() {
         setupFilterListeners(myViewModel)
         setupSort()
 
-        myViewModel.taskUiModel.observe(this){tasksUiModel ->
+        myViewModel.taskUiModel.observe(this) { tasksUiModel ->
             updateSort(tasksUiModel.sortOrder)
             binding.showCompletedSwitch.isChecked = tasksUiModel.showCompleted
         }

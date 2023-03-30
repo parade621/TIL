@@ -3,7 +3,6 @@ package com.example.app.shared_prefs_singleton.utils
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.Telephony.Mms.Part.FILENAME
 import androidx.core.content.edit
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +15,7 @@ object Preferences {
     private lateinit var _preferences: SharedPreferences
     private lateinit var _sortOrderFlow: MutableStateFlow<SortOrder>
     private lateinit var _showCompleted: MutableStateFlow<Boolean>
-    val sortOrderFlow: StateFlow<SortOrder> by lazy{
+    val sortOrderFlow: StateFlow<SortOrder> by lazy {
         _sortOrderFlow
     }
     val showCompleted: StateFlow<Boolean> by lazy {
@@ -36,11 +35,11 @@ object Preferences {
     private val PREFS_USER_ID = "userId"
     private val PREFS_USER_PW = "userPw"
 
-    private val sortOrder:SortOrder
-    get(){
-        val order = preferences.getString(SORT_ORDER_KEY, SortOrder.NONE.name)
-        return SortOrder.valueOf(order ?: SortOrder.NONE.name)
-    }
+    private val sortOrder: SortOrder
+        get() {
+            val order = preferences.getString(SORT_ORDER_KEY, SortOrder.NONE.name)
+            return SortOrder.valueOf(order ?: SortOrder.NONE.name)
+        }
     private val showComplete: Boolean
         get() {
             val order = preferences.getBoolean(SHOW_COMPLETE, false)
@@ -63,46 +62,26 @@ object Preferences {
         get() = _preferences.getInt(USER_PROFILE, 0)
         set(value) = _preferences.edit().putInt(USER_PROFILE, value).apply()
 
-    fun showCompletedTasks(enable: Boolean){
+    fun showCompletedTasks(enable: Boolean) {
         updateShowState(enable)
         _showCompleted.value = enable
     }
 
 
     // 마감일을 기준으로 정렬
-    fun enableSortByDeadLine(enable: Boolean){
-        val currentOrder = sortOrderFlow.value
-        val newSortOrder=
-            if(enable){
-                if(currentOrder == SortOrder.BY_PRIORITY){
-                    SortOrder.BY_DEADLINE_AND_PRIORITY
-                }else{
-                    SortOrder.BY_DEADLINE
-                }
-            }else{
-                if(currentOrder == SortOrder.BY_DEADLINE_AND_PRIORITY){
-                    SortOrder.BY_DEADLINE
-                }else{
-                    SortOrder.NONE
-                }
-            }
-        updateSortOrder(newSortOrder)
-        _sortOrderFlow.value = newSortOrder
-    }
-
-    fun enableSortByPriority(enable: Boolean){
+    fun enableSortByDeadLine(enable: Boolean) {
         val currentOrder = sortOrderFlow.value
         val newSortOrder =
-            if(enable){
-                if(currentOrder == SortOrder.BY_DEADLINE){
+            if (enable) {
+                if (currentOrder == SortOrder.BY_PRIORITY) {
                     SortOrder.BY_DEADLINE_AND_PRIORITY
-                }else{
-                    SortOrder.BY_PRIORITY
-                }
-            }else{
-                if(currentOrder == SortOrder.BY_DEADLINE_AND_PRIORITY){
+                } else {
                     SortOrder.BY_DEADLINE
-                }else{
+                }
+            } else {
+                if (currentOrder == SortOrder.BY_DEADLINE_AND_PRIORITY) {
+                    SortOrder.BY_PRIORITY
+                } else {
                     SortOrder.NONE
                 }
             }
@@ -110,13 +89,34 @@ object Preferences {
         _sortOrderFlow.value = newSortOrder
     }
 
-    private fun updateSortOrder(sortOrder: SortOrder){
-        preferences.edit{
+    fun enableSortByPriority(enable: Boolean) {
+        val currentOrder = sortOrderFlow.value
+        val newSortOrder =
+            if (enable) {
+                if (currentOrder == SortOrder.BY_DEADLINE) {
+                    SortOrder.BY_DEADLINE_AND_PRIORITY
+                } else {
+                    SortOrder.BY_PRIORITY
+                }
+            } else {
+                if (currentOrder == SortOrder.BY_DEADLINE_AND_PRIORITY) {
+                    SortOrder.BY_DEADLINE
+                } else {
+                    SortOrder.NONE
+                }
+            }
+        updateSortOrder(newSortOrder)
+        _sortOrderFlow.value = newSortOrder
+    }
+
+    private fun updateSortOrder(sortOrder: SortOrder) {
+        preferences.edit {
             putString(SORT_ORDER_KEY, sortOrder.name)
         }
     }
-    private fun updateShowState(newState: Boolean){
-        preferences.edit{
+
+    private fun updateShowState(newState: Boolean) {
+        preferences.edit {
             putBoolean(SHOW_COMPLETE, newState).apply()
         }
     }
