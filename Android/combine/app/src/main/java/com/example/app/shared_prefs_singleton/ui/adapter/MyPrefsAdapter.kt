@@ -1,6 +1,5 @@
 package com.example.app.shared_prefs_singleton.ui.adapter
 
-import android.graphics.Movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -27,10 +26,11 @@ class MyPrefsAdapter :
     override fun onBindViewHolder(holder: MyPrefsViewHolder, position: Int) {
         val currentKeyValue = getItem(position)
         holder.bind(currentKeyValue)
-        if(currentKeyValue.key == "userProfile") {
+        if (currentKeyValue.key == "userProfile") {
             holder.showDialog(currentKeyValue)
         }
     }
+
     private var onItemClickListener: ((KeyValue) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (KeyValue) -> Unit) {
