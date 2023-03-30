@@ -1,18 +1,19 @@
 package com.example.app.shared_prefs_singleton.ui
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import com.example.app.R
 import com.example.app.databinding.ActivityUserDataBinding
+import com.example.app.shared_prefs_singleton.data.SortOrder
+import com.example.app.shared_prefs_singleton.data.TasksRepository
 import com.example.app.shared_prefs_singleton.dialog.ProfileChooseDialog
+import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
+import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModelFactory
 import com.example.app.shared_prefs_singleton.utils.Preferences
-import com.example.app.shared_prefs_singleton.utils.UserDB
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class UserDataActivity : AppCompatActivity() {
 
@@ -21,9 +22,16 @@ class UserDataActivity : AppCompatActivity() {
         ActivityUserDataBinding.inflate(layoutInflater)
     }
 
+    private lateinit var myViewModel : TasksViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        myViewModel = ViewModelProvider(
+            this,
+            TasksViewModelFactory(TasksRepository)
+        ).get(TasksViewModel::class.java)
 
         if (Preferences.rememberMe) {
             binding.rememberMe.isChecked = true
@@ -49,6 +57,14 @@ class UserDataActivity : AppCompatActivity() {
         binding.userIdInfo.text =
             String.format(resources.getString(R.string.user_id, Preferences.userId))
 
+        setupFilterListeners(myViewModel)
+        setupSort()
+
+        myViewModel.taskUiModel.observe(this){tasksUiModel ->
+            updateSort(tasksUiModel.sortOrder)
+            binding.showCompletedSwitch.isChecked = tasksUiModel.showCompleted
+        }
+
         binding.userProfileImage.setOnClickListener {
             showDialog()
         }
@@ -64,6 +80,35 @@ class UserDataActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.tasksBtn.setOnClickListener {
+            val intent = Intent(this, TasksActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+    }
+
+    private fun setupFilterListeners(viewModel: TasksViewModel) {
+        binding.showCompletedSwitch.setOnCheckedChangeListener { _, checked ->
+            viewModel.showCompletedTasks(checked)
+        }
+    }
+
+    private fun setupSort() {
+        binding.sortDeadline.setOnCheckedChangeListener { _, checked ->
+            myViewModel.enableSortByDeadline(checked)
+        }
+        binding.sortPriority.setOnCheckedChangeListener { _, checked ->
+            myViewModel.enableSortByPriority(checked)
+        }
+    }
+
+    private fun updateSort(sortOrder: SortOrder) {
+        binding.sortDeadline.isChecked =
+            sortOrder == SortOrder.BY_DEADLINE || sortOrder == SortOrder.BY_DEADLINE_AND_PRIORITY
+        binding.sortPriority.isChecked =
+            sortOrder == SortOrder.BY_PRIORITY || sortOrder == SortOrder.BY_DEADLINE_AND_PRIORITY
     }
 
     override fun onResume() {

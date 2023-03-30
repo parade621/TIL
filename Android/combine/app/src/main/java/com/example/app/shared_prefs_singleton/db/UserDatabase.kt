@@ -33,7 +33,8 @@ abstract class UserDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): UserDatabase =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+                INSTANCE ?: buildDatabase(context).also {
+                    INSTANCE = it }
             }
 
         val MIGRATION_2_1 = object : Migration(2, 1) {

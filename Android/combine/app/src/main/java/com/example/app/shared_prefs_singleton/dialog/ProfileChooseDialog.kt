@@ -1,14 +1,13 @@
 package com.example.app.shared_prefs_singleton.dialog
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
 import com.example.app.shared_prefs_singleton.utils.Preferences
-import com.example.app.shared_prefs_singleton.utils.UserDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -40,7 +39,7 @@ class ProfileChooseDialog() : AppCompatActivity() {
     fun onclick(res: Int){
         Preferences.userProfile = res
         lifecycleScope.launch(Dispatchers.Default){
-            UserDB.db.updateProfile(Preferences.userId, Preferences.userProfile)
+            (application as MyApplication).database.updateProfile(Preferences.userId, Preferences.userProfile)
         }
         finish()
     }

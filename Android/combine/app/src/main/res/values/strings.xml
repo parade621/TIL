@@ -19,4 +19,8 @@
     <string name="signup_text">Don\'t have an account? <b>REGISTER</b></string>
     <string name="signin_text">Existing Member? <b>LOG IN</b></string>
     <string name="user_id">User ID: %s</string>
+    <string name="show_completed">Show completed tasks</string>
+    <string name="priority">Priority</string>
+    <string name="deadline">Deadline</string>
+    <string name="priority_value">Priority %s</string>
 </resources>

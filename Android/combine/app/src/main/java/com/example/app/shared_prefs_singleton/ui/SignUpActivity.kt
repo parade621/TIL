@@ -10,11 +10,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivitySignUpBinding
 import com.example.app.shared_prefs_singleton.db.UserInfo
 import com.example.app.shared_prefs_singleton.utils.Preferences
-import com.example.app.shared_prefs_singleton.utils.UserDB
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
                 val userId = binding.inputId.text.toString()
                 val userPw = binding.inputPwCheck.text.toString()
                 lifecycleScope.launch {
-                    UserDB.db.insertUserData(UserInfo(userId, userPw, R.drawable.blue_profile))
+                    (application as MyApplication).database.insertUserData(UserInfo(userId, userPw, R.drawable.blue_profile))
                 }
                 Preferences.userId = ""
                 Preferences.userPw = ""

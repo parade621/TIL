@@ -10,9 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.app.MyApplication
 import com.example.app.databinding.ActivityLogInBinding
 import com.example.app.shared_prefs_singleton.utils.Preferences
-import com.example.app.shared_prefs_singleton.utils.UserDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -65,7 +65,7 @@ class LogInActivity : AppCompatActivity() {
             }
 
             lifecycleScope.launch(Dispatchers.Default) {
-                if (!UserDB.db.exists(userId)) {
+                if (!(application as MyApplication).database.exists(userId)) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@LogInActivity, "유효하지 않은 아이디입니다.", Toast.LENGTH_SHORT)
                             .show()
@@ -74,7 +74,7 @@ class LogInActivity : AppCompatActivity() {
                         binding.inputId.requestFocus()
                     }
                 } else {
-                    val userInfo = UserDB.db.getUserById(userId)!!
+                    val userInfo = (application as MyApplication).database.getUserById(userId)!!
                     if (userInfo.userPw != userPw) {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
@@ -104,7 +104,7 @@ class LogInActivity : AppCompatActivity() {
     }
 
     private suspend fun startUserDataActivity(context: Context) = withContext(Dispatchers.Main) {
-        val intent = Intent(context, UserDataActivity::class.java)
+        val intent = Intent(context, TasksActivity::class.java)
         context.startActivity(intent)
         finish()
     }
