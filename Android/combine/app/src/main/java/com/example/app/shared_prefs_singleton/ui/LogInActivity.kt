@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.databinding.ActivityLogInBinding
 import com.example.app.shared_prefs_singleton.utils.Preferences
+import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -110,17 +111,7 @@ class LogInActivity : AppCompatActivity() {
     }
 
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-        if (event?.action == MotionEvent.ACTION_DOWN) {
-            val view = currentFocus
-            if (view is EditText) {
-                val outRect = Rect().apply { view.getGlobalVisibleRect(this) }
-                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
-                    view.clearFocus()
-                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(view.windowToken, 0)
-                }
-            }
-        }
+        hideKeyboardOnTouchOutside(this, event)
         return super.dispatchTouchEvent(event)
     }
 }

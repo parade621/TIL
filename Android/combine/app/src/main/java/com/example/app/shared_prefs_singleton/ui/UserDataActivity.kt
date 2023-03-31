@@ -3,15 +3,14 @@ package com.example.app.shared_prefs_singleton.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.app.R
 import com.example.app.databinding.ActivityUserDataBinding
 import com.example.app.shared_prefs_singleton.data.SortOrder
-import com.example.app.shared_prefs_singleton.data.TasksRepository
 import com.example.app.shared_prefs_singleton.dialog.ProfileChooseDialog
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
-import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModelFactory
 import com.example.app.shared_prefs_singleton.utils.Preferences
 
 class UserDataActivity : AppCompatActivity() {
@@ -21,16 +20,11 @@ class UserDataActivity : AppCompatActivity() {
         ActivityUserDataBinding.inflate(layoutInflater)
     }
 
-    private lateinit var myViewModel: TasksViewModel
+    private val myViewModel: TasksViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        myViewModel = ViewModelProvider(
-            this,
-            TasksViewModelFactory(TasksRepository)
-        ).get(TasksViewModel::class.java)
 
         if (Preferences.rememberMe) {
             binding.rememberMe.isChecked = true

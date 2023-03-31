@@ -10,9 +10,7 @@ import com.example.app.shared_prefs_singleton.utils.Preferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 
-class TasksViewModel(
-    repository: TasksRepository,
-) : ViewModel() {
+class TasksViewModel: ViewModel() {
 
     // 변경된 필터를 스트림으로 유지
     // private val _showCompletedFlow = MutableStateFlow(false)
@@ -21,20 +19,20 @@ class TasksViewModel(
     // 정렬 순서 변경 사항을 스트림으로 유지
     private val sortOrderFlow = Preferences.sortOrderFlow
 
-    private val tasksUiModelFlow: Flow<TaskUiModel> = combine(
-        repository.tasks,
+    private var tasksUiModelFlow: Flow<TaskUiModel> = combine(
+        TasksRepository.getNewTask(),
         _showCompletedFlow,
         sortOrderFlow
-    ) { tasks: List<Task>, showCompleted: Boolean, sortOrder: SortOrder ->
-        Log.d("myTasksViewModel", "이거 왜안됨? ${showCompleted} and ${sortOrder}")
+    ) { task: List<Task>, showCompleted: Boolean, sortOrder: SortOrder ->
+        TasksRepository.forLog("viewmodel")
         return@combine TaskUiModel(
-            tasks = filterSortTasks(tasks, showCompleted, sortOrder),
+            tasks = filterSortTasks(task, showCompleted, sortOrder),
             showCompleted = showCompleted,
             sortOrder = sortOrder
         )
     }
 
-    val taskUiModel = tasksUiModelFlow.asLiveData()
+    var taskUiModel = tasksUiModelFlow.asLiveData()
 
     private fun filterSortTasks(
         tasks: List<Task>,

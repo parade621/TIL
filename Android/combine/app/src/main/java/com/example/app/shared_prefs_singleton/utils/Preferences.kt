@@ -10,8 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 
 object Preferences {
     private const val FILENAME = "com.example.app.shared_prefs_singleton.utils.my_preference"
-    private const val SORT_ORDER_KEY = "sort_order"
-    private const val SHOW_COMPLETE = "show_completed"
     private lateinit var _preferences: SharedPreferences
     private lateinit var _sortOrderFlow: MutableStateFlow<SortOrder>
     private lateinit var _showCompleted: MutableStateFlow<Boolean>
@@ -34,6 +32,8 @@ object Preferences {
     private val REMEMBER_USER = "rememberMe"
     private val PREFS_USER_ID = "userId"
     private val PREFS_USER_PW = "userPw"
+    private val SORT_ORDER_KEY = "sort_order"
+    private val SHOW_COMPLETE = "show_completed"
 
     private val sortOrder: SortOrder
         get() {

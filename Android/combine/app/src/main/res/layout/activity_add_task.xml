@@ -13,12 +13,13 @@
         android:hint="Title"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_margin="30dp"
+        app:layout_constraintBottom_toTopOf="@id/body_area"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_id"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textStyle="bold"
@@ -28,19 +29,23 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/body_area"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:hint="Contents"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@id/priority_text"
         app:layout_constraintTop_toBottomOf="@id/title_area"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/body"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"/>
+            android:layout_height="200dp"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -50,9 +55,10 @@
         android:text="Priority"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/priority_btn"
         app:layout_constraintTop_toBottomOf="@id/body_area"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -65,21 +71,27 @@
         app:layout_constraintTop_toBottomOf="@id/priority_text">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/priority_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/lightGray"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:text="LOW"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/priority_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/lightGray"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="MEDIUM"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/priority_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/lightGray"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="HIGH"/>
@@ -112,12 +124,14 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:text="Cancel"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
