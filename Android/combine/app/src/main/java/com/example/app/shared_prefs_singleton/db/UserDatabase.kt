@@ -1,11 +1,16 @@
 package com.example.app.shared_prefs_singleton.db
 
 import android.content.Context
+import androidx.databinding.adapters.Converters
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.TypeConverters
+import com.example.app.shared_prefs_singleton.db.converter.ListConverters
+import com.example.app.shared_prefs_singleton.db.converter.TaskPriorityConverter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+
 
 @Database(
     entities = [UserInfo::class],
@@ -13,6 +18,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
     exportSchema = false
 )
 
+//@TypeConverters(ListConverters::class, TaskPriorityConverter::class)
 abstract class UserDatabase : RoomDatabase() {
 
     abstract fun userInfoDao(): UserInfoDao
@@ -21,6 +27,9 @@ abstract class UserDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: UserDatabase? = null
 
+        private val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 
         private fun buildDatabase(context: Context): UserDatabase =
             Room.databaseBuilder(
@@ -28,7 +37,6 @@ abstract class UserDatabase : RoomDatabase() {
                 UserDatabase::class.java,
                 "user_info"
             )
-                .addMigrations(MIGRATION_2_1)
                 .build()
 
         fun getInstance(context: Context): UserDatabase =
@@ -36,12 +44,6 @@ abstract class UserDatabase : RoomDatabase() {
                 INSTANCE ?: buildDatabase(context).also {
                     INSTANCE = it }
             }
-
-        val MIGRATION_2_1 = object : Migration(2, 1) {
-            override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE table_name ADD COLUMN new_column_name TEXT")
-            }
-        }
 
     }
 }

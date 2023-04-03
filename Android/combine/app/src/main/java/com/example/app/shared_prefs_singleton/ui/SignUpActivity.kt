@@ -1,12 +1,8 @@
 package com.example.app.shared_prefs_singleton.ui
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +10,6 @@ import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivitySignUpBinding
 import com.example.app.shared_prefs_singleton.db.UserInfo
-import com.example.app.shared_prefs_singleton.utils.Preferences
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.launch
 
@@ -27,6 +22,8 @@ class SignUpActivity : AppCompatActivity() {
     private val binding: ActivitySignUpBinding by lazy {
         ActivitySignUpBinding.inflate(layoutInflater)
     }
+    private val dataStore = MyApplication.getInstance().getDataStore()
+    private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,20 +44,22 @@ class SignUpActivity : AppCompatActivity() {
                 binding.inputPwCheck.setText("")
                 binding.inputPwCheck.requestFocus()
             } else {
-                val userId = binding.inputId.text.toString()
-                val userPw = binding.inputPwCheck.text.toString()
+                val inputUserId = binding.inputId.text.toString()
+                val iputUserPw = binding.inputPwCheck.text.toString()
                 lifecycleScope.launch {
-                    (application as MyApplication).database.insertUserData(
+                    dataBase.insertUserData(
                         UserInfo(
-                            userId,
-                            userPw,
+                            inputUserId,
+                            iputUserPw,
                             R.drawable.blue_profile
                         )
                     )
                 }
-                Preferences.userId = ""
-                Preferences.userPw = ""
-                Preferences.userProfile = 0
+                dataStore.apply {
+                    userId = ""
+                    userPw = ""
+                    userProfile = 0
+                }
                 val intent = Intent(this, LogInActivity::class.java)
                 startActivity(intent)
                 finish()

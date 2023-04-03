@@ -28,8 +28,6 @@ class AddTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // activityLauncher init
-
         binding.titleArea.apply {
             isCounterEnabled = true
             counterMaxLength = 20
@@ -101,8 +99,8 @@ class AddTaskActivity : AppCompatActivity() {
         }
         binding.saveBtn.setOnClickListener {
             val task = Task(
-                name = binding.title.text.toString(),
-                deadline = myDeadline,
+                title = binding.title.text.toString(),
+                deadline = myDeadline.time,
                 content = binding.body.text.toString(),
                 priority = taskPriority,
             )

@@ -1,34 +1,35 @@
 package com.example.app.shared_prefs_singleton.ui.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.example.app.shared_prefs_singleton.data.SortOrder
-import com.example.app.shared_prefs_singleton.data.Task
-import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.shared_prefs_singleton.utils.Preferences
+import androidx.datastore.preferences.core.Preferences
+import androidx.lifecycle.*
+import com.example.app.MyApplication
+import com.example.app.shared_prefs_singleton.data.*
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 
-class TasksViewModel: ViewModel() {
+class TasksViewModel : ViewModel() {
+    private val dataStore = MyApplication.getInstance().getDataStore()
+    private val keyValues: MutableLiveData<List<KeyValue>> = MutableLiveData()
 
-    // 변경된 필터를 스트림으로 유지
-    // private val _showCompletedFlow = MutableStateFlow(false)
-    private val _showCompletedFlow = Preferences.showCompleted
-
-    // 정렬 순서 변경 사항을 스트림으로 유지
-    private val sortOrderFlow = Preferences.sortOrderFlow
+    val initialSetupEvent = liveData {
+        emit(dataStore.fetchInitialPreferences())
+    }
 
     private var tasksUiModelFlow: Flow<TaskUiModel> = combine(
         TasksRepository.getNewTask(),
-        _showCompletedFlow,
-        sortOrderFlow
-    ) { task: List<Task>, showCompleted: Boolean, sortOrder: SortOrder ->
+        dataStore.userPreferencesFlow
+    ) { task: List<Task>, userPrefereneces: UserPreferences ->
         TasksRepository.forLog("viewmodel")
         return@combine TaskUiModel(
-            tasks = filterSortTasks(task, showCompleted, sortOrder),
-            showCompleted = showCompleted,
-            sortOrder = sortOrder
+            tasks = filterSortTasks(
+                task,
+                userPrefereneces.showCompleted,
+                userPrefereneces.sortOrder
+            ),
+            showCompleted = userPrefereneces.showCompleted,
+            sortOrder = userPrefereneces.sortOrder
         )
     }
 
@@ -55,15 +56,34 @@ class TasksViewModel: ViewModel() {
     }
 
     fun showCompletedTasks(show: Boolean) {
-        Log.d("myTasksViewModel", show.toString())
-        Preferences.showCompletedTasks(show)
+        viewModelScope.launch {
+            dataStore.showCompletedTasks(show)
+        }
     }
 
     fun enableSortByDeadline(enable: Boolean) {
-        Preferences.enableSortByDeadLine(enable)
+        viewModelScope.launch {
+            dataStore.enableSortByDeadline(enable)
+        }
     }
 
     fun enableSortByPriority(enable: Boolean) {
-        Preferences.enableSortByPriority(enable)
+        viewModelScope.launch {
+            dataStore.enableSortByPriority(enable)
+        }
+    }
+
+    fun getKeyValues(): LiveData<List<KeyValue>> {
+        var allEntries: Map<Preferences.Key<*>, Any?> = emptyMap()
+        viewModelScope.launch {
+            dataStore.dateStore.data.collect { preferences ->
+                allEntries = preferences.asMap()
+                val list = allEntries.map {
+                    KeyValue(it.key.name, it.value)
+                }
+                keyValues.value = list
+            }
+        }
+        return keyValues
     }
 }

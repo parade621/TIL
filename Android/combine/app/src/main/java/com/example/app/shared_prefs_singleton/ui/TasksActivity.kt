@@ -31,6 +31,10 @@ class TasksActivity : AppCompatActivity() {
         }
         setupRecyclerView()
 
+        myViewModel.initialSetupEvent.observe(this) { initialSetupEvent ->
+            observePreferenceChanges()
+        }
+
         binding.settingsBtn.setOnClickListener {
             val intent = Intent(this, UserDataActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -55,5 +59,11 @@ class TasksActivity : AppCompatActivity() {
         binding.list.addItemDecoration(decoration)
 
         binding.list.adapter = myAdapter
+    }
+
+    private fun observePreferenceChanges() {
+        myViewModel.taskUiModel.observe(this) { taskUiModel ->
+            myAdapter.submitList(taskUiModel.tasks)
+        }
     }
 }

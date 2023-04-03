@@ -6,7 +6,7 @@ import android.content.Context
 import com.example.app.shared_prefs_singleton.db.UserDatabase
 import com.example.app.shared_prefs_singleton.db.client.UserDatabaseClient
 import com.example.app.shared_prefs_singleton.db.client.UserDatabaseClientImpl
-import com.example.app.shared_prefs_singleton.utils.Preferences
+import com.example.app.shared_prefs_singleton.utils.MyPreferences
 
 class MyApplication : Application() {
 
@@ -23,14 +23,14 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Preferences.init(this)
+        MyPreferences.init(this)
 
         context = applicationContext
     }
 
     @Override
     override fun attachBaseContext(base: Context) {
-        Preferences.init(base)
+        MyPreferences.init(base)
         super.attachBaseContext(base)
     }
 }

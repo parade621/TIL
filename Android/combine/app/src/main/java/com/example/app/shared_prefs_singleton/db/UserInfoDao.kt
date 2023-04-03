@@ -19,4 +19,7 @@ interface UserInfoDao {
 
     @Update
     suspend fun updateUser(userinfo: UserInfo)
+
+    @Update
+    suspend fun updateUserTask(userinfo: UserInfo)
 }

@@ -18,7 +18,7 @@ class TaskViewHolder(
     private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.KOREA)
 
     fun bind(todo: Task) {
-        binding.task.text = todo.name
+        binding.task.text = todo.title
         setTaskPriority(todo)
         binding.deadline.text = dateFormat.format(todo.deadline)
         val color = if (todo.completed) {

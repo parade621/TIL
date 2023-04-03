@@ -12,42 +12,41 @@ import java.util.*
  */
 object TasksRepository {
 
-
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
     private val mutableTasksList = mutableListOf(
         Task(
-            name = "Go Home",
-            deadline = simpleDateFormat.parse("2023-03-28")!!,
+            title = "Go Home",
+            deadline = simpleDateFormat.parse("2023-03-28")!!.time,
             priority = TaskPriority.LOW,
             completed = true
         ),
         Task(
-            name = "Clean House",
-            deadline = simpleDateFormat.parse("2023-03-28")!!,
+            title = "Clean House",
+            deadline = simpleDateFormat.parse("2023-03-28")!!.time,
             priority = TaskPriority.MEDIUM,
             completed = true
         ),
         Task(
-            name = "Check out the code", deadline = simpleDateFormat.parse("2023-03-30")!!,
+            title = "Check out the code", deadline = simpleDateFormat.parse("2023-03-30")!!.time,
             priority = TaskPriority.LOW
         ),
         Task(
-            name = "Drink some coffe", deadline = simpleDateFormat.parse("2023-03-30")!!,
+            title = "Drink some coffe", deadline = simpleDateFormat.parse("2023-03-30")!!.time,
             priority = TaskPriority.HIGH
         ),
         Task(
-            name = "Study Two different DataStore",
-            deadline = Date(),
+            title = "Study Two different DataStore",
+            deadline = Date().time,
             priority = TaskPriority.MEDIUM
         ),
         Task(
-            name = "Understand how to use DataStore",
-            deadline = simpleDateFormat.parse("2020-04-03")!!,
+            title = "Understand how to use DataStore",
+            deadline = simpleDateFormat.parse("2020-04-03")!!.time,
             priority = TaskPriority.HIGH
         ),
         Task(
-            name = "Understand how to migrate to DataStore",
-            deadline = Date(),
+            title = "Understand how to migrate to DataStore",
+            deadline = Date().time,
             priority = TaskPriority.HIGH
         )
     )

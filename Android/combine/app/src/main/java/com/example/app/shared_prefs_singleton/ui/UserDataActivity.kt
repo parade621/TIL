@@ -2,16 +2,14 @@ package com.example.app.shared_prefs_singleton.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivityUserDataBinding
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.dialog.ProfileChooseDialog
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
-import com.example.app.shared_prefs_singleton.utils.Preferences
 
 class UserDataActivity : AppCompatActivity() {
 
@@ -21,41 +19,48 @@ class UserDataActivity : AppCompatActivity() {
     }
 
     private val myViewModel: TasksViewModel by viewModels()
+    private val dataStore = MyApplication.getInstance().getDataStore()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (Preferences.rememberMe) {
+        if (dataStore.rememberMe) {
             binding.rememberMe.isChecked = true
         }
 
         binding.rememberMe.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // 현재 체크되어있음
-                if (Preferences.rememberMe) {
+                if (dataStore.rememberMe) {
                     // 이미 체크된 상태면 체크 해제
                     binding.rememberMe.isChecked = false
-                    Preferences.rememberMe = false
+                    dataStore.rememberMe = false
                 } else {
                     // 체크 안되있으면 체크
-                    Preferences.rememberMe = true
+                    dataStore.rememberMe = true
                 }
             } else {
                 // 체크 안되어있으면 false
-                Preferences.rememberMe = false
+                dataStore.rememberMe = false
             }
         }
 
+
         binding.userIdInfo.text =
-            String.format(resources.getString(R.string.user_id, Preferences.userId))
+            String.format(
+                resources.getString(
+                    R.string.user_id,
+                    dataStore.userId
+                )
+            )
 
         setupFilterListeners(myViewModel)
-        setupSort()
 
-        myViewModel.taskUiModel.observe(this) { tasksUiModel ->
-            updateSort(tasksUiModel.sortOrder)
-            binding.showCompletedSwitch.isChecked = tasksUiModel.showCompleted
+        myViewModel.initialSetupEvent.observe(this) { initialSetupEvent ->
+            updateSort(initialSetupEvent.sortOrder, initialSetupEvent.showCompleted)
+            setupSort()
+            observePreferenceChanges()
         }
 
         binding.userProfileImage.setOnClickListener {
@@ -68,7 +73,7 @@ class UserDataActivity : AppCompatActivity() {
         }
 
         binding.logOutBtn.setOnClickListener {
-            Preferences.userPw = ""
+            dataStore.userPw = ""
             val intent = Intent(this@UserDataActivity, LogInActivity::class.java)
             startActivity(intent)
             finish()
@@ -95,18 +100,30 @@ class UserDataActivity : AppCompatActivity() {
         binding.sortPriority.setOnCheckedChangeListener { _, checked ->
             myViewModel.enableSortByPriority(checked)
         }
+        binding.showCompletedSwitch.setOnCheckedChangeListener { _, checked ->
+            myViewModel.showCompletedTasks(checked)
+        }
     }
 
-    private fun updateSort(sortOrder: SortOrder) {
-        binding.sortDeadline.isChecked =
-            sortOrder == SortOrder.BY_DEADLINE || sortOrder == SortOrder.BY_DEADLINE_AND_PRIORITY
-        binding.sortPriority.isChecked =
-            sortOrder == SortOrder.BY_PRIORITY || sortOrder == SortOrder.BY_DEADLINE_AND_PRIORITY
+    private fun observePreferenceChanges() {
+        myViewModel.taskUiModel.observe(this) { taskUiModel ->
+            updateSort(taskUiModel.sortOrder, taskUiModel.showCompleted)
+        }
+    }
+
+    private fun updateSort(sortOrder: SortOrder, showCompleted: Boolean) {
+        with(binding) {
+            showCompletedSwitch.isChecked = showCompleted
+            binding.sortDeadline.isChecked =
+                sortOrder == SortOrder.BY_DEADLINE || sortOrder == SortOrder.BY_DEADLINE_AND_PRIORITY
+            binding.sortPriority.isChecked =
+                sortOrder == SortOrder.BY_PRIORITY || sortOrder == SortOrder.BY_DEADLINE_AND_PRIORITY
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        binding.userProfileImage.setImageResource(Preferences.userProfile)
+        binding.userProfileImage.setImageResource(dataStore.userProfile)
     }
 
     private fun showDialog() {
@@ -116,7 +133,6 @@ class UserDataActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Log.d("바꾸기 누름", "true")
     }
 
 }

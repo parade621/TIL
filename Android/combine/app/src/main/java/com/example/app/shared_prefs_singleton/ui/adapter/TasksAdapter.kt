@@ -1,17 +1,13 @@
 package com.example.app.shared_prefs_singleton.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.app.databinding.LvItemBinding
-import com.example.app.databinding.TaskItemsBinding
-import com.example.app.shared_prefs_singleton.data.KeyValue
 import com.example.app.shared_prefs_singleton.data.Task
 
 class TasksAdapter : ListAdapter<Task, TaskViewHolder>(object : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.title == newItem.title
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {

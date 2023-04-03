@@ -8,9 +8,10 @@ import com.example.app.shared_prefs_singleton.data.SortOrder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-object Preferences {
-    private const val FILENAME = "com.example.app.shared_prefs_singleton.utils.my_preference"
+object MyPreferences {
+    private val FILENAME = "com.example.app.shared_prefs_singleton.utils.my_preference"
     private lateinit var _preferences: SharedPreferences
+
     private lateinit var _sortOrderFlow: MutableStateFlow<SortOrder>
     private lateinit var _showCompleted: MutableStateFlow<Boolean>
     val sortOrderFlow: StateFlow<SortOrder> by lazy {
@@ -28,6 +29,7 @@ object Preferences {
         _showCompleted = MutableStateFlow(showComplete)
     }
 
+    // SharedPreferences
     private val USER_PROFILE = "userProfile"
     private val REMEMBER_USER = "rememberMe"
     private val PREFS_USER_ID = "userId"
@@ -69,7 +71,7 @@ object Preferences {
 
 
     // 마감일을 기준으로 정렬
-    fun enableSortByDeadLine(enable: Boolean) {
+    fun enableSortByDeadline(enable: Boolean) {
         val currentOrder = sortOrderFlow.value
         val newSortOrder =
             if (enable) {
