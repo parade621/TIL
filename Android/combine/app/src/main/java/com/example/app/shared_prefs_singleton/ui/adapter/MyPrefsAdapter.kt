@@ -34,6 +34,7 @@ class MyPrefsAdapter(val context: Context) :
     override fun onBindViewHolder(holder: MyPrefsViewHolder, position: Int) {
         val currentKeyValue = getItem(position)
         holder.bind(currentKeyValue)
+
         holder.itemView.setOnClickListener {
             if(currentKeyValue.key == "userProfile"){
                 DisplayProfileDialog(currentKeyValue.value as Int).show(

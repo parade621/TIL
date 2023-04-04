@@ -2,7 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id "org.jetbrains.kotlin.plugin.serialization"
+    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -67,8 +68,6 @@ dependencies {
 
     // Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
-
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Okhttp
@@ -112,18 +111,25 @@ dependencies {
 
     // Preference
     implementation 'androidx.preference:preference-ktx:1.2.0'
-    implementation('androidx.preference:preference:1.2.0'){
-        exclude group: 'androidx.lifecycle', module:'lifecycle-viewModel'
-        exclude group: 'androidx.lifecycle', module:'lifecycle-viewmodel-ktx'
+    implementation('androidx.preference:preference:1.2.0') {
+        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewModel'
+        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
     }
 
     // Datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
-
+    implementation "androidx.datastore:datastore-preferences-core:1.0.0"
 
     // Room
     implementation 'androidx.room:room-ktx:2.4.3'
     implementation 'androidx.room:room-runtime:2.4.3'
     kapt 'androidx.room:room-compiler:2.4.3'
+
+    // Moshi
+    implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
+
+    // Kotlin Serialization
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
 
 }
