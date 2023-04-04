@@ -7,6 +7,12 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.data.UserPreferences
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule.Keys.PREFS_USER_ID
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule.Keys.PREFS_USER_PW
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule.Keys.REMEMBER_USER
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule.Keys.SHOW_COMPLETE
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule.Keys.SORT_ORDER_KEY
+import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule.Keys.USER_PROFILE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -22,36 +28,24 @@ class PreferenceDataStoreModule(private val context: Context) {
     )
     val dateStore get() = context._dataStore
 
-//    // SharedPreferences로부터 모든 key값 로드
-//    val sharedPrefsKey = MyPreferences.preferences.all.keys.toMutableList()
-
-    val data = listOf("String", "Int", "Boolean")
-
-    suspend fun setValue(key: String, value: Any?) {
-        when (value) {
-            is String -> context._dataStore.edit { settings ->
-                settings[stringPreferencesKey(key)] = value
-            }
-            is Int -> context._dataStore.edit { settings ->
-                settings[intPreferencesKey(key)] = value
-            }
-            is Boolean -> context._dataStore.edit { settings ->
-                settings[booleanPreferencesKey(key)] = value
-            }
-        }
+    // https://developer.android.com/codelabs/android-preferences-datastore?hl=ko#6
+    private object Keys{
+        val USER_PROFILE = intPreferencesKey("userProfile")
+        val PREFS_USER_ID = stringPreferencesKey("userId")
+        val PREFS_USER_PW = stringPreferencesKey("userPw")
+        val SORT_ORDER_KEY = stringPreferencesKey("sort_order")
+        val SHOW_COMPLETE = booleanPreferencesKey("show_completed")
+        val REMEMBER_USER = booleanPreferencesKey("rememberMe")
     }
 
-    private val USER_PROFILE = "userProfile"
-    private val REMEMBER_USER = "rememberMe"
-    private val PREFS_USER_ID = "userId"
-    private val PREFS_USER_PW = "userPw"
-    private val SORT_ORDER_KEY = "sort_order"
-    private val SHOW_COMPLETE = "show_completed"
+    init{
+        Log.d("함보자", MyPreferences.preferences.all.keys.toString())
+    }
 
     // dataStore가 Flow를 사용하기 때문에 우선 아래와 같이 작성하였습니다.
     var userId: String
         get() = runBlocking {
-            context._dataStore.data.first()[] ?: ""
+            context._dataStore.data.first()[PREFS_USER_ID] ?: ""
         }
         set(value) {
             runBlocking {
