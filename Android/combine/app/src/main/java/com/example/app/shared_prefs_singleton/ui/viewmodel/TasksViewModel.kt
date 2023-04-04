@@ -2,24 +2,22 @@ package com.example.app.shared_prefs_singleton.ui.viewmodel
 
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.*
-import com.example.app.MyApplication
 import com.example.app.shared_prefs_singleton.data.*
-import com.example.app.shared_prefs_singleton.utils.PreferenceDataStoreModule
+import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 class TasksViewModel : ViewModel() {
-    private val dataStore = MyApplication.getInstance().getDataStore()
     private val keyValues: MutableLiveData<List<KeyValue>> = MutableLiveData()
 
     val initialSetupEvent = liveData {
-        emit(dataStore.fetchInitialPreferences())
+        emit(DataStoreUtils.fetchInitialPreferences())
     }
 
     private var tasksUiModelFlow: Flow<TaskUiModel> = combine(
         TasksRepository.getNewTask(),
-        dataStore.userPreferencesFlow
+        DataStoreUtils.userPreferencesFlow
     ) { task: List<Task>, userPrefereneces: UserPreferences ->
         TasksRepository.forLog("viewmodel")
         return@combine TaskUiModel(
@@ -57,26 +55,26 @@ class TasksViewModel : ViewModel() {
 
     fun showCompletedTasks(show: Boolean) {
         viewModelScope.launch {
-            dataStore.showCompletedTasks(show)
+            DataStoreUtils.setShowCompletedTasks(show)
         }
     }
 
     fun enableSortByDeadline(enable: Boolean) {
         viewModelScope.launch {
-            dataStore.enableSortByDeadline(enable)
+            DataStoreUtils.setEnableSortByDeadline(enable)
         }
     }
 
     fun enableSortByPriority(enable: Boolean) {
         viewModelScope.launch {
-            dataStore.enableSortByPriority(enable)
+            DataStoreUtils.setEnableSortByPriority(enable)
         }
     }
 
     fun getKeyValues(): LiveData<List<KeyValue>> {
         var allEntries: Map<Preferences.Key<*>, Any?> = emptyMap()
         viewModelScope.launch {
-            dataStore.dateStore.data.collect { preferences ->
+            DataStoreUtils.datas!!.collect { preferences ->
                 allEntries = preferences.asMap()
                 val list = allEntries.map {
                     KeyValue(it.key.name, it.value)

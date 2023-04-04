@@ -133,7 +133,5 @@ Gapp/src/main/java/com/example/app/enhanced_todo/EnhancedToDoActivity.kt,d/3/d3
 Mapp/src/main/java/com/example/app/shared_prefs_singleton/data/TaskPriority.kt,9/c/9c139c706bd9aa795e63f56b0ac3b39e9eccfb97
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-}
-Mapp/src/main/java/com/example/app/shared_prefs_singleton/ui/SignUpActivity.kt,a/3/a3effca6f4ca2942c64b47501bc497074b7f4f13
 w
 Gapp/src/main/java/com/example/app/shared_prefs_singleton/utils/Utils.kt,8/9/894345af05988d1613191efaf6190957aa9e1a5c

@@ -10,6 +10,7 @@ import com.example.app.databinding.ActivityUserDataBinding
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.dialog.ProfileChooseDialog
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
+import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
 
 class UserDataActivity : AppCompatActivity() {
 
@@ -19,30 +20,29 @@ class UserDataActivity : AppCompatActivity() {
     }
 
     private val myViewModel: TasksViewModel by viewModels()
-    private val dataStore = MyApplication.getInstance().getDataStore()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (dataStore.rememberMe) {
+        if (DataStoreUtils.rememberMe) {
             binding.rememberMe.isChecked = true
         }
 
         binding.rememberMe.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // 현재 체크되어있음
-                if (dataStore.rememberMe) {
+                if (DataStoreUtils.rememberMe) {
                     // 이미 체크된 상태면 체크 해제
                     binding.rememberMe.isChecked = false
-                    dataStore.rememberMe = false
+                    DataStoreUtils.resetRememberMe()
                 } else {
                     // 체크 안되있으면 체크
-                    dataStore.rememberMe = true
+                    DataStoreUtils.setRememberMe()
                 }
             } else {
                 // 체크 안되어있으면 false
-                dataStore.rememberMe = false
+                DataStoreUtils.resetRememberMe()
             }
         }
 
@@ -51,7 +51,7 @@ class UserDataActivity : AppCompatActivity() {
             String.format(
                 resources.getString(
                     R.string.user_id,
-                    dataStore.userId
+                    DataStoreUtils.userId
                 )
             )
 
@@ -73,7 +73,7 @@ class UserDataActivity : AppCompatActivity() {
         }
 
         binding.logOutBtn.setOnClickListener {
-            dataStore.userPw = ""
+            DataStoreUtils.logout()
             val intent = Intent(this@UserDataActivity, LogInActivity::class.java)
             startActivity(intent)
             finish()
@@ -123,7 +123,7 @@ class UserDataActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.userProfileImage.setImageResource(dataStore.userProfile)
+        binding.userProfileImage.setImageResource(DataStoreUtils.userProfile)
     }
 
     private fun showDialog() {

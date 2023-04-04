@@ -10,6 +10,7 @@ import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivitySignUpBinding
 import com.example.app.shared_prefs_singleton.db.UserInfo
+import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.launch
 
@@ -22,7 +23,6 @@ class SignUpActivity : AppCompatActivity() {
     private val binding: ActivitySignUpBinding by lazy {
         ActivitySignUpBinding.inflate(layoutInflater)
     }
-    private val dataStore = MyApplication.getInstance().getDataStore()
     private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,11 +55,7 @@ class SignUpActivity : AppCompatActivity() {
                         )
                     )
                 }
-                dataStore.apply {
-                    userId = ""
-                    userPw = ""
-                    userProfile = 0
-                }
+                DataStoreUtils.clearUserInfo()
                 val intent = Intent(this, LogInActivity::class.java)
                 startActivity(intent)
                 finish()

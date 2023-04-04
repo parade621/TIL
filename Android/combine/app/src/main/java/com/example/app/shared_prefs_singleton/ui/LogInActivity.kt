@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.databinding.ActivityLogInBinding
+import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
+import com.example.app.shared_prefs_singleton.utils.DataStoreUtils.setUserInfo
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,36 +20,35 @@ class LogInActivity : AppCompatActivity() {
         ActivityLogInBinding.inflate(layoutInflater)
     }
 
-    private val dataStore = MyApplication.getInstance().getDataStore()
     private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (dataStore.rememberMe) {
+        if (DataStoreUtils.rememberMe) {
             binding.rememberMe.isChecked = true
         }
 
-        if (dataStore.userId.isNotEmpty()) {
-            binding.inputId.setText(dataStore.userId)
+        if (DataStoreUtils.userId.isNotEmpty()) {
+            binding.inputId.setText(DataStoreUtils.userId)
             binding.inputPw.requestFocus()
         }
 
         binding.rememberMe.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // 현재 체크되어있음
-                if (dataStore.rememberMe) {
+                if (DataStoreUtils.rememberMe) {
                     // 이미 체크된 상태면 체크 해제
                     binding.rememberMe.isChecked = false
-                    dataStore.rememberMe = false
+                    DataStoreUtils.resetRememberMe()
                 } else {
                     // 체크 안되있으면 체크
-                    dataStore.rememberMe = isChecked
+                    DataStoreUtils.setRememberMe()
                 }
             } else {
                 // 체크 안되어있으면 false
-                dataStore.rememberMe = false
+                DataStoreUtils.resetRememberMe()
             }
         }
 
@@ -90,12 +91,7 @@ class LogInActivity : AppCompatActivity() {
                             binding.inputPw.requestFocus()
                         }
                     } else {
-                        dataStore.apply {
-                            userId = inputUserId
-                            userPw = inputUserPw
-                            userProfile =
-                                userInfo.userProfile
-                        }
+                        DataStoreUtils.setUserInfo(inputUserId,inputUserPw,userInfo.userProfile)
                         val intent = Intent(this@LogInActivity, TasksActivity::class.java)
                         this@LogInActivity.startActivity(intent)
                         finish()

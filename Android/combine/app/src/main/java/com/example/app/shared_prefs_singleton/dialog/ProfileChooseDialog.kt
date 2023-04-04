@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
+import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -15,7 +16,6 @@ class ProfileChooseDialog() : AppCompatActivity() {
     private val binding: FragmentProfileChooseDialogBinding by lazy {
         FragmentProfileChooseDialogBinding.inflate(layoutInflater)
     }
-    private val dataStore = MyApplication.getInstance().getDataStore()
     private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +38,9 @@ class ProfileChooseDialog() : AppCompatActivity() {
         }
     }
     fun onclick(res: Int){
-        dataStore.userProfile = res
+        DataStoreUtils.setUserProfile(res)
         lifecycleScope.launch(Dispatchers.Default){
-            dataBase.updateProfile(dataStore.userId, dataStore.userProfile)
+            dataBase.updateProfile(DataStoreUtils.userId, DataStoreUtils.userProfile)
         }
         finish()
     }
