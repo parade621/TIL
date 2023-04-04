@@ -129,8 +129,6 @@ y
 Iapp/src/main/java/com/example/app/shared_prefs_singleton/data/KeyValue.kt,0/7/07ce202122ccb9c2aadad3cded306f174526a0d4
 ˆ
 Xapp/src/main/java/com/example/app/shared_prefs_singleton/db/client/UserDatabaseClient.kt,7/f/7f9d3b7a78a250bfc9e32b33711e7666b001ded1
-b
-2app/src/main/java/com/example/app/MyApplication.kt,8/b/8b63dd4439fbff3444d06f3fd8e69631a01f4ad3
 †
 Vapp/src/main/java/com/example/app/shared_prefs_singleton/dialog/ProfileChooseDialog.kt,5/4/54cf18168e2f0a7460135e139b1fdce628023cac
 {
@@ -145,3 +143,15 @@ w
 Gapp/src/main/java/com/example/app/enhanced_todo/EnhancedToDoActivity.kt,d/3/d310742d0d599530cee3aa1b235395e47520c4b0
 }
 Mapp/src/main/java/com/example/app/shared_prefs_singleton/data/TaskPriority.kt,9/c/9c139c706bd9aa795e63f56b0ac3b39e9eccfb97
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+
+Oapp/src/main/java/com/example/app/shared_prefs_singleton/utils/MyPreferences.kt,e/c/ec3a854a06b24160b347bf2fb23a4094bc22ed4d
+‚
+Rapp/src/main/java/com/example/app/shared_prefs_singleton/ui/SharedPrefsActivity.kt,b/6/b6195847436bf3ab83a4a59c5b79512ba55d0b22
+}
+Mapp/src/main/java/com/example/app/shared_prefs_singleton/ui/SignUpActivity.kt,a/3/a3effca6f4ca2942c64b47501bc497074b7f4f13
+‡
+Wapp/src/main/java/com/example/app/shared_prefs_singleton/ui/viewmodel/TasksViewModel.kt,6/b/6b8eadcf06cd272ad298af4b83d117fb93e8ec4a
+w
+Gapp/src/main/java/com/example/app/shared_prefs_singleton/utils/Utils.kt,8/9/894345af05988d1613191efaf6190957aa9e1a5c

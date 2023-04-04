@@ -1,11 +1,11 @@
 
-Vkotlin:S1481y"2Remove this unused "outputOptions" local variable.(½«‚³üÿÿÿÿ8ª«¡ƒò0
+Vkotlin:S1481y"2Remove this unused "outputOptions" local variable.(½«‚³üÿÿÿÿ8îŒ‚Íô0
 >kotlin:S1128
-"Remove this unused import.(æõşîşÿÿÿÿ8½â™ñ0
->kotlin:S1128"Remove this unused import.(àŒ°şÿÿÿÿ8½â™ñ0
->kotlin:S1128"Remove this unused import.(èãÊõûÿÿÿÿ8½â™ñ0
->kotlin:S1128"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8½â™ñ0
->kotlin:S1128"Remove this unused import.(ŞŠ‹Ùüÿÿÿÿ8½â™ñ0
-}kotlin:S100"ZRename function "rotate_check_EXIF" to match the regular expression ^[a-zA-Z][a-zA-Z0-9]*$(ÌÀóÈúÿÿÿÿ8¾â™ñ0
-Bkotlin:S1874<"#Deprecated code should not be used.(êÏ—í8±«¡ƒò0
-Hkotlin:S1874¦"#Deprecated code should not be used.(ƒË—¯ÿÿÿÿÿ8±«¡ƒò0
+"Remove this unused import.(æõşîşÿÿÿÿ8ğŒ‚Íô0
+>kotlin:S1128"Remove this unused import.(àŒ°şÿÿÿÿ8ğŒ‚Íô0
+>kotlin:S1128"Remove this unused import.(èãÊõûÿÿÿÿ8ğŒ‚Íô0
+>kotlin:S1128"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8ğŒ‚Íô0
+>kotlin:S1128"Remove this unused import.(ŞŠ‹Ùüÿÿÿÿ8ğŒ‚Íô0
+}kotlin:S100"ZRename function "rotate_check_EXIF" to match the regular expression ^[a-zA-Z][a-zA-Z0-9]*$(ÌÀóÈúÿÿÿÿ8òŒ‚Íô0
+Bkotlin:S1874<"#Deprecated code should not be used.(êÏ—í8øŒ‚Íô0
+Hkotlin:S1874¦"#Deprecated code should not be used.(ƒË—¯ÿÿÿÿÿ8øŒ‚Íô0
