@@ -38,10 +38,6 @@ class PreferenceDataStoreModule(private val context: Context) {
         val REMEMBER_USER = booleanPreferencesKey("rememberMe")
     }
 
-    init{
-        Log.d("함보자", MyPreferences.preferences.all.keys.toString())
-    }
-
     // dataStore가 Flow를 사용하기 때문에 우선 아래와 같이 작성하였습니다.
     var userId: String
         get() = runBlocking {
@@ -170,5 +166,4 @@ class PreferenceDataStoreModule(private val context: Context) {
         val showCompleted = preferences[SHOW_COMPLETE] ?: false
         return UserPreferences(showCompleted, sortOrder)
     }
-
 }

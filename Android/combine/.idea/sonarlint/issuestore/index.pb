@@ -103,8 +103,6 @@ q
 Aapp/src/main/java/com/example/app/flow_practice/LocationClient.kt,0/2/028f4f6f8e6c370e31a36e520e96474e4b839bf2
 r
 Bapp/src/main/java/com/example/app/flow_practice/LocationService.kt,d/5/d5c41d081c487e44c99fc88eda975321bf6faafb
-a
-1app/src/main/java/com/example/app/MainActivity.kt,1/d/1deca740e5395c71cfe8f2645da260c8d390e22c
 {
 Kapp/src/main/java/com/example/app/layout_ex/adapter/InputTextListAdapter.kt,e/d/ed6e5ed23804244b3ed6a0a2e66cc405875472e7
 u

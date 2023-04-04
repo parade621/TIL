@@ -6,183 +6,186 @@
     android:layout_height="match_parent"
     tools:context=".shared_prefs_singleton.ui.UserDataActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/user_profile_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/blue_profile" />
+            <ImageView
+                android:id="@+id/user_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/blue_profile" />
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/baseline_edit_24"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/user_id_info"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="ID"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_img" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/remember_me"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remember me"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_id_info"/>
-
-    <LinearLayout
-        android:id="@+id/filter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
-        android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:paddingHorizontal="@dimen/row_item_margin_horizontal"
-        android:paddingVertical="@dimen/row_item_margin_vertical"
-        app:layout_constraintTop_toBottomOf="@id/remember_me"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_filter_list_24"
-            app:tint="?attr/colorOnSecondary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/show_completed"
+            android:id="@+id/user_id_info"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="ID"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_img" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/remember_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/row_item_margin_horizontal"
-            android:text="@string/show_completed"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="@dimen/task_size" />
+            android:text="Remember me"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_id_info" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/show_completed_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
-        android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:paddingHorizontal="@dimen/row_item_margin_horizontal"
-        android:paddingBottom="@dimen/row_item_margin_vertical"
-        app:layout_constraintTop_toBottomOf="@id/filter"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_reorder_24"
-            app:tint="?attr/colorOnSurface" />
-
-        <com.google.android.material.chip.ChipGroup
+        <LinearLayout
+            android:id="@+id/filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
             android:paddingHorizontal="@dimen/row_item_margin_horizontal"
-            app:singleLine="true">
+            android:paddingVertical="@dimen/row_item_margin_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/remember_me">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/sort_priority"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="@string/priority"
-                app:chipBackgroundColor="?attr/colorSecondary" />
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_filter_list_24"
+                app:tint="?attr/colorOnSecondary" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/sort_deadline"
+            <TextView
+                android:id="@+id/show_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="@string/deadline"
-                app:chipBackgroundColor="?attr/colorSecondary" />
-        </com.google.android.material.chip.ChipGroup>
-    </LinearLayout>
+                android:paddingHorizontal="@dimen/row_item_margin_horizontal"
+                android:text="@string/show_completed"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="@dimen/task_size" />
 
-    <Button
-        android:id="@+id/pref_list"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Preference Key-Value"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sort"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/show_completed_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/log_out_btn"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Log Out"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pref_list"/>
+        <LinearLayout
+            android:id="@+id/sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/row_item_margin_horizontal"
+            android:paddingBottom="@dimen/row_item_margin_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filter">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@id/navigation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_reorder_24"
+                app:tint="?attr/colorOnSecondary" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:weightSum="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/row_item_margin_horizontal"
+                app:singleLine="true">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/tasks_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/baseline_task_24"
-            android:layout_weight="1"/>
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/settings_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/baseline_settings_green_24"
-            android:layout_weight="1"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sort_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/priority"
+                    app:chipBackgroundColor="?attr/colorSecondary" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sort_deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/deadline"
+                    app:chipBackgroundColor="?attr/colorSecondary" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/pref_list"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="Preference Key-Value"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sort" />
+
+        <Button
+            android:id="@+id/log_out_btn"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="Log Out"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pref_list" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightGray"
+            app:layout_constraintBottom_toTopOf="@id/navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tasks_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/baseline_task_24" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/settings_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/baseline_settings_green_24" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
