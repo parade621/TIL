@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.databinding.ActivityLogInBinding
+import com.example.app.shared_prefs_singleton.data.TasksRepository
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager
+import com.example.app.shared_prefs_singleton.utils.DatabaseManager
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +20,6 @@ class LogInActivity : AppCompatActivity() {
     private val binding: ActivityLogInBinding by lazy {
         ActivityLogInBinding.inflate(layoutInflater)
     }
-
-    private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ class LogInActivity : AppCompatActivity() {
                 binding.inputPw.requestFocus()
             }
             lifecycleScope.launch(Dispatchers.Default) {
-                if (!dataBase.exists(inputUserId)) {
+                if (!DatabaseManager.exists(inputUserId)) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@LogInActivity,
@@ -77,7 +77,7 @@ class LogInActivity : AppCompatActivity() {
                         binding.inputId.requestFocus()
                     }
                 } else {
-                    val userInfo = dataBase.getUserById(inputUserId)!!
+                    val userInfo = DatabaseManager.getUserById(inputUserId)!!
                     if (userInfo.userPw != inputUserPw) {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
@@ -91,6 +91,11 @@ class LogInActivity : AppCompatActivity() {
                         }
                     } else {
                         DataStoreManager.setUserInfo(inputUserId,inputUserPw,userInfo.userProfile)
+                        if(!userInfo.userTask.isNullOrEmpty()){
+                            for(i in userInfo.userTask!!){
+                                TasksRepository.addTask(i)
+                            }
+                        }
                         val intent = Intent(this@LogInActivity, TasksActivity::class.java)
                         this@LogInActivity.startActivity(intent)
                         finish()

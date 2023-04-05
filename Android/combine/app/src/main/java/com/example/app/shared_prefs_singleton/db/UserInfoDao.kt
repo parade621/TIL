@@ -1,10 +1,10 @@
 package com.example.app.shared_prefs_singleton.db
 
 import androidx.room.*
+import com.example.app.shared_prefs_singleton.data.UserInfo
 
 @Dao
 interface UserInfoDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserData(query: UserInfo)
 
@@ -20,6 +20,4 @@ interface UserInfoDao {
     @Update
     suspend fun updateUser(userinfo: UserInfo)
 
-    @Update
-    suspend fun updateUserTask(userinfo: UserInfo)
 }

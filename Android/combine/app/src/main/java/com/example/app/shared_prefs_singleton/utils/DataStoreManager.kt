@@ -13,7 +13,6 @@ import com.example.app.shared_prefs_singleton.data.UserPreferences
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.REMEMBER_ME
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.SHOW_COMPLETE
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.SORT_ORDER_KEY
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.TAG
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.USERID
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.USERPROFILE
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.USERPW
@@ -32,21 +31,12 @@ object DataStoreManager {
 
     private lateinit var dataStore: DataStore<Preferences>
 
-    var context: Context? = null
-        private set
     var datas: Flow<Preferences>? = null
         private set
 
-    fun init(c: Context) {
-        if (c == null) {
-            Log.e(TAG, "Initialize Context is null")
-            return
-        }
-        context = c
-        context?.apply {
-            dataStore = c._dataStore
-            datas = dataStore.data
-        }
+    fun init(context: Context) {
+        dataStore = context._dataStore
+        datas = dataStore.data
     }
 
     private object Keys {

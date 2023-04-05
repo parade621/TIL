@@ -104,6 +104,7 @@
         android:layout_margin="20dp"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/priority_btn"
         app:layout_constraintEnd_toEndOf="parent"

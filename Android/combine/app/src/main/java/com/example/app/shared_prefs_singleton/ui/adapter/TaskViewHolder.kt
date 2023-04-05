@@ -37,12 +37,12 @@ class TaskViewHolder(
     private fun setTaskPriority(todo: Task) {
         binding.priority.text = itemView.context.resources.getString(
             R.string.priority_value,
-            todo.priority.name
+            todo.priority
         )
         val textColor = when (todo.priority) {
-            TaskPriority.HIGH -> R.color.red
-            TaskPriority.MEDIUM -> R.color.yellow
-            TaskPriority.LOW -> R.color.green
+            TaskPriority.HIGH.name -> R.color.red
+            TaskPriority.MEDIUM.name -> R.color.yellow
+            else-> R.color.green
         }
         binding.priority.setTextColor(ContextCompat.getColor(itemView.context, textColor))
     }

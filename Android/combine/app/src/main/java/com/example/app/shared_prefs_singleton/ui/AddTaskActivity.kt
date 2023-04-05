@@ -5,14 +5,19 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MotionEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.app.R
 import com.example.app.databinding.ActivityAddTaskBinding
 import com.example.app.shared_prefs_singleton.data.Task
 import com.example.app.shared_prefs_singleton.data.TaskPriority
 import com.example.app.shared_prefs_singleton.data.TasksRepository
+import com.example.app.shared_prefs_singleton.utils.DatabaseManager
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class AddTaskActivity : AppCompatActivity() {
@@ -20,8 +25,8 @@ class AddTaskActivity : AppCompatActivity() {
         ActivityAddTaskBinding.inflate(layoutInflater)
     }
 
-    private lateinit var taskPriority: TaskPriority
-    private lateinit var myDeadline: Date
+    private var taskPriority: TaskPriority? = null
+    private var myDeadline: Date? = null
     private val simpleDateFormat = java.text.SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,15 +103,38 @@ class AddTaskActivity : AppCompatActivity() {
             finish()
         }
         binding.saveBtn.setOnClickListener {
-            val task = Task(
-                title = binding.title.text.toString(),
-                deadline = myDeadline.time,
-                content = binding.body.text.toString(),
-                priority = taskPriority,
-            )
-            TasksRepository.addTask(task)
-            TasksRepository.forLog("add")
-            finish()
+            if(binding.title.text.isNullOrEmpty()){
+                Toast.makeText(this,"제목을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                binding.title.setText("")
+                binding.title.requestFocus()
+            }
+            else if(binding.body.text.isNullOrEmpty()){
+                Toast.makeText(this,"내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                binding.body.setText("")
+                binding.body.requestFocus()
+            }
+            else if(myDeadline == null){
+                Toast.makeText(this,"마감일을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else if(taskPriority ==null){
+                Toast.makeText(this,"우선순위를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val task = Task(
+                    title = binding.title.text.toString(),
+                    deadline = myDeadline!!.time,
+                    content = binding.body.text.toString(),
+                    priority = taskPriority!!.name,
+                )
+                TasksRepository.addTask(task)
+
+                lifecycleScope.launch(Dispatchers.IO) {
+                    DatabaseManager.updateTask()
+                }
+
+                TasksRepository.forLog("add")
+                finish()
+            }
         }
     }
 

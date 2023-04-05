@@ -8,6 +8,8 @@ import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager
+import com.example.app.shared_prefs_singleton.utils.DatabaseManager
+import com.example.app.shared_prefs_singleton.utils.DatabaseManager.updateProfile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -16,7 +18,6 @@ class ProfileChooseDialog() : AppCompatActivity() {
     private val binding: FragmentProfileChooseDialogBinding by lazy {
         FragmentProfileChooseDialogBinding.inflate(layoutInflater)
     }
-    private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class ProfileChooseDialog() : AppCompatActivity() {
     fun onclick(res: Int) {
         DataStoreManager.setUserProfile(res)
         lifecycleScope.launch(Dispatchers.Default) {
-            dataBase.updateProfile(DataStoreManager.userId, DataStoreManager.userProfile)
+            DatabaseManager.updateProfile(DataStoreManager.userId, DataStoreManager.userProfile)
         }
         finish()
     }

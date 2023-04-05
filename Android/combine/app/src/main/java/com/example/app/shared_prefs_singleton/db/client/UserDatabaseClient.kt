@@ -1,9 +1,8 @@
 package com.example.app.shared_prefs_singleton.db.client
 
-import com.example.app.shared_prefs_singleton.db.UserInfo
+import com.example.app.shared_prefs_singleton.data.UserInfo
 
 interface UserDatabaseClient {
-
     suspend fun insertUserData(query: UserInfo)
 
     suspend fun getAll(): List<UserInfo>

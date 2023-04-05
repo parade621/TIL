@@ -1,9 +1,9 @@
 package com.example.app.shared_prefs_singleton.db
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.example.app.shared_prefs_singleton.data.UserInfo
+import com.example.app.shared_prefs_singleton.db.converter.ListConverters
 
 
 @Database(
@@ -11,8 +11,7 @@ import androidx.room.RoomDatabase
     version = 1,
     exportSchema = false
 )
-
-//@TypeConverters(ListConverters::class, TaskPriorityConverter::class)
+@TypeConverters(ListConverters::class)
 abstract class UserDatabase : RoomDatabase() {
 
     abstract fun userInfoDao(): UserInfoDao

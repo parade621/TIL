@@ -14,27 +14,9 @@ import kotlinx.serialization.json.Json
 
 class ListConverters {
     @TypeConverter
-    fun fromList(value: List<Task>) = Json.encodeToString(value)
+    fun fromList(value: List<Task>?) = Json.encodeToString(value)
 
     @TypeConverter
     fun toList(value: String) = Json.decodeFromString<List<Task>>(value)
 }
-@ProvidedTypeConverter
-class TaskPriorityConverter(private val moshi: Moshi.Builder){
-    private val taskPriorityAdapter: JsonAdapter<TaskPriority> =
-        moshi.build().adapter(TaskPriority::class.java)
-    @FromJson
-    fun fromJson(priority: String): TaskPriority{
-        return when(priority){
-            "HIGH" -> TaskPriority.HIGH
-            "MEDIUM" -> TaskPriority.MEDIUM
-            "LOW" -> TaskPriority.LOW
-            else -> throw IllegalAccessException("Unknown priority: $priority")
-        }
-    }
 
-    @ToJson
-    fun toJson(priority: TaskPriority): String{
-        return priority.name
-    }
-}

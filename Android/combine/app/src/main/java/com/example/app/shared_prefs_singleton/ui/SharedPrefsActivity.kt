@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.app.databinding.ActivitySharedPrefsBinding
+import com.example.app.shared_prefs_singleton.data.TasksRepository
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager
+import com.example.app.shared_prefs_singleton.utils.DatabaseManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -23,19 +25,25 @@ class SharedPrefsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        TasksRepository.clearTask()
 
-        lifecycleScope.launch {
-            delay(1000L)
+        lifecycleScope.launch(Dispatchers.IO) {
             if (DataStoreManager.rememberMe) {
-                startUserDataActivity(this@SharedPrefsActivity)
+                val user = DatabaseManager.getUserById(DataStoreManager.userId)!!
+                if(!user.userTask.isNullOrEmpty()){
+                    for(i in user.userTask!!){
+                        TasksRepository.addTask(i)
+                    }
+                }
+                toTasksActivity(this@SharedPrefsActivity)
             } else {
                 toLogInActivity(this@SharedPrefsActivity)
             }
         }
     }
 
-    private suspend fun startUserDataActivity(context: Context) = withContext(Dispatchers.Main) {
-        val intent = Intent(context, UserDataActivity::class.java)
+    private suspend fun toTasksActivity(context: Context) = withContext(Dispatchers.Main) {
+        val intent = Intent(context, TasksActivity::class.java)
         context.startActivity(intent)
         finish()
     }

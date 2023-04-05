@@ -6,12 +6,13 @@ import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivitySignUpBinding
-import com.example.app.shared_prefs_singleton.db.UserInfo
+import com.example.app.shared_prefs_singleton.data.UserInfo
 import com.example.app.shared_prefs_singleton.utils.DataStoreManager
+import com.example.app.shared_prefs_singleton.utils.DatabaseManager
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
@@ -23,7 +24,6 @@ class SignUpActivity : AppCompatActivity() {
     private val binding: ActivitySignUpBinding by lazy {
         ActivitySignUpBinding.inflate(layoutInflater)
     }
-    private val dataBase = MyApplication.getInstance().getDataBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +46,13 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 val inputUserId = binding.inputId.text.toString()
                 val iputUserPw = binding.inputPwCheck.text.toString()
-                lifecycleScope.launch {
-                    dataBase.insertUserData(
+                lifecycleScope.launch(Dispatchers.IO) {
+                    DatabaseManager.insertUserData(
                         UserInfo(
                             inputUserId,
                             iputUserPw,
-                            R.drawable.blue_profile
+                            R.drawable.blue_profile,
+                            emptyList()
                         )
                     )
                 }
