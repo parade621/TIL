@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivityUserDataBinding
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.dialog.ProfileChooseDialog
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
-import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
+import com.example.app.shared_prefs_singleton.utils.DataStoreManager
 
 class UserDataActivity : AppCompatActivity() {
 
@@ -25,24 +24,24 @@ class UserDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (DataStoreUtils.rememberMe) {
+        if (DataStoreManager.rememberMe) {
             binding.rememberMe.isChecked = true
         }
 
         binding.rememberMe.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // 현재 체크되어있음
-                if (DataStoreUtils.rememberMe) {
+                if (DataStoreManager.rememberMe) {
                     // 이미 체크된 상태면 체크 해제
                     binding.rememberMe.isChecked = false
-                    DataStoreUtils.resetRememberMe()
+                    DataStoreManager.resetRememberMe()
                 } else {
                     // 체크 안되있으면 체크
-                    DataStoreUtils.setRememberMe()
+                    DataStoreManager.setRememberMe()
                 }
             } else {
                 // 체크 안되어있으면 false
-                DataStoreUtils.resetRememberMe()
+                DataStoreManager.resetRememberMe()
             }
         }
 
@@ -51,7 +50,7 @@ class UserDataActivity : AppCompatActivity() {
             String.format(
                 resources.getString(
                     R.string.user_id,
-                    DataStoreUtils.userId
+                    DataStoreManager.userId
                 )
             )
 
@@ -73,7 +72,7 @@ class UserDataActivity : AppCompatActivity() {
         }
 
         binding.logOutBtn.setOnClickListener {
-            DataStoreUtils.logout()
+            DataStoreManager.logout()
             val intent = Intent(this@UserDataActivity, LogInActivity::class.java)
             startActivity(intent)
             finish()
@@ -123,7 +122,7 @@ class UserDataActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.userProfileImage.setImageResource(DataStoreUtils.userProfile)
+        binding.userProfileImage.setImageResource(DataStoreManager.userProfile)
     }
 
     private fun showDialog() {

@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
-import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
+import com.example.app.shared_prefs_singleton.utils.DataStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -37,10 +37,11 @@ class ProfileChooseDialog() : AppCompatActivity() {
             onclick(R.drawable.orange_profile)
         }
     }
-    fun onclick(res: Int){
-        DataStoreUtils.setUserProfile(res)
-        lifecycleScope.launch(Dispatchers.Default){
-            dataBase.updateProfile(DataStoreUtils.userId, DataStoreUtils.userProfile)
+
+    fun onclick(res: Int) {
+        DataStoreManager.setUserProfile(res)
+        lifecycleScope.launch(Dispatchers.Default) {
+            dataBase.updateProfile(DataStoreManager.userId, DataStoreManager.userProfile)
         }
         finish()
     }

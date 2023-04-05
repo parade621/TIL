@@ -10,7 +10,7 @@ import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.ActivitySignUpBinding
 import com.example.app.shared_prefs_singleton.db.UserInfo
-import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
+import com.example.app.shared_prefs_singleton.utils.DataStoreManager
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.launch
 
@@ -55,7 +55,7 @@ class SignUpActivity : AppCompatActivity() {
                         )
                     )
                 }
-                DataStoreUtils.clearUserInfo()
+                DataStoreManager.clearUserInfo()
                 val intent = Intent(this, LogInActivity::class.java)
                 startActivity(intent)
                 finish()

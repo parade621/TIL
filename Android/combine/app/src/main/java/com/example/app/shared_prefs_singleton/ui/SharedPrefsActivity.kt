@@ -5,9 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.app.MyApplication
 import com.example.app.databinding.ActivitySharedPrefsBinding
-import com.example.app.shared_prefs_singleton.utils.DataStoreUtils
+import com.example.app.shared_prefs_singleton.utils.DataStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -27,7 +26,7 @@ class SharedPrefsActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             delay(1000L)
-            if (DataStoreUtils.rememberMe) {
+            if (DataStoreManager.rememberMe) {
                 startUserDataActivity(this@SharedPrefsActivity)
             } else {
                 toLogInActivity(this@SharedPrefsActivity)
