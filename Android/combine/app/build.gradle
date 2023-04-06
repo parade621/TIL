@@ -18,6 +18,11 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        renderscriptTargetApi 11
+        renderscriptSupportModeEnabled true
+        vectorDrawables {
+            useSupportLibrary true
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -131,5 +136,8 @@ dependencies {
 
     // Kotlin Serialization
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+
+    // WorkManager dependency
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 
 }

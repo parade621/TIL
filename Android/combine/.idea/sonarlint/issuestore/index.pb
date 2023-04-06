@@ -11,16 +11,12 @@ l
 <app/src/main/java/com/example/app/camera_view/gps/GpsData.kt,c/8/c8c04790c73c4d43f1728945b581d4f85a7e2216
 ?
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
-s
-Capp/src/main/java/com/example/app/camera_view/service/GpsTracker.kt,6/b/6bb6ee702aba14f4bc99f31fe4f9b940b848250a
 j
 :app/src/main/java/com/example/app/doit_ch13/AddActivity.kt,6/3/6364cfb48b4cd769f6b40dc1935a995c10a2fb18
 s
 Capp/src/main/java/com/example/app/sharedpref_ex/ASettingFragment.kt,b/1/b1de2eb893be8844d03e9e4feb4cdc6db03771b9
 s
 Capp/src/main/java/com/example/app/sharedpref_ex/BSettingFragment.kt,e/8/e8dd4a3f54a4544dce4ebfc91a2a73c5857a3cff
-q
-Aapp/src/main/java/com/example/app/camera_view/gps/GoogleWorker.kt,3/3/33a99e2b42a098f5173c3be1b1bf1770d730e6b4
 m
 =app/src/main/java/com/example/app/doit_ch13/Main13Activity.kt,d/6/d65c1165d52913d3fcd1d4c8c4704cc4415da3f6
 h
@@ -65,12 +61,8 @@ Oapp/src/main/java/com/example/app/nav_and_sharedviewmodel/ui/DessertFragment.kt
 Mapp/src/main/java/com/example/app/nav_and_sharedviewmodel/ui/CoffeFragment.kt,f/f/ffd08d8706625283502d89d6a93a2ddc05ff0c24
 l
 <app/src/main/java/com/example/app/dialogs/DialogsActivity.kt,c/6/c6cff0bdb9c0870e2d6fbe2eff5645881bd760ae
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 p
 @app/src/main/java/com/example/app/proto_datastore/AppSettings.kt,3/5/358de13e17391206254394b8504be1b0ed5cfced
-r
-Bapp/src/main/java/com/example/app/camera_view/gps/GoogleService.kt,9/5/95af6a708147652284e830d48a6af6285cd6b355
 {
 Kapp/src/main/java/com/example/app/proto_datastore/ProtoDatastoreActivity.kt,9/0/9066f744aca68c2807b807d2d4f298de5e23c192
 „
@@ -123,7 +115,3 @@ l
 <app/src/main/java/com/example/app/enhanced_todo/MyAdapter.kt,9/1/91a5524d83c3d8bdeb4912f503ca64c2f32570b8
 w
 Gapp/src/main/java/com/example/app/enhanced_todo/EnhancedToDoActivity.kt,d/3/d310742d0d599530cee3aa1b235395e47520c4b0
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164

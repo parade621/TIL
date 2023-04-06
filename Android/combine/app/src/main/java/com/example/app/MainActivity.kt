@@ -20,6 +20,7 @@ import com.example.app.shared_prefs_singleton.ui.SharedPrefsActivity
 import com.example.app.sharedpref_ex.SharedPrefActivity
 import com.example.app.thread_timer.TTActivity
 import com.example.app.viewpager2.VPActivity
+import com.example.app.workmanager_codelab.BlurActivity
 import com.example.layoutex1.ui.LEActivity
 
 class MainActivity : AppCompatActivity() {
@@ -109,6 +110,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.sharedPrefsSingleton.setOnClickListener {
             val intent = Intent(this, SharedPrefsActivity::class.java)
+            startActivity(intent)
+        }
+        binding.workmanager.setOnClickListener {
+            val intent = Intent(this, BlurActivity::class.java)
             startActivity(intent)
         }
     }

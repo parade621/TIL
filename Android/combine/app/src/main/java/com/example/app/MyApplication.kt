@@ -12,6 +12,8 @@ class MyApplication : Application() {
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
+        private lateinit var myApplication: MyApplication
+        fun getInstance() = myApplication
     }
 
     @Override
@@ -19,7 +21,7 @@ class MyApplication : Application() {
         super.onCreate()
 
         context = applicationContext
-
+        myApplication = this@MyApplication
         MyPreferences.init(this)
         DataStoreManager.init(this)
         DatabaseManager.init(this)
