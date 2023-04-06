@@ -7,9 +7,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileChooseDialogBinding
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager
-import com.example.app.shared_prefs_singleton.utils.DatabaseManager
-import com.example.app.shared_prefs_singleton.utils.DatabaseManager.updateProfile
+import com.example.app.Utils.DataStoreManager
+import com.example.app.Utils.DatabaseManager
+import com.example.app.Utils.DatabaseManager.updateProfile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

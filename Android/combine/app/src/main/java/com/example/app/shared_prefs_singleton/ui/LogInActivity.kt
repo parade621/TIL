@@ -9,8 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app.MyApplication
 import com.example.app.databinding.ActivityLogInBinding
 import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager
-import com.example.app.shared_prefs_singleton.utils.DatabaseManager
+import com.example.app.Utils.DataStoreManager
+import com.example.app.Utils.DatabaseManager
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

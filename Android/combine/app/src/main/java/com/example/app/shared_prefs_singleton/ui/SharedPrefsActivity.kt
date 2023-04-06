@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.app.databinding.ActivitySharedPrefsBinding
 import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager
-import com.example.app.shared_prefs_singleton.utils.DatabaseManager
+import com.example.app.Utils.DataStoreManager
+import com.example.app.Utils.DatabaseManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

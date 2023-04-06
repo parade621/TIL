@@ -1,4 +1,4 @@
-package com.example.app.shared_prefs_singleton.utils
+package com.example.app.Utils
 
 import android.app.Activity
 import android.content.Context

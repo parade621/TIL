@@ -9,7 +9,7 @@ import com.example.app.databinding.ActivityUserDataBinding
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.dialog.ProfileChooseDialog
 import com.example.app.shared_prefs_singleton.ui.viewmodel.TasksViewModel
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager
+import com.example.app.Utils.DataStoreManager
 
 class UserDataActivity : AppCompatActivity() {
 

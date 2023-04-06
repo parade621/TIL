@@ -3,9 +3,9 @@ package com.example.app
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import com.example.app.shared_prefs_singleton.utils.DatabaseManager
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager
-import com.example.app.shared_prefs_singleton.utils.MyPreferences
+import com.example.app.Utils.DatabaseManager
+import com.example.app.Utils.DataStoreManager
+import com.example.app.Utils.MyPreferences
 
 class MyApplication : Application() {
 

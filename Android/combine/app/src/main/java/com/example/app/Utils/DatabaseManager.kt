@@ -1,10 +1,9 @@
-package com.example.app.shared_prefs_singleton.utils
+package com.example.app.Utils
 
 import android.content.Context
-import com.example.app.shared_prefs_singleton.data.Task
 import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.shared_prefs_singleton.db.UserDatabase
 import com.example.app.shared_prefs_singleton.data.UserInfo
+import com.example.app.shared_prefs_singleton.db.UserDatabase
 
 object DatabaseManager {
 

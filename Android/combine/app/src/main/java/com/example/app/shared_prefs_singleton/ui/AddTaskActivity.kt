@@ -14,7 +14,7 @@ import com.example.app.databinding.ActivityAddTaskBinding
 import com.example.app.shared_prefs_singleton.data.Task
 import com.example.app.shared_prefs_singleton.data.TaskPriority
 import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.shared_prefs_singleton.utils.DatabaseManager
+import com.example.app.Utils.DatabaseManager
 import com.example.app.shared_prefs_singleton.utils.hideKeyboardOnTouchOutside
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

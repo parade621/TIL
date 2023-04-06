@@ -3,7 +3,7 @@ package com.example.app.shared_prefs_singleton.ui.viewmodel
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.*
 import com.example.app.shared_prefs_singleton.data.*
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager
+import com.example.app.Utils.DataStoreManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch

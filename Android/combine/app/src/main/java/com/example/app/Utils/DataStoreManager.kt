@@ -1,29 +1,30 @@
-package com.example.app.shared_prefs_singleton.utils
+package com.example.app.Utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.provider.Telephony.Mms.Part.FILENAME
+import android.provider.Telephony
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.app.Utils.DataStoreManager.Keys.MYLOCATION
+import com.example.app.Utils.DataStoreManager.Keys.REMEMBER_ME
+import com.example.app.Utils.DataStoreManager.Keys.SHOW_COMPLETE
+import com.example.app.Utils.DataStoreManager.Keys.SORT_ORDER_KEY
+import com.example.app.Utils.DataStoreManager.Keys.USERID
+import com.example.app.Utils.DataStoreManager.Keys.USERPROFILE
+import com.example.app.Utils.DataStoreManager.Keys.USERPW
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.data.UserPreferences
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.REMEMBER_ME
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.SHOW_COMPLETE
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.SORT_ORDER_KEY
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.USERID
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.USERPROFILE
-import com.example.app.shared_prefs_singleton.utils.DataStoreManager.Keys.USERPW
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
 
 
 private val Context._dataStore by preferencesDataStore(
-    name = FILENAME,
-    produceMigrations = { context -> listOf(SharedPreferencesMigration(context, FILENAME)) }
+    name = Telephony.Mms.Part.FILENAME,
+    produceMigrations = { context -> listOf(SharedPreferencesMigration(context, Telephony.Mms.Part.FILENAME)) }
 )
 
 @SuppressLint("StaticFieldLeak")
@@ -45,8 +46,10 @@ object DataStoreManager {
         const val USERPW = "userPw"
         const val USERPROFILE = "userProfile"
         const val REMEMBER_ME = "remember_me"
+        const val MYLOCATION = "my_location"
         val SORT_ORDER_KEY = "sort_order"
         val SHOW_COMPLETE = "show_completed"
+
     }
 
     val userId: String
@@ -57,6 +60,8 @@ object DataStoreManager {
         get() = readIntData(USERPROFILE)
     val rememberMe: Boolean
         get() = readBooleanData(REMEMBER_ME)
+    val location: String
+        get() = readStringData(MYLOCATION)
 
 
     private fun readBooleanData(key: String, default: Boolean = false): Boolean {
@@ -161,6 +166,10 @@ object DataStoreManager {
         saveStringData(USERID, userId)
         saveStringData(USERPW, userPw)
         saveIntData(USERPROFILE, userProfile)
+    }
+
+    fun setMyLocation(location: String){
+        saveStringData(MYLOCATION, location)
     }
 
     suspend fun fetchInitialPreferences(): UserPreferences {

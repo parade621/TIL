@@ -31,12 +31,8 @@ k
 ;app/src/main/java/com/example/app/enhanced_todo/DBHelper.kt,4/d/4d3e5eeae5571dca9b5dce7c04ea503cbad6e336
 r
 Bapp/src/main/java/com/example/app/enhanced_todo/SettingActivity.kt,5/e/5e8746b2f2186b014490a528f2cd99753dfdd452
-t
-Dapp/src/main/java/com/example/app/camera_view/util/PermissionUtil.kt,f/2/f2c20db342e2ade5dfc649e0f702c513cdc187b0
 k
 ;app/src/main/java/com/example/app/camera_view/CameraView.kt,4/7/473d2b50ca7104821dd8facda49c8a0d07b74904
-o
-?app/src/main/java/com/example/app/camera_view/CameraActivity.kt,e/e/ee95b7d3653c1539d1c9037bdf6900f38a6f3958
 p
 @app/src/main/java/com/example/app/camera_view/PreviewActivity.kt,f/3/f328cdfc3091b03bbe9121f60ed203655a925765
 o

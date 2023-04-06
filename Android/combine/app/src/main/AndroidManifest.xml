@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- for Notification: kakaoNotification -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -16,7 +16,10 @@
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Combine">
+        android:theme="@style/Theme.Combine" >
+        <activity
+            android:name=".workmanager_location.LocationWorkerActivity"
+            android:exported="false" />
         <activity
             android:name=".workmanager_codelab.BlurActivity"
             android:exported="false" />
@@ -81,7 +84,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.app.camera_view.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/camera_file_path" />
@@ -151,7 +154,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
