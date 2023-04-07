@@ -28,6 +28,8 @@ import com.example.app.shared_prefs_singleton.ui.SharedPrefsActivity
 import com.example.app.sharedpref_ex.SharedPrefActivity
 import com.example.app.thread_timer.TTActivity
 import com.example.app.viewpager2.VPActivity
+import com.example.app.webview1.WebView1Activity
+import com.example.app.webview2.WebView2Activity
 import com.example.app.workmanager_codelab.BlurActivity
 import com.example.app.workmanager_location.LocationWorkerActivity
 import com.example.layoutex1.ui.LEActivity
@@ -130,6 +132,14 @@ class MainActivity : AppCompatActivity() {
         }
         binding.locationWorkmanager.setOnClickListener {
             val intent = Intent(this, LocationWorkerActivity::class.java)
+            startActivity(intent)
+        }
+        binding.webview1.setOnClickListener {
+            val intent = Intent(this, WebView1Activity::class.java)
+            startActivity(intent)
+        }
+        binding.webview2.setOnClickListener {
+            val intent = Intent(this, WebView2Activity::class.java)
             startActivity(intent)
         }
     }

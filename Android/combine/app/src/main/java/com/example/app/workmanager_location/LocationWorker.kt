@@ -57,7 +57,6 @@ class LocationWorker(val ctx: Context, params: WorkerParameters) : Worker(ctx, p
             Result.success()
         }
     }
-
     fun getCurrentAddress(latitude: Double, longitude: Double): String {
         val geocoder = Geocoder(ctx, Locale.getDefault())
         var addresses: List<Address>?

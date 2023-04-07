@@ -8,7 +8,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.MutableLiveData
 import com.example.app.Utils.DataStoreManager.Keys.MYLOCATION
 import com.example.app.Utils.DataStoreManager.Keys.REMEMBER_ME
 import com.example.app.Utils.DataStoreManager.Keys.SHOW_COMPLETE
@@ -61,8 +60,8 @@ object DataStoreManager {
         get() = readIntData(USERPROFILE)
     val rememberMe: Boolean
         get() = readBooleanData(REMEMBER_ME)
-    val location: MutableLiveData<String>
-        get() = MutableLiveData<String>(readStringData(MYLOCATION))
+    val location: String
+        get() = readStringData(MYLOCATION)
 
 
     private fun readBooleanData(key: String, default: Boolean = false): Boolean {

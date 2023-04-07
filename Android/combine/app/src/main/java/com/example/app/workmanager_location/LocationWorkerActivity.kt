@@ -17,15 +17,9 @@ class LocationWorkerActivity : AppCompatActivity() {
         ActivityLocationWorkerBinding.inflate(layoutInflater)
     }
 
-    private val myViewModel:LocationViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        binding.apply {
-            viewModel = myViewModel
-        }
 
         binding.startBtn.setOnClickListener {
             initializeLocationInteractor()
