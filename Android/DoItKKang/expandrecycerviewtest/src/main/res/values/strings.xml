@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">ExpandRecycerViewTest</string>
+    <string name="lorem">Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
+    Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
+    Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
+    Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test </string>
+    <string-array name="people">
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+        <item>ddd</item>
+        <item>eee</item>
+        <item>fff</item>
+        <item>ggg</item>
+        <item>hhh</item>
+        <item>iii</item>
+        <item>jjj</item>
+        <item>kkk</item>
+        <item>1111</item>
+        <item>2222</item>
+        <item>3333</item>
+        <item>4444</item>
+        <item>5555</item>
+        <item>6666</item>
+        <item>7777</item>
+        <item>qwer</item>
+        <item>1q2w3e4r</item>
+    </string-array>
+
+    <integer-array name="images">
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+        <item>@drawable/avatar</item>
+    </integer-array>
+</resources>

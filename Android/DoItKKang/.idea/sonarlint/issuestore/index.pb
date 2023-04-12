@@ -63,8 +63,6 @@ N
 servicetest/proguard-rules.pro,7/a/7a6c1cf0b9b5bd339939111c0584c8955cd8d3bb
 F
 servicetest/.gitignore,3/e/3eff7a2d9954efaf4485478e8b08241f1d06ef96
-?
-settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 ƒ
 Sservicetest/src/androidTest/java/com/example/servicetest/ExampleInstrumentedTest.kt,3/9/39debf66587de8a01629424bdf0f0443db9b2a36
 t
@@ -81,3 +79,23 @@ c
 3ch17_database/src/main/res/layout/activity_main.xml,1/e/1e61fd6bf6cf23c4b4cc445cb0f0859f6cbcfc71
 _
 /foreground_service/src/main/AndroidManifest.xml,9/e/9eb478dcdae7c4f755e038382caadbc70bf4cac4
+Z
+*ch17_database/src/main/AndroidManifest.xml,a/c/ac70c29a96a20236523081f6c378c4f81313f201
+u
+Ech17_database/src/main/java/com/example/ch17_database/MainActivity.kt,8/1/817e9d787872108f4139b5401be3ab35f023ede8
+J
+ch17_database/build.gradle,4/5/457e91b07710abe063b2ca603a0efdb640d4aee5
+q
+Aservicetest/src/main/java/com/example/servicetest/MyJobService.kt,6/6/66a645f6044a4b6d68fba34d95754b0f84ba8e64
+X
+(servicetest/src/main/AndroidManifest.xml,f/2/f236ecd27638687155d0c8f89f6aba7c798cf129
+s
+Cch17_database/src/main/java/com/example/ch17_database/SPActivity.kt,5/d/5d62399c9f8965381b35db02292e144e81ebe03b
+o
+?servicetest/src/main/java/com/example/servicetest/GpsTracker.kt,8/7/87a9a90ec5dd423fb2ca34ff80fc83ada12d6fda
+q
+Aservicetest/src/main/java/com/example/servicetest/MainActivity.kt,b/5/b516ebcfe165af86232de8b4b950814388d1f090
+G
+webview_js/build.gradle,c/5/c599738c9d632b3205e76d5a90f5c30b9d9582a6
+`
+0webview_js/src/main/res/layout/activity_main.xml,2/d/2d0e74692883f5f6827492fc7ef932712fdf52d8
