@@ -213,7 +213,5 @@ x
 Happ/src/main/java/com/example/app/workmanager_location/LocationWorker.kt,5/2/52675102e72c9619c47497dfc690a90f70b26624
 €
 Papp/src/main/java/com/example/app/workmanager_location/LocationWorkerActivity.kt,f/f/ff22b97fb3d749c0c99d8e285276e4cb8e1ce25e
-a
-1app/src/main/java/com/example/app/MainActivity.kt,1/d/1deca740e5395c71cfe8f2645da260c8d390e22c
 n
 >app/src/main/java/com/example/app/webview1/WebView1Activity.kt,b/3/b3d36b1d849b6b6717a25f7af09ceef55487a6b7

@@ -205,8 +205,6 @@ Kapp/src/main/java/com/example/app/workmanager_codelab/workers/BlurWorker.kt,c/
 Lapp/src/main/java/com/example/app/workmanager_codelab/workers/WorkerUtils.kt,2/f/2f26da8516b05b85a7c0577d97eb1d3ad8183bf9
 v
 Fapp/src/main/java/com/example/app/workmanager_codelab/BlurViewModel.kt,b/b/bbaac54f234321e066ccfa3152bd89917aa93abf
-a
-1app/src/main/java/com/example/app/MainActivity.kt,1/d/1deca740e5395c71cfe8f2645da260c8d390e22c
 x
 Happ/src/main/java/com/example/app/workmanager_location/LocationWorker.kt,5/2/52675102e72c9619c47497dfc690a90f70b26624
 {

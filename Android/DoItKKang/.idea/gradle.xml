@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/foreground_service" />
             <option value="$PROJECT_DIR$/kakaonotification" />
             <option value="$PROJECT_DIR$/notifications" />
+            <option value="$PROJECT_DIR$/recyclerview_click" />
             <option value="$PROJECT_DIR$/servicetest" />
             <option value="$PROJECT_DIR$/webview_js" />
           </set>

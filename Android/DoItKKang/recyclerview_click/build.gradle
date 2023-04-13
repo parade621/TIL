@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.expandrecycerviewtest'
+    namespace 'com.example.recyclerview_click'
     compileSdk 33
     buildFeatures.viewBinding = true
 
     defaultConfig {
-        applicationId "com.example.expandrecycerviewtest"
+        applicationId "com.example.recyclerview_click"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -42,7 +42,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
 }

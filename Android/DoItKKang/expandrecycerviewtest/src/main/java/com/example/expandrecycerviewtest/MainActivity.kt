@@ -1,6 +1,7 @@
 package com.example.expandrecycerviewtest
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ExpandableAdapter(personList)
+        adapter = ExpandableAdapter(personList){model ->
+            Log.d("로그봐라0","${model.name}이거 클릭됨")
+
+        }
         recyclerView.adapter = adapter
 
     }
