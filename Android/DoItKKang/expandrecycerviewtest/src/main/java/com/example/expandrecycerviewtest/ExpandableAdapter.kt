@@ -4,11 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import de.hdodenhof.circleimageview.CircleImageView
+import com.example.expandrecycerviewtest.databinding.ItemRowBinding
 
 class ExpandableAdapter(
     private val personList: List<Person>,
@@ -16,7 +14,9 @@ class ExpandableAdapter(
 ) : RecyclerView.Adapter<ExpandableAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_row, parent, false)){
+        return MyViewHolder(
+            ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ){
             onItemClicked(personList[it])
         }
     }
@@ -29,33 +29,35 @@ class ExpandableAdapter(
         return personList.size
     }
 
-    class MyViewHolder(
-        itemView: View,
+    inner class MyViewHolder(
+        val binding: ItemRowBinding,
         onItemClicked: (Int) -> Unit
-    ) : RecyclerView.ViewHolder(itemView) {
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        var item: Person? = null // 이걸 해줘야 들어오네1
+            private set
 
         init{
-            Log.d("로그봐라2", "$bindingAdapterPosition")
+            Log.d("로그1", "$bindingAdapterPosition")
             itemView.setOnClickListener{
                 onItemClicked(bindingAdapterPosition)
-                Log.d("로그봐라", "$bindingAdapterPosition")
-                Log.d("로그봐라3", "${it.}")
+                Log.d("로그2", "$bindingAdapterPosition")
+                Log.d("로그3", "$it")
+            }
+            binding.imgMore.setOnClickListener {
+                onItemClicked(bindingAdapterPosition)
+                Log.d("로그4", "들어오나??? $it")
+                val show = toggleLayout(!item!!.isExpanded, it, binding.layoutExpand)
+                item!!.isExpanded = show
             }
         }
         fun bind(person: Person) {
-            val txtName = itemView.findViewById<TextView>(R.id.txt_name)
-            val imgPhoto = itemView.findViewById<CircleImageView>(R.id.img_photo)
-            val imgMore = itemView.findViewById<ImageButton>(R.id.img_more)
-            val layoutExpand = itemView.findViewById<LinearLayout>(R.id.layout_expand)
 
-            txtName.text = person.name
-            imgPhoto.setImageResource(person.image)
+            item = person // 이걸 해줘야 들어오네2
 
-            imgMore.setOnClickListener {
-                // 1
-                val show = toggleLayout(!person.isExpanded, it, layoutExpand)
-                person.isExpanded = show
-            }
+            binding.txtName.text = person.name
+            binding.imgPhoto.setImageResource(person.image)
+
         }
 
         private fun toggleLayout(isExpanded: Boolean, view: View, layoutExpand: LinearLayout): Boolean {

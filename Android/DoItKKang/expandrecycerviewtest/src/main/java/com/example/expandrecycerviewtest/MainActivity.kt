@@ -1,33 +1,30 @@
 package com.example.expandrecycerviewtest
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.expandrecycerviewtest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var personList: List<Person>
     private lateinit var adapter: ExpandableAdapter
+    private val binding : ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_list)
+        setContentView(binding.root)
 
         personList = ArrayList()
         personList = loadData()
 
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerList.setHasFixedSize(true)
+        binding.recyclerList.layoutManager = LinearLayoutManager(this)
         adapter = ExpandableAdapter(personList){model ->
-            Log.d("로그봐라0","${model.name}이거 클릭됨")
-
         }
-        recyclerView.adapter = adapter
-
+        binding.recyclerList.adapter = adapter
     }
 
     private fun loadData(): List<Person> {
