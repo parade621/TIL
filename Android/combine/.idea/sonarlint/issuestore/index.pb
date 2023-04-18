@@ -37,8 +37,6 @@ F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
 m
 =app/src/main/java/com/example/app/customdialog/MyViewModel.kt,f/4/f4c06a46ee7a271f15882f64ae6810018f572067
-j
-:app/src/main/java/com/example/app/dialogs/FirstFragment.kt,7/d/7d6e0bf9fecb3d566fc7871e8bcbd77db1ea278e
 l
 <app/src/main/java/com/example/app/livedata_ex/LVEActivity.kt,1/a/1ab84ece4b337544b0e354878e6d5b347b277374
 
@@ -151,8 +149,6 @@ Gapp/src/main/java/com/example/app/shared_prefs_singleton/utils/Utils.kt,8/9/89
 Napp/src/main/java/com/example/app/shared_prefs_singleton/ui/AddTaskActivity.kt,f/8/f82a369a7f236a629ae3f12548737fd281963c54
 |
 Lapp/src/main/java/com/example/app/shared_prefs_singleton/ui/LogInActivity.kt,6/e/6e1d42d6f846f08b8914981140a84f0e6a4d93f0
-b
-2app/src/main/java/com/example/app/MyApplication.kt,8/b/8b63dd4439fbff3444d06f3fd8e69631a01f4ad3
 h
 8app/src/main/java/com/example/app/Utils/MyPreferences.kt,a/9/a9ae23f70d29e7186744277f3c1e2f89754b80a9
 †

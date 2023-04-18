@@ -21,6 +21,7 @@ import com.example.app.enhanced_todo.EnhancedToDoActivity
 import com.example.app.fragmentlifecycletest.FLTActivity
 import com.example.app.kakaonotification.KNActivity
 import com.example.app.livedata_ex.LVEActivity
+import com.example.app.month_picker.MonthPickerActivity
 import com.example.app.nav_and_sharedviewmodel.ui.NSActivity
 import com.example.app.notifications.NotiActivity
 import com.example.app.retrofit_ex.ui.LottoActivity
@@ -140,6 +141,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.webview2.setOnClickListener {
             val intent = Intent(this, WebView2Activity::class.java)
+            startActivity(intent)
+        }
+        binding.monthPicker.setOnClickListener {
+            val intent = Intent(this, MonthPickerActivity::class.java)
             startActivity(intent)
         }
     }
