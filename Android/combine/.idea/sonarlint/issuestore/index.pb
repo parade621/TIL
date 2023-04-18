@@ -167,12 +167,8 @@ c
 3app/src/main/java/com/example/app/PermissionUtil.kt,5/a/5a4818ff3f0ae8866a0deddc411b99f6629d3608
 j
 :app/src/main/java/com/example/app/Utils/DatabaseManager.kt,6/5/65ff1ae65af1a0617d3bcd56e35d4285791e2fe3
-r
-Bapp/src/main/java/com/example/app/camera_view/gps/GoogleService.kt,9/5/95af6a708147652284e830d48a6af6285cd6b355
 q
 Aapp/src/main/java/com/example/app/camera_view/gps/GoogleWorker.kt,3/3/33a99e2b42a098f5173c3be1b1bf1770d730e6b4
-s
-Capp/src/main/java/com/example/app/camera_view/service/GpsTracker.kt,6/b/6bb6ee702aba14f4bc99f31fe4f9b940b848250a
 l
 <app/src/main/java/com/example/app/camera_view/gps/GpsData.kt,c/8/c8c04790c73c4d43f1728945b581d4f85a7e2216
 k
