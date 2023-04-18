@@ -1,13 +1,8 @@
 package com.example.app.workmanager_location
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.app.Utils.DataStoreManager
 import com.example.app.databinding.ActivityLocationWorkerBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class LocationWorkerActivity : AppCompatActivity() {
 

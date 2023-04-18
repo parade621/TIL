@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.app.shared_prefs_singleton.data.TasksRepository
 import com.example.app.shared_prefs_singleton.data.UserInfo
 import com.example.app.shared_prefs_singleton.db.UserDatabase
+import com.example.app.utils.DataStoreManager
 
 object DatabaseManager {
 

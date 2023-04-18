@@ -5,12 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.app.Utils.DatabaseManager
 import com.example.app.databinding.ActivitySharedPrefsBinding
 import com.example.app.shared_prefs_singleton.data.TasksRepository
-import com.example.app.Utils.DataStoreManager
-import com.example.app.Utils.DatabaseManager
+import com.example.app.utils.DataStoreManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 

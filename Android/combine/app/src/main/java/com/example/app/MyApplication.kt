@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import com.example.app.Utils.DatabaseManager
-import com.example.app.Utils.DataStoreManager
 import com.example.app.Utils.MyPreferences
+import com.example.app.utils.DataStoreManager
 
 class MyApplication : Application() {
 

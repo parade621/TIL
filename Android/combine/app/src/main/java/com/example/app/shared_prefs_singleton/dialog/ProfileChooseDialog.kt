@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.app.MyApplication
 import com.example.app.R
-import com.example.app.databinding.FragmentProfileChooseDialogBinding
-import com.example.app.Utils.DataStoreManager
 import com.example.app.Utils.DatabaseManager
-import com.example.app.Utils.DatabaseManager.updateProfile
+import com.example.app.databinding.FragmentProfileChooseDialogBinding
+import com.example.app.utils.DataStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

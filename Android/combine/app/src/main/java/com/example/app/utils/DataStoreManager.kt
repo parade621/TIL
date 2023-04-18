@@ -1,4 +1,4 @@
-package com.example.app.Utils
+package com.example.app.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,15 +8,15 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.app.Utils.DataStoreManager.Keys.MYLOCATION
-import com.example.app.Utils.DataStoreManager.Keys.REMEMBER_ME
-import com.example.app.Utils.DataStoreManager.Keys.SHOW_COMPLETE
-import com.example.app.Utils.DataStoreManager.Keys.SORT_ORDER_KEY
-import com.example.app.Utils.DataStoreManager.Keys.USERID
-import com.example.app.Utils.DataStoreManager.Keys.USERPROFILE
-import com.example.app.Utils.DataStoreManager.Keys.USERPW
 import com.example.app.shared_prefs_singleton.data.SortOrder
 import com.example.app.shared_prefs_singleton.data.UserPreferences
+import com.example.app.utils.DataStoreManager.Keys.MYLOCATION
+import com.example.app.utils.DataStoreManager.Keys.REMEMBER_ME
+import com.example.app.utils.DataStoreManager.Keys.SHOW_COMPLETE
+import com.example.app.utils.DataStoreManager.Keys.SORT_ORDER_KEY
+import com.example.app.utils.DataStoreManager.Keys.USERID
+import com.example.app.utils.DataStoreManager.Keys.USERPROFILE
+import com.example.app.utils.DataStoreManager.Keys.USERPW
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
