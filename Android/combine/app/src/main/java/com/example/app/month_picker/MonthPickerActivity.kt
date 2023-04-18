@@ -29,6 +29,11 @@ class MonthPickerActivity : AppCompatActivity() {
             pd.show(supportFragmentManager, "DialogTest")
         }
 
+        binding.btnYearMonthPicker2.setOnClickListener {
+            val pd = MonthPicker2Fragment()
+            pd.show(supportFragmentManager, "DialogTest")
+        }
+
     }
 
 

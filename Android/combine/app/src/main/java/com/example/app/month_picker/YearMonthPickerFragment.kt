@@ -40,9 +40,8 @@ class YearMonthPickerFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val builder = AlertDialog.Builder(requireActivity())
-        val inflater = requireActivity().layoutInflater // 뭐지??
 
-        val dialog = inflater.inflate(R.layout.fragment_year_month_picker, null)
+        val dialog = requireActivity().layoutInflater.inflate(R.layout.fragment_year_month_picker, null)
 
         binding.cancel.setOnClickListener {
             dismiss()
