@@ -1,0 +1,90 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.mp3player"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml
+10
+11    <permission
+11-->[androidx.core:core:1.9.0] /Users/molrhmbo/.gradle/caches/transforms-3/c73afc1fa215d9ca128620a3c01802b0/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+12        android:name="com.example.mp3player.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+12-->[androidx.core:core:1.9.0] /Users/molrhmbo/.gradle/caches/transforms-3/c73afc1fa215d9ca128620a3c01802b0/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+13        android:protectionLevel="signature" />
+13-->[androidx.core:core:1.9.0] /Users/molrhmbo/.gradle/caches/transforms-3/c73afc1fa215d9ca128620a3c01802b0/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+14
+15    <uses-permission android:name="com.example.mp3player.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+15-->[androidx.core:core:1.9.0] /Users/molrhmbo/.gradle/caches/transforms-3/c73afc1fa215d9ca128620a3c01802b0/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.9.0] /Users/molrhmbo/.gradle/caches/transforms-3/c73afc1fa215d9ca128620a3c01802b0/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+16
+17    <application
+17-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:4:5-24:19
+18        android:allowBackup="true"
+18-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:5:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.9.0] /Users/molrhmbo/.gradle/caches/transforms-3/c73afc1fa215d9ca128620a3c01802b0/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+20        android:debuggable="true"
+21        android:extractNativeLibs="false"
+22        android:icon="@mipmap/ic_launcher"
+22-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:6:9-43
+23        android:label="@string/app_name"
+23-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:7:9-41
+24        android:supportsRtl="true"
+24-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:8:9-35
+25        android:theme="@style/Theme.DoItKKang" >
+25-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:9:9-47
+26        <service
+26-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:10:9-13:47
+27            android:name="com.example.mp3player.MyMessengerService"
+27-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:11:13-47
+28            android:enabled="true"
+28-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:12:13-35
+29            android:exported="true" />
+29-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:13:13-36
+30
+31        <activity
+31-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:15:9-23:20
+32            android:name="com.example.mp3player.MainActivity"
+32-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:16:13-41
+33            android:exported="true" >
+33-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:17:13-36
+34            <intent-filter>
+34-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:18:13-22:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:19:17-69
+35-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:19:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:21:17-77
+37-->/Users/molrhmbo/TIL/Android/DoItKKang/mp3player/src/main/AndroidManifest.xml:21:27-74
+38            </intent-filter>
+39        </activity>
+40
+41        <provider
+41-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+42            android:name="androidx.startup.InitializationProvider"
+42-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+43            android:authorities="com.example.mp3player.androidx-startup"
+43-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+44            android:exported="false" >
+44-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+45            <meta-data
+45-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+46                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+46-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+47                android:value="androidx.startup" />
+47-->[androidx.emoji2:emoji2:1.2.0] /Users/molrhmbo/.gradle/caches/transforms-3/66814d0c9c223a08105bc116aeb53dd5/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+48            <meta-data
+48-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/molrhmbo/.gradle/caches/transforms-3/d64e7ca6b93f4a6c092b1dd37cf249d6/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+49                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+49-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/molrhmbo/.gradle/caches/transforms-3/d64e7ca6b93f4a6c092b1dd37cf249d6/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+50                android:value="androidx.startup" />
+50-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/molrhmbo/.gradle/caches/transforms-3/d64e7ca6b93f4a6c092b1dd37cf249d6/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+51        </provider>
+52    </application>
+53
+54</manifest>

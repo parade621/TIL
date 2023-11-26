@@ -22,7 +22,6 @@ class GpsTracker(private val mContext: Context) : Service(), LocationListener {
     }
 
     override fun onLocationChanged(p0: Location) {
-        this.location = location
         latitude = location!!.latitude
         longitude = location!!.longitude
     }

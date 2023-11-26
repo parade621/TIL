@@ -61,7 +61,7 @@ class MyService : Service() {
             )
         }
         val notification = builder.build()
-        startForeground(1, notification)
+        startForeground(1, notification) //
     }
 
     override fun onDestroy() {

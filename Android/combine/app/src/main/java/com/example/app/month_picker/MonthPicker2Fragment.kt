@@ -43,7 +43,6 @@ class MonthPicker2Fragment : DialogFragment() {
                 binding.endMonth.visibility= View.INVISIBLE
             }
         }
-        binding.
 
         binding.cancelBtn.setOnClickListener {
             dismiss()
