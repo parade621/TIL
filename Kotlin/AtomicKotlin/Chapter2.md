@@ -161,22 +161,143 @@ kotlin.math.의 ```roundToInt()```는 Double의 소수점 이하를 그냥 버�
  <br/>
 
 ---
- # Atom 23
- ### 예외 처리 잘해라
- 적절한 표준 예외 사용은 유지보수에 도움이 된다.
- ex) IllegalArgumentException, IOException 등.
+# Atom 23
+### 예외 처리 잘해라
+적절한 표준 예외 사용은 유지보수에 도움이 된다.
+ex) IllegalArgumentException, IOException 등.
 
- 예외를 던질 때는 ```throw```키워드 다음에 던질 예외 이름을 넣고 그 위에 필요한 인자들을 추가
- ```kotlin
- thow IllegalArgumentException("Parma can't be zero")
- ``` 
+예외를 던질 때는 ```throw```키워드 다음에 던질 예외 이름을 넣고 그 위에 필요한 인자들을 추가
+```kotlin
+thow IllegalArgumentException("Parma can't be zero")
+``` 
 
+
+<br/>
+<br/>
+
+---
+# Atom 24
+### List
+컨테이너(container) == 컬렉션(Collection)
+기본적인 컨테이너를 생각할 때 보통 List를 많이 사용한다.
+sort는 원본을 직접 바꾼다. => 인플레이스(in place) 리스트를 바꿈.
+sorted는 정렬된 새로운 List를 반환한다.
+<br/>
+```Kotlin
+val number: List<Int> = listOf(1,2,3)
+```
+여기서 홑화살괄호(```<>```)를 타입 파라미터 (type parameter)라고 한다.
+
+반환 타입을 명시하는 거면, List의 경우 반드시 타입 파라미터로 타입을 알려줘야한다.
 
  <br/>
- <br/>
- 
- ---
- # Atom 24
- ### List
- 컨테이너(container) == 컬렉션(Collection)
- 기본적인 컨테이너를 생각할 때 보통 List를 많이 사용한다.
+listOf()는 상태를 변화시키는 함수가 들어 있지 않은 읽기 
+전용 리스트를 만듬
+
+<br/>
+<br/>
+
+이후에도 값을 추가할 수 있는 가변적인 List를 만들고 싶다면 ```mutableListOf()```를 사용할 것.
+- add(), addAll()로 원소 추가 가능
+- 짧게 ```+=```로도 추가 가능
+```kotlin
+fun main() {
+    val list = mutableListOf<Int>()
+
+    list.add(1)
+    list.addAll(listOf(2, 3))
+
+    list += 4
+    list += listOf(5, 6)
+
+    list eq listOf(1, 2, 3, 4, 5, 6)
+}
+```
+이렇게.
+
+
+<br/>
+<br/>
+
+---
+# Atom 25
+### 가변 인자 목록
+```vararg``` 키워드는 길이가 변할 수 있는 인자 목록을 만든다.
+이 키워드를 사용하면 listOf()처럼 임의의 길이로 인자를 받을 수 있는 함수를 정의할 수 있다.
+vararg는 가변 인자 목록(Variable argument list)의 줄인 말.
+
+<br/>
+
+함수 정의에는 ```vargarg``` 로 정의된 인자가 최대 한개만 존재 가능하다.
+파라미터 목록에서 어떤 위치에 있는 파라미터 든지 vararg로 선언 가능하지만, 일반적으로 마지막 파람을 vararg로 선언하는게 편하다.
+```kotlin
+fun v(s:String, vararg d: Double){}
+```
+
+<br/>
+
+임의의 개수만큼(0 포함) 인자 전달 가능.
+모든 인자는 지정한 타입에 속해야 함
+함수 본문에서는 파람 이름으로 ```vararg```인자에 접근 가능하며 이때 Array로 취급됨.
+
+<br/>
+
+Array와 List는 비슷해 보이지만 전혀 다르게 구현됨
+List는 일반적인 라이르러리 클래스인 반면, Array에는 특별한 저수준 지원이 필요함.
+
+<br>
+
+Array는 자바같은 다른 언어와 호환되어야한다는 코틀린의 요구사랑에 의해 생겨난 타입
+
+보통은 List를 사용하되, API가 Array를 요구하거나 vararg를 다루는 경우만 Array 사용 권장.
+
+
+만약 vararg가 Array로 취급됨을 무시하고 아래 코드처럼 List처럼 다루면?
+```kotlin
+fun evaluate(vararg ints: Int)="Size: ${ints.size}\n" +
+        "Sum: ${ints.sum()}\n" +
+        "Average: ${ints.average()}"
+
+fun main(){
+    evaluate(10,-3,8,1,9) eq """
+        Size: 5
+        Sum: 25
+        Average: 5.0
+    """
+}
+```
+```vararg```가 필요한 위치에 임의의 타입 Array를 넘길 수 있다.
+
+Array는 arrayOf()로 만듬
+Array는 **가변 객체**라는 것을 유의할 것.
+Array를 인자 목록으로 변환하고 싶으면 **스프레드 연산자(*)**를 사용
+```kotlin
+fun main(){
+    val array = intArrayOf(4,5)
+    sum(1,2,3, *array, 6) eq 21
+    // 아래는 안됨
+    // sum(1,2,3, array, 6) eq 21
+
+    val list = listOf(9,10,11)
+    sum(*list.toIntArray()) eq 30
+}
+```
+
+스프레드 연산자는 vararg로 받은 파라미터를 다시 다른 vararg를 요구하는 함수에 전달할 때 유용하다.
+
+```kotlin
+fun first(vararg numbers: Int):String{
+    var result = ""
+    for (i in numbers){
+        result += "[$i]"
+    }
+    return result
+}
+
+fun second(vararg numbers:Int)=
+    first(*numbers)
+
+fun main(){
+    second(7,9,32) eq "[7][9][32]"
+}
+```
