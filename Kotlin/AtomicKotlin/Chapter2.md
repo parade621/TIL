@@ -301,3 +301,125 @@ fun main(){
     second(7,9,32) eq "[7][9][32]"
 }
 ```
+
+<br/>
+
+---
+# Atom 26
+### 집합(Set)
+
+Set은 각각의 값이 오직 하나만 존재 가능한 컬렉션이다.
+
+보통 `in`이나 `contains()`를 사용해서 원소인지 검사할 때 사용
+
+```kotlin
+fun main() {
+    val intSet = setOf(1, 1, 2, 3, 9, 9, 4)
+    // 중복 허용 안함
+    intSet eq setOf(1, 2, 3, 4, 9)
+
+    // 원소 순서는 중요x
+    setOf(1, 2) eq setOf(2, 1)
+
+    (9 in intSet) eq true
+**List의 중복을 제거하려면 Set으로 변환**
+
+`setOf()`는 읽기 전용 집합
+가변 Set은 `mutableSetOf()`로 생성
+
+
+<br/>
+
+---
+# Atom 27
+### 맵(Map)
+
+> Map은 키(Key)와 값(Value)을 연결하고, 키가 주어지면 그 키와 연결된 값을 찾아준다.
+
+
+키와 값을 분리하려면 ```to```를 사용
+
+```kotlin
+fun main(){
+    val constants = mapOf(
+        "Pi" to 3.141,
+        "e" to 2.718,
+        "phi" to 1.618
+    )
+    constants eq "{Pi=3.141, e=2.718, phi=1.618}"
+
+    // 키에 해당하는 값을 찾는다
+    constants["e"] eq 2.718
+    constants.keys eq setOf("Pi", "e", "phi")
+    constants.values eq "[3.141, 2.718, 1.618]"
+
+    var s = ""
+    // 키-값 쌍을 이터레이션한다
+    for (entry in constants) {
+        s += "${entry.key} = ${entry.value}, "
+    }
+    s eq "Pi = 3.141, e = 2.718, phi = 1.618, "
+
+    s=""
+    //이터에니션을 하면서 키와 값을 분리한다
+    for((key, value) in constants)
+        s+= "key=$value, "
+    s eq "Pi=3.141, e=2.718, phi=1.618, "
+}
+```
+
+[] 연산자는 키를 사용해 값을 검색한다. 
+Map에서 각 키는 유일하기 때문에 keys를 호출하면 Set이 생긴다. O(1)의 시간복잡도에 검색 가능
+
+Map에 대한 이터레이션 수행 시, 항목(entry)로 k-v를 전달 받는다.
+
+일반 Map은 읽기전용.
+MutableMap은 가변
+
+```kotlin
+fun main(){
+    val m = mutableMapOf(5 to "five", 6 to "siz")
+    m[5] eq "five"
+    m[5] = "5ive"
+    m[5] eq "5ive"
+    m += 4 to "four"
+    m eq mapOf(5 to "5ive", 4 to "four", 6 to "six")
+    // [Error]: {5=5ive, 6=siz, 4=four} != {5=5ive, 4=four, 6=six}
+}
+```
+mapOf()와 mutableMapOf()는 원소가 Map에 전달된 순서를 유지한다
+다른 Map(다른게 있나?)에서는 이 순서가 보장되지 않을 수 있음
+
+<br/>
+
+주어진 키에 해당하는 원소가 포함되어 있지 않으면 Map은 null을 반환한다.
+
+null이 될 수 없는 결과를 원한다면 `getValue()`를 사용 => 키가 없으면 `NoSuchElementException`이 발생
+```kotlin
+fun main(){
+    val map = mapOf('a' to "attempt")
+    map['b'] eq null
+    capture{
+        map.getValue('b')
+    } eq "NoSuchElementException: " + "Key b is missing in the map."
+    map.getOrDefault('a', "??") eq "attempt"
+    map.getOrDefault('b', "??") eq "??"
+}
+```
+일반적으로 `getOrDefault()`가 null을 반환하거나 예외를 던지는 함수보다 더 나은 대안이라 함.
+
+
+클래스 인스턴스도 저장 가능
+
+Map이 키와 값을 연관(연결)시켜주기 때문에 떄로 Map을 연관 배열(associative array)라고 함
+
+<br/>
+<br/>
+
+---
+# Atom 28
+### 프로퍼티 접근자
+
+{프로퍼티 이름을 사용해 프로퍼티를 읽는다.
+대입연산자 =를 사용해 가변 프로퍼티에 값을 대입한다.
+: .notice}
