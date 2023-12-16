@@ -4,4 +4,5 @@
 
 확실히 JetBrain에서 코틀린 언어 개발을 담당하는 분이 저술한 책이라 내용이 알차다.
 
-- [Chapter2](https://github.com/parade621/TIL/blob/main/Kotlin/AtomicKotlin/Chapter2.md) (2023.11.27 ~ )
+- [Chapter2](https://github.com/parade621/TIL/blob/main/Kotlin/AtomicKotlin/Chapter2.md) (2023.11.27 ~ 2023.12.14)
+- [Chapter3](https://github.com/parade621/TIL/blob/main/Kotlin/AtomicKotlin/Chapter3.md) (2023.12.14 ~ )
