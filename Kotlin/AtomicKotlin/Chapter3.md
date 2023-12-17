@@ -254,3 +254,57 @@ fun main() {
 }
 ```
 
+
+<br/>
+<br/>
+
+---
+# Atom 33
+## When
+
+when 식을 문처럼 취급하는 경우(즉, when의 결과를 사용하지 않는 경우) else 생략 가능
+
+<br/>
+<br/>
+
+---
+# Atom 34
+## enum
+
+
+enum class는 이름을 관리하는 편리한 방법이다.
+
+```kotlin
+enum class Level {
+    Overflow, High, Medium, Low, Empty
+}
+
+fun main() {
+    Level.Medium eq "Medium"
+}
+```
+
+enum을 만들면 enum의 이름에 해당하는 문자열을 돌려주는 toString()이 자동으로 생성된다.
+
+main()에서 Level.Medium을 사용한 것처럼 이넘 이름을 사용할 때는 반드시 이름을 한정시켜야 한다.
+
+import로 이넘에 정의된 모든 이름을 현재의 nameSpace로 불러오면 한정 짓지 않아도 됨.
+
+values()를 사용해 이넘 값을 이터레이션 할 수 있음.
+
+values()는 Array를 반환
+
+``` kotlin
+enum.values()
+```
+
+<br/>
+이넘은 인스턴스 개수가 미리 정해져 있고 클새ㅡ 본문 안에 이 모든 인스턴스가 나열되어 있는 특별한 종류의 클래스다.
+
+이 점을 제외하면 enum은 일반 클래스와 똑같이 동작
+
+따라서 멤버 함수나 멤버 프로퍼티를 이넘에 정의 할 수도 있다.
+
+
+
+
