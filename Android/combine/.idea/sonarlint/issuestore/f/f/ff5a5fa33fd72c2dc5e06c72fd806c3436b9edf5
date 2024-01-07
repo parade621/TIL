@@ -1,10 +1,0 @@
-
-2kotlin:S1128"Remove this unused import.(¦ùí
-7kotlin:S1128"Remove this unused import.(èãÊõûÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(‡Œöøÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(£ñ¹¸ûÿÿÿÿ
-7kotlin:S1128"Remove this unused import.( í»Òùÿÿÿÿ
-<kotlin:S125"Remove this commented out code.(°Ô³„şÿÿÿÿ
-@kotlin:S1874p"#Deprecated code should not be used.(ÿ¦œûÿÿÿÿ
-kkotlin:S3776’"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(“‘¨‘
-jkotlin:S117|"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ç Œé

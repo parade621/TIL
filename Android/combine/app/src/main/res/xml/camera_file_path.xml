@@ -1,5 +1,0 @@
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-path
-        name="CameraX-Images"
-        path="Android/data/package com.example.app.camera_view/Pictures"/>
-</paths>

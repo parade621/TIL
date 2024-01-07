@@ -1,4 +1,0 @@
-package Basic
-
-class Heap {
-}

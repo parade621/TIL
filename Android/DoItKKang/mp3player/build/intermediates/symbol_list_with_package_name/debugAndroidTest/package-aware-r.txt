@@ -1,3 +1,0 @@
-com.example.mp3player.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
